@@ -49,3 +49,6 @@ timeoutMs = 120000
 
 [userenv.shared]
 SUPERADMIN_EMAILS = "info@dokumenproyek.com,penshopx@gmail.com"
+SMTP_HOST = "smtp-relay.brevo.com"
+SMTP_PORT = "587"
+SMTP_SECURE = "false"
