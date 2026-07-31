@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DokumenTender.com - Ekosistem Digital Konstruksi Terpadu</title>
+    <meta name="description" content="Platform terpadu pengembangan usaha berkelanjutan jasa konstruksi. Legalitas, tender, proyek, safety, dan ekonomi sirkular.">
+    
+    <!-- Remix Icon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary: #0f172a; /* Deep Navy */
+            --primary-light: #1e293b;
+            --secondary: #334155;
+            --accent: #f59e0b; /* Construction Orange */
+            --accent-hover: #d97706;
+            --success: #10b981; /* Green */
+            --danger: #ef4444; /* Red/Safety */
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --transition: all 0.3s ease;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3, h4 { color: var(--primary); font-weight: 800; line-height: 1.2; }
+        h1 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        h2 { font-size: 2rem; margin-bottom: 1rem; }
+        h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+        
+        .text-center { text-align: center; }
+        .text-accent { color: var(--accent); }
+        .text-white { color: var(--white); }
+
+        /* --- UTILITIES --- */
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+        .section { padding: 80px 0; }
+        .bg-white { background-color: var(--white); }
+        .bg-primary { background-color: var(--primary); color: var(--white); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+            box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-primary:hover { background-color: var(--accent-hover); transform: translateY(-2px); }
+
+        .btn-outline {
+            border: 2px solid var(--white);
+            color: var(--white);
+            background: transparent;
+        }
+        .btn-outline:hover { background: var(--white); color: var(--primary); }
+
+        /* --- HEADER --- */
+        header {
+            background: var(--white);
+            box-shadow: 0 1px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .brand { font-size: 1.5rem; font-weight: 900; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { font-weight: 500; color: var(--text-main); font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* --- HERO --- */
+        .hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.8)), url('https://picsum.photos/seed/construction/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 120px 0 100px;
+        }
+        .hero-content { max-width: 800px; }
+        .hero h1 { color: var(--white); margin-bottom: 1.5rem; }
+        .hero p { font-size: 1.25rem; opacity: 0.9; margin-bottom: 2rem; }
+
+        /* --- QUICK ACCESS BAR --- */
+        .quick-access {
+            transform: translateY(-50%);
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        .qa-item { display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: pointer; }
+        .qa-icon {
+            width: 50px; height: 50px; border-radius: 50%;
+            background: var(--bg-light); color: var(--primary);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; transition: var(--transition);
+        }
+        .qa-item:hover .qa-icon { background: var(--accent); color: var(--white); }
+        .qa-text { font-weight: 600; font-size: 0.9rem; }
+
+        /* --- MODULES GRID (Updated for 12 items) --- */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .module-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        /* Specific Styles for Featured/New Modules */
+        .module-card.featured { border: 2px solid var(--accent); background: #fffbeb; }
+        .module-card.safety { border-top: 4px solid var(--danger); }
+        .module-card.circular { border-top: 4px solid var(--success); }
+
+        .badge {
+            position: absolute; top: 15px; right: 15px;
+            background: var(--accent); color: var(--white);
+            font-size: 0.75rem; padding: 4px 10px;
+            border-radius: 4px; font-weight: 700;
+        }
+        
+        .module-header { display: flex; align-items: center; gap: 15px; margin-bottom: 1rem; }
+        .module-icon {
+            width: 48px; height: 48px;
+            background: var(--primary); color: var(--white);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+        }
+        .module-card.featured .module-icon { background: var(--accent); }
+        .module-card.safety .module-icon { background: var(--danger); }
+        .module-card.circular .module-icon { background: var(--success); }
+
+        .module-title { font-size: 1.1rem; font-weight: 700; color: var(--primary); }
+        
+        .module-list { list-style: none; margin-top: auto; } /* Pushes to bottom if heights vary */
+        .module-list li {
+            font-size: 0.9rem; color: var(--text-light);
+            margin-bottom: 0.5rem; padding-left: 1.2rem;
+            position: relative;
+        }
+        .module-list li::before {
+            content: "•"; color: var(--accent);
+            position: absolute; left: 0; font-weight: bold;
+        }
+        .module-card.safety .module-list li::before { color: var(--danger); }
+        .module-card.circular .module-list li::before { color: var(--success); }
+
+        /* --- ROLES --- */
+        .roles-container {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 2rem;
+        }
+        .role-card {
+            background: var(--white); padding: 1.5rem;
+            border-radius: var(--radius); box-shadow: var(--shadow);
+            flex: 1 1 250px; text-align: center;
+            border-top: 4px solid var(--primary);
+        }
+        .check-list li { margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
+        .check-list i { color: var(--success); }
+
+        /* --- INITIATIVES (Safety & Circular) --- */
+        .initiatives { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .init-box {
+            padding: 2rem; border-radius: var(--radius);
+            display: flex; gap: 1rem; align-items: flex-start;
+        }
+        .init-safety { background: #fef2f2; border: 1px solid #fee2e2; }
+        .init-circular { background: #f0fdf4; border: 1px solid #dcfce7; }
+        
+        .init-icon-large {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+        .init-safety .init-icon-large { color: var(--danger); }
+        .init-circular .init-icon-large { color: var(--success); }
+
+        /* --- FOOTER --- */
+        footer { background: var(--primary); color: #94a3b8; padding: 4rem 0 2rem; border-top: 5px solid var(--accent); }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
+        .footer-col h4 { color: var(--white); margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .footer-links li { margin-bottom: 0.8rem; }
+        .footer-links a:hover { color: var(--accent); }
+        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid #334155; font-size: 0.9rem; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .nav-links { display: none; }
+            .quick-access { display: none; }
+            .initiatives { grid-template-columns: 1fr; }
+            .modules-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="brand">
+                    <i class="ri-building-4-fill" style="color: var(--accent);"></i>
+                    dokumentender.com
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#ekosistem">Layanan</a></li>
+                    <li><a href="#tentang">Tentang Kami</a></li>
+                    <li><a href="#pengguna">Pengguna</a></li>
+                    <li><a href="#harga">Harga</a></li>
+                </ul>
+                <a href="#cta" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">
+                    Gabung Sekarang
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Satu Platform Digital untuk Legalitas, Tender, Proyek, Safety dan Keberlanjutan Konstruksi</h1>
+                <p>Mendukung badan usaha jasa konstruksi dari perizinan, tender, pelaksanaan proyek, keselamatan kerja, hingga praktik ekonomi sirkular.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="#ekosistem" class="btn btn-primary">
+                        Jelajahi Ekosistem <i class="ri-arrow-right-line"></i>
+                    </a>
+                    <a href="#tentang" class="btn btn-outline">
+                        Pelajari Lebih Lanjut
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Access Bar -->
+    <div class="container">
+        <div class="quick-access">
+            <div class="qa-item" onclick="document.getElementById('mod-tender').scrollIntoView()">
+                <div class="qa-icon"><i class="ri-file-paper-2-line"></i></div>
+                <span class="qa-text">Tender</span>
+            </div>
+            <div class="qa-item" onclick="document.getElementById('mod-legalitas').scrollIntoView()">
+                <div class="qa-icon"><i class="ri-shield-keyhole-line"></i></div>
+                <span class="qa-text">Perizinan</span>
+            </div>
+            <div class="qa-item" onclick="document.getElementById('mod-kendali').scrollIntoView()">
+                <div class="qa-icon"><i class="ri-dashboard-3-line"></i></div>
+                <span class="qa-text">Kendali Proyek</span>
+            </div>
+            <div class="qa-item" onclick="document.getElementById('mod-safety').scrollIntoView()">
+                <div class="qa-icon"><i class="ri-first-aid-kit-line"></i></div>
+                <span class="qa-text">Safety</span>
+            </div>
+            <div class="qa-item" onclick="document.getElementById('mod-financial').scrollIntoView()">
+                <div class="qa-icon"><i class="ri-money-dollar-circle-line"></i></div>
+                <span class="qa-text">Financial</span>
+            </div>
+            <div class="qa-item" onclick="document.getElementById('mod-circular').scrollIntoView()">
+                <div class="qa-icon"><i class="ri-recycle-line"></i></div>
+                <span class="qa-text">Sirkular</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ecosystem Section (12 Pillars) -->
+    <section id="ekosistem" class="section">
+        <div class="container">
+            <div class="text-center" style="max-width: 700px; margin: 0 auto 3rem;">
+                <h2>Ekosistem Digital dokumentender.com</h2>
+                <p>Platform terpadu pengembangan usaha berkelanjutan jasa konstruksi dengan 12 modul unggulan yang saling terintegrasi.</p>
+            </div>
+
+            <div class="modules-grid">
+                
+                <!-- 1. Kompeten -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon"><i class="ri-book-read-line"></i></div>
+                        <div class="module-title">Kompeten & Latih</div>
+                    </div>
+                    <p>Pengembangan kompetensi usaha & tenaga kerja.</p>
+                    <ul class="module-list">
+                        <li>Chatbot konsultasi kompetensi</li>
+                        <li>Generator dokumen usaha</li>
+                        <li>Mini apps & E-course digital</li>
+                    </ul>
+                </div>
+
+                <!-- 2. Tuman -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon"><i class="ri-group-line"></i></div>
+                        <div class="module-title">Tuman (Tenaga Kerja)</div>
+                    </div>
+                    <p>Platform temu cepat tukang, mandor, dan pengguna jasa.</p>
+                    <ul class="module-list">
+                        <li>Pekerjaan konstruksi khusus</li>
+                        <li>Pekerjaan spesialis</li>
+                        <li>Infrastruktur skala masyarakat</li>
+                    </ul>
+                </div>
+
+                <!-- 3. RancangBangun -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon"><i class="ri-building-line"></i></div>
+                        <div class="module-title">RancangBangun</div>
+                    </div>
+                    <p>Fasilitasi badan usaha dengan pengguna jasa untuk proyek bangunan.</p>
+                    <ul class="module-list">
+                        <li>Pekerjaan bangunan hunian</li>
+                        <li>Bagian dari bangunan</li>
+                        <li>Pekerjaan infrastruktur</li>
+                    </ul>
+                </div>
+
+                <!-- 4. Pasok -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon"><i class="ri-shopping-basket-line"></i></div>
+                        <div class="module-title">Pasok (Marketplace)</div>
+                    </div>
+                    <p>Marketplace pengadaan material & tenaga kerja terverifikasi.</p>
+                    <ul class="module-list">
+                        <li>Penyedia terverifikasi & aman</li>
+                        <li>Harga kompetitif pasar</li>
+                        <li>Sistem pembayaran escrow</li>
+                    </ul>
+                </div>
+
+                <!-- 5. TENDER (Core) -->
+                <div class="module-card featured" id="mod-tender">
+                    <div class="badge">UNGGULAN</div>
+                    <div class="module-header">
+                        <div class="module-icon"><i class="ri-file-list-3-line"></i></div>
+                        <div class="module-title">Tender</div>
+                    </div>
+                    <p>Informasi proyek & Generator dokumen tender otomatis.</p>
+                    <ul class="module-list">
+                        <li>Informasi peluang proyek terkini</li>
+                        <li><strong>Generator dokumen tender otomatis</strong></li>
+                        <li>Template administrasi & teknis</li>
+                        <li>Checklist kepatuhan regulasi</li>
+                    </ul>
+                </div>
+
+                <!-- 6. Perizinan, Legalitas & Sertifikasi (Renamed) -->
+                <div class="module-card featured" id="mod-legalitas">
+                    <div class="badge">WAJIB</div>
+                    <div class="module-header">
+                        <div class="module-icon"><i class="ri-shield-check-line"></i></div>
+                        <div class="module-title">Perizinan, Legalitas & Sertifikasi</div>
+                    </div>
+                    <p>Layanan terpadu legalitas usaha dan sertifikasi konstruksi.</p>
+                    <ul class="module-list">
+                        <li>Jasa pengurusan SBU & SKK</li>
+                        <li>Legalitas perusahaan (NIB, NPWP)</li>
+                        <li>Izin lingkungan & operasional</li>
+                        <li>Reminder otomatis kadaluarsa sertifikat</li>
+                    </ul>
+                </div>
+
+                <!-- 7. KENDALI (Core) -->
+                <div class="module-card featured" id="mod-kendali">
+                    <div class="badge">POPULER</div>
+                    <div class="module-header">
+                        <div class="module-icon"><i class="ri-pie-chart-2-line"></i></div>
+                        <div class="module-title">Kendali Proyek</div>
+                    </div>
+                    <p>Monitoring & kinerja proyek secara real-time dashboard.</p>
+                    <ul class="module-list">
+                        <li>Dashboard real-time progress</li>
+                        <li>Tracking progress proyek harian</li>
+                        <li>Reporting otomatis (mingguan/bulanan)</li>
+                        <li>Monitoring biaya & deviasi waktu</li>
+                    </ul>
+                </div>
+
+                <!-- 8. Penilai Ahli -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon"><i class="ri-user-star-line"></i></div>
+                        <div class="module-title">Penilai Ahli</div>
+                    </div>
+                    <p>Akses konsultasi teknis, administratif, hukum konstruksi.</p>
+                    <ul class="module-list">
+                        <li>Konsultasi ahli berpengalaman</li>
+                        <li>Review dokumen teknis</li>
+                        <li>Opini profesional & hukum</li>
+                    </ul>
+                </div>
+
+                <!-- 9. Alat -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon"><i class="ri-truck-line"></i></div>
+                        <div class="module-title">Alat</div>
+                    </div>
+                    <p>Sewa & manajemen peralatan konstruksi.</p>
+                    <ul class="module-list">
+                        <li>Marketplace sewa alat</li>
+                        <li>Sewa harian / mingguan fleksibel</li>
+                        <li>Manajemen inventaris</li>
+                        <li>Solusi hukum penggunaan alat</li>
+                    </ul>
+                </div>
+
+                <!-- 10. Financial -->
+                <div class="module-card" id="mod-financial">
+                    <div class="module-header">
+                        <div class="module-icon"><i class="ri-funds-box-line"></i></div>
+                        <div class="module-title">Financial</div>
+                    </div>
+                    <p>Laporan keuangan, perpajakan, dan permodalan.</p>
+                    <ul class="module-list">
+                        <li>Laporan keuangan otomatis</li>
+                        <li>Kalkulator pajak konstruksi</li>
+                        <li>Konsultasi perpajakan</li>
+                        <li>Konsultasi permodalan (KUR/KJK)</li>
+                    </ul>
+                </div>
+
+                <!-- 11. NEW: Safety Ready -->
+                <div class="module-card safety" id="mod-safety">
+                    <div class="badge" style="background: var(--danger);">SAFETY FIRST</div>
+                    <div class="module-header">
+                        <div class="module-icon"><i class="ri-hard-line"></i></div>
+                        <div class="module-title">Safety Ready</div>
+                    </div>
+                    <p>Integrasi K3 dan keselamatan kerja di setiap tahapan proyek.</p>
+                    <ul class="module-list">
+                        <li>Rencana & Sistem Manajemen K3 (SMK3)</li>
+                        <li>Checklist APD & Risk Assessment</li>
+                        <li>Training & Sertifikasi Safety</li>
+                        <li>Laporan insiden digital</li>
+                    </ul>
+                </div>
+
+                <!-- 12. NEW: Ekonomi Sirkular -->
+                <div class="module-card circular" id="mod-circular">
+                    <div class="badge" style="background: var(--success);">SUSTAINABILITY</div>
+                    <div class="module-header">
+                        <div class="module-icon"><i class="ri-leaf-line"></i></div>
+                        <div class="module-title">Ekonomi Sirkular</div>
+                    </div>
+                    <p>Praktik konstruksi berkelanjutan dan pengelolaan limbah.</p>
+                    <ul class="module-list">
+                        <li>Manajemen limbah konstruksi (B3)</li>
+                        <li>Penggunaan material daur ulang</li>
+                        <li>Green Procurement & Sertifikasi</li>
+                        <li>Laporan keberlanjutan proyek</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Who Can Use Section -->
+    <section id="pengguna" class="section bg-white">
+        <div class="container">
+            <h2 class="text-center">Siapa yang Bisa Menggunakan dokumentender.com?</h2>
+            <div class="roles-container">
+                <div class="role-card">
+                    <div class="module-icon" style="margin: 0 auto 1rem; background: var(--accent);"><i class="ri-building-2-line"></i></div>
+                    <h3>Badan Usaha</h3>
+                    <p>Kontraktor & Pengadaan</p>
+                </div>
+                <div class="role-card">
+                    <div class="module-icon" style="margin: 0 auto 1rem; background: var(--accent);"><i class="ri-vip-crown-line"></i></div>
+                    <h3>Anggota</h3>
+                    <p>Anggota dokumentender.com</p>
+                </div>
+                <div class="role-card">
+                    <div class="module-icon" style="margin: 0 auto 1rem; background: var(--accent);"><i class="ri-hammer-line"></i></div>
+                    <h3>Tenaga Kerja</h3>
+                    <p>Tukang & Mandor</p>
+                </div>
+                <div class="role-card">
+                    <div class="module-icon" style="margin: 0 auto 1rem; background: var(--accent);"><i class="ri-community-line"></i></div>
+                    <h3>Masyarakat</h3>
+                    <p>Pengguna Jasa</p>
+                </div>
+                <div class="role-card">
+                    <div class="module-icon" style="margin: 0 auto 1rem; background: var(--accent);"><i class="ri-handshake-line"></i></div>
+                    <h3>Mitra</h3>
+                    <p>Penyedia Material & Alat</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us & Safety/Circular Highlights -->
+    <section id="tentang" class="section bg-light">
+        <div class="container">
+            <h2 class="text-center" style="margin-bottom: 3rem;">Kenapa Memilih dokumentender.com?</h2>
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 3rem; align-items: stretch;">
+                <div style="flex: 1; min-width: 300px;">
+                    <ul class="check-list">
+                        <li><i class="ri-checkbox-circle-fill" style="color: var(--primary);"></i> Dikembangkan oleh ekosistem konstruksi profesional.</li>
+                        <li><i class="ri-checkbox-circle-fill" style="color: var(--primary);"></i> Fokus kepatuhan & keberlanjutan usaha (SMAP).</li>
+                        <li><i class="ri-checkbox-circle-fill" style="color: var(--primary);"></i> Terintegrasi penuh dari hulu ke hilir.</li>
+                        <li><i class="ri-checkbox-circle-fill" style="color: var(--primary);"></i> Digital, praktis, dan data terverifikasi.</li>
+                        <li><i class="ri-checkbox-circle-fill" style="color: var(--primary);"></i> Mendukung kewajiban pasca-sertifikasi.</li>
+                    </ul>
+                </div>
+
+                <!-- Visual emphasis on Safety & Circular -->
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 1.5rem;">
+                    <div class="init-box init-safety">
+                        <div class="init-icon-large"><i class="ri-hospital-line"></i></div>
+                        <div>
+                            <h3 style="color: var(--danger);">Safety Ready</h3>
+                            <p style="font-size: 0.9rem;">Memastikan setiap proyek berjalan dengan standar K3 tertinggi, zero accident, dan perlindungan tenaga kerja.</p>
+                        </div>
+                    </div>
+
+                    <div class="init-box init-circular">
+                        <div class="init-icon-large"><i class="ri-plant-line"></i></div>
+                        <div>
+                            <h3 style="color: var(--success);">Ekonomi Sirkular</h3>
+                            <p style="font-size: 0.9rem;">Mendorong efisiensi material, pengelolaan limbah, dan praktek konstruksi yang ramah lingkungan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="bg-primary" style="padding: 100px 0; text-align: center;">
+        <div class="container">
+            <h2 style="color: white; margin-bottom: 1.5rem;">Siap Mengembangkan Usaha Konstruksi Anda?</h2>
+            <p style="color: #cbd5e1; max-width: 700px; margin: 0 auto 2.5rem;">
+                Gabung dalam ekosistem digital dokumentender.com. Dari legalitas, tender, proyek, safety, hingga keberlanjutan dalam satu platform.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-primary" style="padding: 15px 35px; font-size: 1.1rem;">
+                    Daftar Anggota Sekarang
+                </button>
+                <button class="btn btn-outline" style="padding: 15px 35px; font-size: 1.1rem;">
+                    Konsultasi dengan Tim
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="brand" style="color: white; margin-bottom: 1rem; display: inline-block;">
+                        dokumentender.com
+                    </a>
+                    <p style="font-size: 0.9rem;">Platform digital terpadu yang melayani seluruh siklus usaha jasa konstruksi Indonesia.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Layanan Utama</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">DokumenTender Tender</a></li>
+                        <li><a href="#">DokumenTender Kendali</a></li>
+                        <li><a href="#">Perizinan & Legalitas</a></li>
+                        <li><a href="#">Safety Ready</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Layanan Pendukung</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Marketplace Pasok</a></li>
+                        <li><a href="#">Ekonomi Sirkular</a></li>
+                        <li><a href="#">Financial</a></li>
+                        <li><a href="#">Penilai Ahli</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Hubungi Kami</h4>
+                    <ul class="footer-links">
+                        <li><i class="ri-mail-line"></i> hello@dokumentender.com</li>
+                        <li><i class="ri-phone-line"></i> +62 21 5555 8888</li>
+                        <li><i class="ri-map-pin-line"></i> Jakarta, Indonesia</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 dokumentender.com. Hak Cipta Dilindungi Undang-Undang.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,690 @@
+# LegalHub Pro — Arsitektur Web Aplikasi Agentic AI Multi-Agen (OpenClaw)
+
+#### 11) Agent Document Generator
+
+Menangani:
+
+- drafting dokumen legalitas, perizinan, sertifikasi, tender, dan proyek
+- pemilihan template dokumen berdasarkan sektor dan use case
+- penyusunan struktur dokumen, klausul, tabel, dan lampiran
+- normalisasi output draft agar siap direview oleh tim pusat
+- sinkronisasi dengan GPTs dan/atau custom instruction khusus dokumen perusahaan
+
+Dokumen ini merancang web aplikasi LegalHub Pro sebagai platform jasa dan konsultansi legalitas, perizinan, sertifikasi, tender, dan proyek yang **berbasis Agentic AI**, memakai **arsitektur multi-agen** dengan **agen orchestrator**, **agen spesialis**, dan **OpenClaw sebagai execution layer**.
+
+Target desainnya ada dua:
+
+- **canggih secara teknologi**
+- **mudah diakses, dijual, dipakai, dan dioperasikan**
+
+## 1. Prinsip desain produk
+
+Aplikasi ini tidak boleh terasa seperti sistem AI yang rumit. Di mata pengguna, produk harus terasa seperti:
+
+- portal layanan profesional
+- dashboard progress pekerjaan
+- asisten konsultasi cerdas
+- pusat dokumen dan compliance
+- mesin workflow untuk tender dan proyek
+
+Jadi kompleksitas multi-agent disembunyikan di belakang layar.
+
+## 2. Konsep arsitektur utama
+
+Arsitektur dibangun dalam **5 lapisan**:
+
+### Layer 1 — Experience Layer
+
+Antarmuka yang diakses user:
+
+- website publik
+- client portal
+- dashboard internal tim
+- mobile responsive interface
+- WhatsApp / email entry points
+
+### Layer 2 — Workflow & Business Logic Layer
+
+Lapisan proses bisnis:
+
+- lead intake
+- eligibility checking
+- case creation
+- checklist engine
+- document workflow
+- tender workflow
+- project workflow
+- approval engine
+- billing workflow
+
+### Layer 3 — Agentic AI Layer
+
+Lapisan AI multi-agen:
+
+- **Orchestrator Agent**
+- **Specialist Agents**
+- memory & context manager
+- policy / guardrail engine
+- task routing & prioritization
+
+### Layer 4 — OpenClaw Execution Layer
+
+Lapisan eksekusi tugas:
+
+- menjalankan task terstruktur
+- memanggil tools atau connector
+- mengakses knowledge base
+- mengerjakan subtask otomatis
+- mengembalikan hasil ke orchestrator
+
+### Layer 5 — Data & Integration Layer
+
+Lapisan data dan integrasi:
+
+- PostgreSQL
+- object storage dokumen
+- vector database / semantic search
+- notification services
+- OCR engine
+- payment gateway
+- e-sign service
+- WhatsApp / email integration
+- analytics stack
+
+## 3. Model multi-agent yang direkomendasikan
+
+### A. 1 Orchestrator Agent
+
+Peran utama:
+
+- memahami intent user
+- menentukan jalur workflow
+- memilih agen spesialis yang relevan
+- membagi tugas menjadi subtask
+- mengirim task ke OpenClaw untuk dieksekusi
+- menggabungkan output akhir menjadi respons atau aksi sistem
+
+Nama yang cocok:
+
+- **LegalHub Orchestrator**
+- **Command Agent**
+- **Mission Control Agent**
+
+### B. Specialist Agents
+
+Rekomendasi agen spesialis:
+
+#### 1) Agent Legalitas
+
+Menangani:
+
+- NIB
+- OSS
+- KBLI
+- AHU
+- perubahan data usaha
+- legalitas badan usaha
+
+#### 2) Agent Perizinan
+
+Menangani:
+
+- izin operasional sektoral
+- persyaratan administratif
+- checklist perizinan spesifik industri
+
+#### 3) Agent Sertifikasi
+
+Menangani:
+
+- SBU / SBUJK
+- SKK
+- ISO
+- SMK3
+- sertifikasi profesi / badan usaha
+
+#### 4) Agent Tender
+
+Menangani:
+
+- tender intake
+- dokumen pemilihan
+- compliance matrix
+- go / no-go scoring
+- review kesiapan submit
+- risk register tender
+
+#### 5) Agent Proyek
+
+Menangani:
+
+- administrasi proyek
+- kontrak
+- submittal
+- approval docs
+- closing docs
+- arsip proyek
+
+#### 6) Agent Document Review
+
+Menangani:
+
+- OCR
+- ekstraksi isi dokumen
+- identifikasi mismatch data
+- expiry tracking
+- versioning dan validasi format
+
+#### 7) Agent Compliance & Regulation
+
+Menangani:
+
+- rule engine
+- validasi persyaratan
+- pemeriksaan regulasi
+- alert kepatuhan
+
+#### 8) Agent Sales & Intake
+
+Menangani:
+
+- chatbot awal
+- lead qualification
+- rekomendasi layanan
+- estimasi biaya awal
+
+#### 9) Agent Finance & Billing
+
+Menangani:
+
+- quotation
+- invoice
+- payment follow-up
+- status tagihan
+
+#### 10) Agent Knowledge Assistant
+
+Menangani:
+
+- tanya jawab regulasi
+- FAQ layanan
+- penjelasan persyaratan
+- drafting awal surat / checklist / email
+
+## 4. Hubungan Orchestrator, Specialist, dan OpenClaw
+
+### Alur sederhananya
+
+1. User bertanya / mengajukan layanan
+2. **Orchestrator Agent** membaca intent, konteks user, role, dan data case
+3. Orchestrator memutuskan agen spesialis mana yang perlu aktif
+4. Tiap task dikirim ke **OpenClaw** sebagai mesin eksekusi
+5. OpenClaw menjalankan tool, workflow, retrieval, atau automation
+6. Hasil dikembalikan ke orchestrator
+7. Orchestrator menyusun output akhir ke user atau dashboard
+8. Sistem menyimpan log, status, dan next action
+
+### Prinsip penting
+
+- **Orchestrator berpikir dan mengatur**
+- **Specialist agents menganalisis domain**
+- **OpenClaw mengeksekusi pekerjaan**
+
+## 5. Mengapa arsitektur ini kuat
+
+Karena produk ini menjual layanan kompleks. Satu AI tunggal akan cepat kacau jika semua domain dicampur. Dengan pendekatan multi-agent:
+
+- reasoning lebih terarah
+- domain knowledge lebih terpisah
+- workflow lebih mudah diaudit
+- output lebih konsisten
+- scaling lebih mudah
+- eksperimen produk bisa bertahap
+
+Ini sejalan dengan pola OpenClaw multi-agent yang memakai routing intent, spesialisasi agen, dan execution layer terpisah.[[1]](https://www.notion.so/OpenClaw-System-Prompt-Multi-Agent-Manajer-Pengadaan-Tender-Konstruksi-4a933384ff394f598c02fdab158d48bd?pvs=21)
+
+## 6. Tetapi tetap harus mudah diakses dan dioperasikan
+
+Agar aplikasi tidak terasa rumit, gunakan prinsip berikut.
+
+### A. Satu pintu untuk user
+
+User hanya melihat:
+
+- tombol konsultasi
+- form layanan
+- dashboard progress
+- checklist dokumen
+- chat assistant
+- hasil akhir
+
+User **tidak perlu tahu** ada 10 agen di belakang layar.
+
+### B. Role-based simplicity
+
+Tampilan dibagi per role:
+
+- calon klien
+- klien aktif
+- sales
+- legal officer
+- tender specialist
+- project admin
+- finance
+- owner / direktur
+
+Masing-masing hanya melihat menu yang relevan.
+
+### C. Guided workflow
+
+Setiap proses harus dibantu wizard:
+
+- langkah 1 isi profil usaha
+- langkah 2 pilih layanan
+- langkah 3 upload dokumen
+- langkah 4 lihat gap analysis
+- langkah 5 approval
+- langkah 6 monitor progres
+
+### D. Human-in-the-loop
+
+AI tidak boleh langsung mengambil keputusan sensitif tanpa validasi tim. Gunakan:
+
+- draft mode
+- reviewer approval
+- escalation flow
+- audit trail
+
+### E. Bahasa yang sederhana
+
+Walaupun backend canggih, frontend harus memakai bahasa bisnis yang mudah:
+
+- “Cek kelayakan”
+- “Dokumen kurang”
+- “Sedang direview”
+- “Butuh revisi”
+- “Siap diajukan”
+- “Menunggu pembayaran”
+
+## 7. Arsitektur produk yang direkomendasikan
+
+## Frontend
+
+### Public web + portal
+
+- **Next.js** untuk web utama dan portal
+- **TypeScript** untuk konsistensi dan maintainability
+- **Tailwind CSS** + komponen design system
+- **Shadcn/UI** atau komponen enterprise setara
+- PWA support agar mudah diakses via mobile tanpa harus langsung bikin app native
+
+### Kenapa cocok
+
+- cepat
+- SEO bagus
+- mudah untuk landing page + dashboard
+- developer mudah menemukan talent dan library
+
+## Backend
+
+### Core application backend
+
+Pilihan paling aman:
+
+- **NestJS** untuk backend modular enterprise
+
+Alternatif:
+
+- **FastAPI** bila ingin pipeline AI dan dokumen lebih cepat dikembangkan
+
+Rekomendasi praktis:
+
+- **NestJS sebagai core business backend**
+- service AI / OCR / extraction dapat dipisah sebagai microservice Python bila diperlukan
+
+## AI orchestration
+
+- **OpenClaw** sebagai execution runtime
+- Orchestrator layer custom untuk:
+    - intent router
+    - task planner
+    - context composer
+    - result synthesizer
+- specialist agents dipaketkan sebagai domain modules
+
+## Data layer
+
+- **PostgreSQL** untuk transactional data
+- **Redis** untuk queue, cache, session, dan rate limit
+- **S3-compatible object storage** untuk dokumen
+- **Vector store** untuk semantic search knowledge base
+- **Elasticsearch / OpenSearch** opsional untuk pencarian dokumen cepat skala besar
+
+## Workflow & async processing
+
+- **Temporal** atau **BullMQ** untuk workflow job
+- cocok untuk:
+    - OCR processing
+    - reminder renewal
+    - dokumen review background
+    - scheduled follow-up
+    - multi-step case automation
+
+## Auth & security
+
+- **Clerk**, **Auth0**, atau auth internal berbasis JWT + RBAC
+- MFA untuk admin / owner
+- row-level permission untuk dokumen sensitif
+- audit log untuk semua aksi penting
+
+## Integrasi penting
+
+- WhatsApp Business API
+- Email SMTP / transactional email
+- Payment gateway
+- e-signature
+- OCR / document parser
+- cloud storage
+- calendar / scheduling
+- [**chat.dokumentender.com**](http://chat.dokumentender.com) sebagai sentra drafting dokumen perusahaan berbasis LLM
+- library **GPTs** dan/atau **custom instruction** untuk legalitas, perizinan, sertifikasi, tender, dan dokumen proyek
+
+## 8. Rekomendasi arsitektur deployment
+
+### Opsi terbaik untuk tahap awal
+
+Gunakan **modular monolith + AI services**.
+
+Artinya:
+
+- frontend terpisah
+- backend utama satu codebase modular
+- AI/orchestration service terpisah
+- worker async terpisah
+- database terpusat
+
+### Kenapa ini ideal
+
+Karena:
+
+- lebih cepat dibangun
+- tidak seribet microservices penuh
+- tetap scalable
+- lebih mudah dikelola tim kecil
+- cocok untuk startup / bisnis jasa yang sedang tumbuh
+
+### Hindari di awal
+
+- terlalu banyak microservices
+- terlalu banyak model AI berbeda
+- terlalu banyak dashboard berbeda
+- arsitektur yang sulit dipelihara
+
+## 9. Struktur modul aplikasi
+
+### Modul publik
+
+- landing page
+- service pages
+- article / SEO pages
+- consultation form
+- pricing / package pages
+
+### Modul client portal
+
+- dashboard saya
+- layanan aktif
+- checklist dokumen
+- upload center
+- status progress
+- chat / notes
+- hasil & arsip
+- invoice
+
+### Modul internal ops
+
+- CRM
+- case board
+- document review center
+- certification desk
+- tender desk
+- project desk
+- finance
+- SLA monitor
+- analytics
+
+### Modul AI console internal
+
+- agent monitor
+- prompt / policy manager
+- knowledge base manager
+- workflow logs
+- exception handling
+- human override panel
+
+## 10. Desain pengalaman pengguna agar tetap sederhana
+
+### Home page
+
+Harus sangat jelas hanya menjawab 4 hal:
+
+- Anda butuh layanan apa?
+- Dokumen apa yang harus disiapkan?
+- Berapa lama prosesnya?
+- Bagaimana memulai?
+
+### Client dashboard
+
+Hanya tampilkan:
+
+- case aktif
+- status terbaru
+- dokumen kurang
+- deadline terdekat
+- tombol chat admin
+- tombol upload
+- invoice tertunda
+
+### Internal dashboard
+
+Pisahkan per tim, jangan semua fitur dicampur.
+
+### Prinsip UI
+
+- minimalis
+- data padat tapi rapi
+- status sangat jelas
+- warna status konsisten
+- tombol aksi utama selalu terlihat
+
+## 11. Fitur canggih yang wajib ada, tapi tidak bikin rumit
+
+### Untuk user eksternal
+
+- smart eligibility checker
+- upload dokumen via drag-and-drop
+- auto checklist
+- tracking progress real-time
+- reminder deadline
+- AI assistant untuk tanya jawab dasar
+- mini apps untuk drafting dokumen sesuai kebutuhan layanan
+- generator dokumen tender dan proyek berbasis input wizard
+
+### Untuk tim internal
+
+- auto summarization dokumen
+- auto tagging
+- auto assignment case
+- recommended next action
+- tender readiness score
+- document expiry alerts
+- reusable templates
+- workspace drafting terhubung ke [**chat.dokumentender.com**](http://chat.dokumentender.com) untuk membuat draft dokumen perusahaan secara cepat
+
+### Untuk owner
+
+- omzet per layanan
+- conversion rate
+- case aging
+- bottleneck team
+- tender success rate
+- renewal revenue
+
+## 12. Contoh alur agentic AI dalam use case nyata
+
+### Use case 1 — Pengurusan SBU
+
+- user isi form usaha
+- Orchestrator aktifkan Agent Sales & Intake + Agent Sertifikasi
+- OpenClaw memproses eligibility, membaca dokumen, membuat checklist
+- jika ada mismatch, Agent Document Review memberi gap list
+- hasil ditampilkan sebagai langkah aksi yang sederhana
+
+### Use case 2 — Review tender
+
+- user upload dokumen tender
+- Orchestrator aktifkan Agent Tender + Agent Compliance + Agent Document Review
+- OpenClaw mengekstrak dokumen, membangun compliance matrix, menandai red flags
+- sistem menampilkan skor kesiapan tender dan daftar perbaikan
+
+### Use case 3 — Renewal legalitas
+
+- sistem membaca masa berlaku dokumen
+- Agent Compliance memberi alert
+- Agent Sales & Intake menyiapkan reminder dan penawaran perpanjangan
+- OpenClaw memicu workflow follow-up otomatis
+
+## 13. Stack teknologi final yang saya rekomendasikan
+
+### Versi paling ideal
+
+**Frontend**
+
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Shadcn/UI
+
+**Backend**
+
+- NestJS
+- PostgreSQL
+- Redis
+- BullMQ / Temporal
+
+**AI layer**
+
+- OpenClaw execution runtime
+- custom orchestrator service
+- domain specialist agents
+- vector search knowledge layer
+
+**Document layer**
+
+- S3-compatible storage
+- OCR service
+- document parser
+
+**Infra**
+
+- Docker
+- Kubernetes atau managed container platform
+- CDN
+- WAF
+- monitoring + logging
+
+## 14. Stack yang lebih simpel untuk mulai cepat
+
+Jika ingin cepat launching:
+
+**Frontend**
+
+- Next.js
+- Tailwind
+
+**Backend**
+
+- NestJS
+- PostgreSQL
+- Redis
+
+**AI**
+
+- OpenClaw + orchestrator sederhana
+- 4 agen dulu: Intake, Legalitas, Sertifikasi, Tender
+
+**Storage**
+
+- object storage
+
+**Ops**
+
+- deploy di cloud managed
+- CI/CD sederhana
+- monitoring dasar
+
+Ini sudah cukup kuat untuk MVP.
+
+## 15. Urutan implementasi terbaik
+
+### Phase 1 — Foundation
+
+- branding
+- public website
+- lead capture
+- CRM dasar
+- client portal dasar
+- login dan role
+
+### Phase 2 — Document & workflow
+
+- upload dokumen
+- checklist engine
+- case tracker
+- reminder
+- review dashboard internal
+
+### Phase 3 — Agentic AI basic
+
+- orchestrator dasar
+- 3–4 agen spesialis
+- OpenClaw execution flows
+- AI assistant dasar
+- dokumen summary & gap analysis
+
+### Phase 4 — Advanced intelligence
+
+- tender intelligence
+- compliance engine
+- project documentation hub
+- analytics lanjutan
+- renewal automation
+
+## 16. Prinsip operasional untuk tim non-teknis
+
+Agar mudah dioperasikan oleh bisnis jasa, sediakan:
+
+- panel admin yang sederhana
+- template workflow siap pakai
+- library checklist per layanan
+- SOP per case type
+- tombol override manual
+- tombol assign ke staff
+- tombol approve / revise / done
+
+Artinya tim operasional tidak perlu mengerti AI secara teknis. Mereka cukup mengelola layanan melalui status, checklist, review, dan approval.
+
+## 17. Kesimpulan
+
+Web aplikasi ini paling tepat dibangun sebagai **platform layanan berbasis Agentic AI yang menyembunyikan kompleksitas multi-agent di belakang pengalaman pengguna yang sederhana**.
+
+Formula terbaiknya:
+
+- **Frontend sederhana dan sangat jelas**
+- **Backend modular dan kuat**
+- **Orchestrator mengatur alur**
+- **Agen spesialis menangani domain**
+- **OpenClaw mengeksekusi tugas**
+- **Tim manusia tetap memegang kontrol keputusan penting**
+
+Dengan pendekatan ini, produk akan terlihat **premium, modern, canggih, scalable**, tetapi tetap **mudah dipakai klien dan mudah dijalankan oleh tim operasional internal**.

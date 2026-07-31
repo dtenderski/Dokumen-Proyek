@@ -1,0 +1,729 @@
+# LegalHub Pro — Blueprint Web Aplikasi Jasa Legalitas, Perizinan, Sertifikasi, Tender, dan Proyek
+
+Platform digital end-to-end untuk bisnis jasa dan konsultansi pengurusan legalitas, perizinan, sertifikasi, tender, dan proyek. Fokus utamanya adalah mengubah proses yang biasanya manual, lambat, dan tersebar di chat/email menjadi sistem terpadu yang terlihat profesional, terukur, cepat, dan sangat mudah dijual.
+
+## 1. Positioning bisnis
+
+**LegalHub Pro** diposisikan sebagai *operating system* untuk layanan konsultansi legalitas dan proyek, bukan sekadar website company profile.
+
+Nilai utama:
+
+- Membantu klien mengecek kelayakan, melengkapi dokumen, memantau progres, dan menerima output dalam satu portal
+- Membantu tim internal mengelola prospek, order, dokumen, deadline, tender, dan proyek secara rapi
+- Menggabungkan layanan konsultansi manusia + otomatisasi + AI assistant
+- Cocok untuk bisnis yang menjual jasa pengurusan dokumen sekaligus jasa pendampingan tender dan proyek
+
+## 2. Segmen pelanggan utama
+
+### A. Badan usaha / perusahaan
+
+- BUJK baru yang ingin menyiapkan legalitas dasar
+- Perusahaan konstruksi yang ingin mengurus SBU, SKK, ISO, SMK3, dan dokumen pendukung
+- Konsultan perencana / pengawas yang butuh sertifikasi dan dokumen legal
+- Vendor yang ingin ikut tender pemerintah / BUMN / swasta
+
+### B. Profesional / perorangan
+
+- Tenaga ahli yang ingin pengurusan sertifikasi kompetensi
+- Konsultan independen yang butuh legalitas dan dokumen penawaran
+
+### C. Pemilik proyek / developer
+
+- Membutuhkan vendor compliance-ready
+- Butuh review legal, administrasi, dan kelengkapan tender/proyek
+
+## 3. Model layanan yang dijual di dalam aplikasi
+
+### Legalitas & Perizinan
+
+- NIB / OSS / perubahan data usaha
+- Akta, AHU, NPWP, KBLI, domisili, dan legalitas pendukung
+- Perizinan sektor usaha sesuai bidang
+
+### Sertifikasi
+
+- SBU / SBUJK
+- SKK / sertifikasi tenaga ahli
+- ISO 9001, ISO 14001, ISO 45001
+- SMK3 / sertifikasi sistem manajemen
+- Sertifikasi badan usaha / profesi lain sesuai sektor
+
+### Tender
+
+- Tender eligibility check
+- Review dokumen pemilihan
+- Penyusunan compliance matrix
+- Go / No-Go analysis
+- Review administrasi, teknis, harga
+- Pendampingan submit penawaran
+- Post-mortem tender gagal
+
+### Proyek
+
+- Setup administrasi proyek
+- Kontrak dan dokumen pelaksanaan
+- Project document control
+- Monitoring deliverables, risiko, dan progress
+- Closing documents dan arsip proyek
+
+## 4. Konsep besar aplikasi
+
+Aplikasi dibagi menjadi **4 layer utama**:
+
+### Layer 1 — Public Website / Marketing Engine
+
+Fungsi:
+
+- Menjelaskan layanan
+- Menangkap leads
+- Menyediakan halaman edukasi SEO
+- Menampilkan simulasi biaya, estimasi proses, FAQ, dan CTA konsultasi
+
+Halaman utama:
+
+- Home
+- Tentang Kami
+- Layanan
+- Industri / Segmen
+- Artikel / Knowledge Center
+- Kalkulator & checker
+- Testimoni / portofolio
+- Hubungi Kami
+
+### Layer 2 — Client Portal
+
+Fungsi:
+
+- Klien daftar akun
+- Klien memilih layanan
+- Upload dokumen
+- Monitor status pengurusan
+- Chat dengan admin/konsultan
+- Tanda tangan digital / approval
+- Download hasil akhir
+- Lihat invoice dan histori transaksi
+
+### Layer 3 — Internal Ops Dashboard
+
+Fungsi:
+
+- CRM dan pipeline sales
+- Case management
+- Task management per layanan
+- SLA monitoring
+- Assignment ke tim legal / sertifikasi / tender / proyek
+- Approval internal
+- Audit trail
+
+### Layer 4 — AI & Automation Engine
+
+Fungsi:
+
+- OCR + ekstraksi dokumen
+- Gap analysis dokumen
+- Auto checklist berdasarkan layanan
+- Reminder deadline
+- Drafting dokumen awal
+- Tender scoring
+- Risk analysis
+- Knowledge assistant berbasis regulasi dan template internal
+
+## 5. Sitemap / menu web aplikasi
+
+## Website publik
+
+- Home
+- Solusi
+    - Legalitas Usaha
+    - Perizinan
+    - Sertifikasi Badan Usaha
+    - Sertifikasi Profesi
+    - Tender Desk
+    - Project Admin & Control
+- Industri
+    - Konstruksi
+    - Konsultan
+    - Supplier
+    - Developer
+    - UMKM / Perusahaan Baru
+- Harga
+- Artikel
+- FAQ
+- Konsultasi Gratis
+- Login / Daftar
+
+## Client portal
+
+- Dashboard Saya
+- Layanan Saya
+- Case / Pengurusan Aktif
+- Dokumen Saya
+- Persyaratan & Checklist
+- Pesan / Diskusi
+- Jadwal / Appointment
+- Invoice & Pembayaran
+- Hasil / Sertifikat / Arsip
+- Profil Perusahaan
+
+## Internal admin panel
+
+- Dashboard Eksekutif
+- Leads & CRM
+- Orders / Cases
+- Workflow Board
+- Document Vault
+- Compliance Matrix
+- Tender Center
+- Project Control
+- Knowledge Base
+- Billing
+- Vendor / Mitra
+- Reports & Analytics
+- Master Data
+- User & Role Management
+
+## 6. Fitur unggulan yang membuat aplikasi terasa canggih dan powerful
+
+### 1) Smart Eligibility Checker
+
+Klien menjawab beberapa pertanyaan, lalu sistem memberi hasil:
+
+- layanan apa yang dibutuhkan
+- dokumen yang kurang
+- estimasi biaya
+- estimasi waktu
+- tingkat kesiapan
+
+### 2) Dynamic Document Checklist Engine
+
+Checklist otomatis berubah sesuai:
+
+- jenis badan usaha
+- bidang usaha / KBLI
+- klasifikasi SBU / sertifikasi
+- tipe tender
+- nilai proyek
+- jenis pemilik proyek
+
+### 3) AI Document Review
+
+Upload dokumen lalu sistem mendeteksi:
+
+- file belum ada
+- masa berlaku habis / mendekati habis
+- data tidak sinkron antar dokumen
+- format belum sesuai
+- potensi red flag untuk tender / audit
+
+### 4) Case Tracker Real-Time
+
+Status rinci per case:
+
+- lead masuk
+- verifikasi awal
+- dokumen kurang
+- sedang review
+- proses asosiasi / LPJK / OSS / lembaga terkait
+- revisi
+- selesai
+- serah terima
+
+### 5) Tender Intelligence Center
+
+Fitur premium:
+
+- daftar paket tender yang dipantau
+- go / no-go scoring
+- compliance matrix builder
+- daftar risiko tender
+- final submission checklist
+- evaluasi kekuatan vs kelemahan penawaran
+
+### 6) Project Documentation Hub
+
+Setelah tender menang, klien bisa lanjut ke tahap proyek:
+
+- kontrak
+- kick-off checklist
+- submittal register
+- RFI / korespondensi
+- progress docs
+- close-out docs
+
+### 7) AI Consultant Assistant
+
+Chat assistant yang mampu:
+
+- menjawab pertanyaan layanan
+- memberi penjelasan regulasi dasar
+- memberi daftar persyaratan
+- menyusun draft email / surat / checklist
+- merekomendasikan next step untuk tim dan klien
+
+### 8) Deadline & Renewal Radar
+
+Cocok untuk recurring revenue:
+
+- pengingat SBU habis masa berlaku
+- pengingat SKK tenaga ahli
+- pengingat ISO surveillance / recertification
+- pengingat dokumen legal perusahaan
+- pengingat tender deadline
+
+### 9) Multi-role Workspace
+
+Role yang bisa dibuat:
+
+- super admin
+- sales
+- legal officer
+- sertifikasi officer
+- tender specialist
+- project admin
+- finance
+- client
+- external assessor / partner
+
+### 10) Executive Analytics
+
+Dashboard KPI:
+
+- lead masuk per channel
+- conversion rate
+- omzet per layanan
+- rata-rata durasi penyelesaian
+- case bottleneck
+- win rate tender
+- repeat order rate
+- outstanding invoice
+
+## 7. User journey utama
+
+### A. Journey pengurusan legalitas / sertifikasi
+
+1. Pengunjung masuk dari landing page
+2. Mengisi form checker
+3. Sistem memberi rekomendasi layanan
+4. Klien daftar akun
+5. Klien upload dokumen awal
+6. Sistem melakukan pre-check otomatis
+7. Tim internal review dan memberi gap list
+8. Klien melengkapi kekurangan
+9. Case diproses sampai selesai
+10. Output diserahkan + reminder renewal disimpan ke sistem
+
+### B. Journey tender
+
+1. Klien memilih layanan tender
+2. Input informasi paket
+3. Upload dokumen pemilihan dan legalitas perusahaan
+4. Sistem jalankan go / no-go scoring
+5. Sistem buat checklist & compliance matrix
+6. Tim konsultansi review administrasi, teknis, harga
+7. Final submission pack disetujui
+8. Semua dokumen tersimpan untuk tender berikutnya
+9. Jika kalah, sistem membuat post-mortem analisis
+
+### C. Journey proyek
+
+1. Setelah menang tender / deal proyek, case dikonversi jadi proyek
+2. Sistem membuat folder dan daftar dokumen pelaksanaan
+3. Tim mengelola deliverables, approval, dan closing docs
+4. Semua arsip proyek terdokumentasi dan dapat dipakai untuk portofolio / audit
+
+## 8. Struktur data utama
+
+### Master entities
+
+- Companies
+- Contacts
+- Users
+- Services
+- Packages
+- Cases
+- Projects
+- Tenders
+- Documents
+- Certificates
+- Licenses
+- Deadlines
+- Invoices
+- Payments
+- Tasks
+- Notes
+- Approvals
+- Templates
+
+### Relasi inti
+
+- 1 Company punya banyak Cases
+- 1 Case terkait 1 atau lebih Services
+- 1 Case punya banyak Documents
+- 1 Tender bisa menghasilkan 1 Project
+- 1 Company punya banyak renewal items
+- 1 Document punya version history dan expiry metadata
+
+## 9. Arsitektur modul produk
+
+### Modul 1 — CRM & Lead Capture
+
+- landing page forms
+- WhatsApp click-to-chat
+- source tracking
+- lead scoring
+- pipeline sales
+
+### Modul 2 — Service Catalog & Pricing Engine
+
+- daftar layanan
+- paket basic / standard / priority
+- add-on services
+- estimasi harga otomatis
+
+### Modul 3 — Case Management
+
+- case timeline
+- assignee
+- due date
+- internal notes
+- client notes
+- attachment center
+
+### Modul 4 — Document Intelligence
+
+- OCR
+- tagging otomatis
+- validasi masa berlaku
+- sinkronisasi data antar dokumen
+- duplicate detection
+
+### Modul 5 — Compliance & Certification Engine
+
+- persyaratan per layanan
+- auto checklist
+- readiness score
+- template persuratan
+- reminder pembaruan
+
+### Modul 6 — Tender Desk
+
+- tender intake form
+- go / no-go matrix
+- compliance matrix
+- submission checklist
+- risk register
+- lessons learned
+
+### Modul 7 — Project Control
+
+- dokumen pra-konstruksi
+- pelaksanaan
+- perubahan / variation
+- serah terima
+- arsip akhir
+
+### Modul 8 — Finance & Billing
+
+- quotation
+- invoice
+- payment confirmation
+- installment tracking
+- profitability per case
+
+### Modul 9 — Knowledge Hub
+
+- artikel
+- FAQ
+- regulasi
+- template dokumen
+- SOP internal
+- AI answer layer
+
+## 10. Halaman Home yang sangat menjual
+
+### Hero section
+
+**Judul utama:**
+
+Urus Legalitas, Perizinan, Sertifikasi, Tender, dan Dokumen Proyek Dalam Satu Platform
+
+**Subjudul:**
+
+Dari pengecekan kelayakan, pengumpulan dokumen, review compliance, sampai tracking progress dan hasil akhir — semua terintegrasi, cepat, dan profesional.
+
+**CTA utama:**
+
+- Cek Kelayakan Sekarang
+- Konsultasi Gratis
+- Lihat Layanan
+
+### Section 2 — Masalah pasar
+
+- Dokumen tersebar di WhatsApp, email, dan folder pribadi
+- Klien tidak tahu progress pengurusan
+- Banyak deadline terlewat
+- Tender gagal karena dokumen tidak siap
+- Proyek berjalan tanpa kontrol dokumen yang rapi
+
+### Section 3 — Solusi
+
+Tampilkan 4 kartu solusi:
+
+- Legalitas & izin
+- Sertifikasi & compliance
+- Tender desk
+- Project document control
+
+### Section 4 — Cara kerja
+
+1. Pilih layanan
+2. Upload dokumen
+3. Dapat checklist & gap analysis
+4. Tim kami proses & dampingi
+5. Pantau progress real-time
+6. Terima hasil & reminder renewal
+
+### Section 5 — Fitur unggulan
+
+- Eligibility checker
+- AI document review
+- Client portal
+- Compliance matrix
+- Tender scoring
+- Renewal reminder
+- Executive dashboard
+
+### Section 6 — Social proof
+
+- jumlah klien
+- jumlah case selesai
+- total nilai tender didampingi
+- tingkat kepuasan
+- testimoni
+
+### Section 7 — FAQ
+
+- layanan apa saja?
+- berapa lama proses?
+- apakah bisa seluruh Indonesia?
+- apakah bisa online?
+- dokumen apa yang dibutuhkan?
+- apakah ada pendampingan tender?
+
+### Section 8 — Final CTA
+
+**Siap merapikan legalitas dan memenangkan lebih banyak peluang bisnis?**
+
+- Jadwalkan konsultasi
+- Mulai cek kelayakan
+
+## 11. Halaman layanan per kategori
+
+Setiap layanan harus punya struktur halaman seperti ini:
+
+- Hero + CTA
+- Penjelasan layanan
+- Siapa yang membutuhkan
+- Manfaat bisnis
+- Persyaratan dokumen
+- Proses kerja
+- Estimasi waktu
+- Paket harga
+- FAQ
+- CTA WhatsApp / form
+
+## 12. Fitur AI yang direkomendasikan untuk benar-benar unggul
+
+### AI untuk klien
+
+- chatbot konsultasi awal
+- rekomendasi layanan otomatis
+- penjelasan persyaratan berdasarkan profil usaha
+
+### AI untuk tim internal
+
+- auto summary dokumen klien
+- gap analysis
+- draft checklist
+- draft email follow-up
+- auto categorization case
+- prioritas case berisiko tinggi
+
+### AI untuk tender
+
+- analisis kecocokan paket tender
+- identifikasi dokumen kurang
+- ringkasan SDP / dokumen pemilihan
+- daftar pertanyaan klarifikasi
+- evaluasi kesiapan submit
+
+### AI untuk proyek
+
+- daftar dokumen wajib per fase
+- reminder approval
+- status deliverable
+- analisis bottleneck proyek
+
+## 13. Monetisasi bisnis
+
+### Model 1 — Fee per layanan
+
+Cocok untuk:
+
+- legalitas
+- sertifikasi
+- tender assistance
+
+### Model 2 — Subscription / retainer
+
+Cocok untuk:
+
+- compliance maintenance
+- tender desk bulanan
+- renewal management
+- legal admin outsourcing
+
+### Model 3 — Hybrid
+
+- setup fee
+- processing fee
+- success fee tertentu
+- monthly support
+
+## 14. Teknologi yang direkomendasikan
+
+### Frontend
+
+- Next.js
+- Tailwind / design system enterprise
+- dashboard responsif mobile + desktop
+
+### Backend
+
+- NestJS atau FastAPI
+- REST API + event-driven workflow
+- RBAC dan audit log
+
+### Data
+
+- PostgreSQL
+- object storage untuk dokumen
+- search index / vector search untuk knowledge base
+
+### Integrasi
+
+- WhatsApp API
+- email / SMTP
+- payment gateway
+- e-sign
+- OCR / document parser
+- calendar / reminder
+
+### Keamanan
+
+- MFA
+- role-based permissions
+- audit trail
+- document encryption
+- watermark / access logging
+
+## 15. Desain UI/UX yang disarankan
+
+Gaya visual:
+
+- profesional
+- modern
+- tegas
+- terpercaya
+- dominan warna navy, emerald, putih, dan aksen emas tipis
+
+Komponen utama:
+
+- KPI cards
+- progress timeline
+- document status chips
+- kanban workflow
+- checklist panels
+- risk heatmap
+- tender score gauge
+- renewal calendar
+
+## 16. MVP yang paling realistis
+
+Jika ingin cepat diluncurkan, mulai dari:
+
+- website company profile premium
+- service pages SEO
+- lead capture
+- client portal sederhana
+- upload dokumen
+- case tracking
+- checklist persyaratan
+- invoice & payment tracking
+- admin dashboard
+
+**Jangan langsung membuat semua modul.** Bangun bertahap:
+
+1. MVP sales + client portal
+2. Phase 2 compliance + certification engine
+3. Phase 3 tender intelligence
+4. Phase 4 project control + AI automation
+
+## 17. Roadmap 90 hari
+
+### Fase 1 (Hari 1–30)
+
+- brand positioning
+- sitemap
+- UI system
+- service catalog
+- landing page
+- CRM lead capture
+
+### Fase 2 (Hari 31–60)
+
+- client portal
+- case management
+- document upload
+- checklist engine
+- notification system
+
+### Fase 3 (Hari 61–90)
+
+- tender center
+- compliance matrix
+- analytics dashboard
+- billing
+- AI document review basic
+
+## 18. Nama produk yang bisa dipilih
+
+- LegalHub Pro
+- CertiTender OS
+- ProLegal Construct
+- PermitSync
+- TenderLegal Nexus
+- RegulaPro
+- ProyekLegal Cloud
+
+## 19. Diferensiasi utama dibanding kompetitor biasa
+
+- bukan cuma jual jasa, tetapi memberi portal tracking yang profesional
+- bukan cuma konsultasi, tetapi punya workflow dan evidence system
+- bukan cuma pengurusan legalitas, tetapi bisa lanjut ke tender dan proyek
+- bukan cuma admin manual, tetapi AI-assisted operations
+- bukan cuma closing awal, tetapi recurring revenue via renewal dan retainer
+
+## 20. Kesimpulan strategi
+
+Web aplikasi ini harus dibangun sebagai **mesin akuisisi + mesin operasional + mesin retensi**.
+
+Artinya:
+
+- Website menarik leads
+- Portal mengubah leads jadi transaksi
+- Dashboard internal membuat delivery rapi
+- AI dan reminder membuat klien bertahan lama
+- Modul tender dan proyek meningkatkan value per client
+
+Jika dieksekusi dengan benar, bisnis ini bisa berkembang dari jasa pengurusan dokumen menjadi **platform konsultansi legalitas, compliance, tender, dan project operations** yang sangat kuat.

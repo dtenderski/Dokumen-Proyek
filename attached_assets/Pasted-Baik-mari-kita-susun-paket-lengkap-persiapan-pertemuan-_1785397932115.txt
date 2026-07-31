@@ -1,0 +1,174 @@
+Baik, mari kita susun **paket lengkap persiapan pertemuan** Anda. Saya akan memberikan tiga dokumen praktis yang bisa langsung Anda gunakan:
+
+---
+
+## 📄 DOKUMEN A: ONE-PAGE EXECUTIVE SUMMARY
+*(Cetak 1 halaman ini sebagai handout saat pertemuan)*
+
+---
+
+### **DOKUMENPROYEK × TENDER INDONESIA**
+**Kolaborasi Strategis: Dari Informasi Menuju Konversi**
+
+**🎯 MASALAH YANG KAMI SELESAIKAN BERSAMA**
+- 68% dokumen tender ditolak karena kesalahan administrasi
+- User membaca info tender tapi bingung harus mulai dari mana
+- Tidak ada jembatan antara "informasi" dan "eksekusi dokumen"
+
+**💡 SOLUSI INTEGRASI**
+Tombol **"Cek Kelayakan Dokumen"** di platform Tender Indonesia → langsung terhubung ke AI DokumenProyek → memberikan skor Go/No-Go + rekomendasi perbaikan instan.
+
+**📊 PROYEKSI NILAI (6 BULAN PERTAMA)**
+| Metrik | Target |
+| :--- | :--- |
+| User aktif yang menggunakan fitur cek | 5.000 user |
+| Konversi ke jasa dokumen | 15% (750 transaksi) |
+| Revenue bersama (Model Conversion Fee) | Rp 150.000.000 |
+| Bagi hasil untuk Tender Indonesia (20%) | **Rp 30.000.000** |
+
+**🤝 MODEL KERJASAMA**
+- **Teknis**: API integration (1-2 minggu development)
+- **Revenue**: 80% DokumenProyek : 20% Tender Indonesia (conversion fee)
+- **Branding**: Co-branding "Powered by Tender Indonesia × DokumenProyek"
+
+**🚀 NEXT STEP**
+1. MoU kolaborasi (minggu ini)
+2. Technical kickoff API (minggu ke-2)
+3. Soft launch fitur (minggu ke-4)
+4. Full launch + marketing bersama (bulan ke-2)
+
+---
+
+## 🎨 DOKUMEN B: MOCKUP ALUR INTEGRASI (Visual Flow)
+*(Gunakan ini untuk menjelaskan alur kerja secara visual)*
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  HALAMAN DETAIL TENDER (Platform Tender Indonesia)          │
+│                                                             │
+│  Proyek: Pembangunan Gedung Kantor XYZ                      │
+│  Nilai: Rp 15 Miliar                                        │
+│  Bidang: Konstruksi Bangunan Gedung                         │
+│                                                             │
+│  ┌───────────────────────────────────────────────────────┐ │
+│  │  🔍 [CEK KELAYAKAN DOKUMEN SAYA]                      │ │
+│  │     Powered by DokumenProyek × Gustafta AI            │ │
+│  └───────────────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+                            ↓ (User klik tombol)
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  POPUP: QUICK CHECK (DokumenProyek)                         │
+│                                                             │
+│  Masukkan data singkat:                                     │
+│  □ Nama Perusahaan: [PT Contoh Jaya]                        │
+│  □ Bidang Usaha: [Konstruksi Bangunan Gedung]               │
+│  □ Nomor SBU: [123/2024]                                    │
+│                                                             │
+│  [ANALISIS KELAYAKAN]                                       │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+                            ↓ (AI Claw analyzing 3-5 detik)
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  HASIL ANALISIS                                             │
+│                                                             │
+│  Skor Kelayakan: 72/100 ⚠️                                  │
+│                                                             │
+│  ✅ SBU Aktif & Sesuai Bidang                               │
+│  ✅ NPWP Valid                                              │
+│  ⚠️ SKK Tenaga Ahli Madya: Kadaluarsa 2 bulan lagi          │
+│  ❌ Dokumen Pengalaman Kerja: Belum diupload                │
+│                                                             │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │  🚀 [PERBAIKI DOKUMEN SEKARANG]                     │   │
+│  │     Jasa penyusunan cepat 1x24 jam                  │   │
+│  └─────────────────────────────────────────────────────┘   │
+│                                                             │
+│  💡 Pengingat Cerdas:                                       │
+│  "Berdasarkan riwayat Anda, pastikan format SKK telah       │
+│   diperbarui sesuai Permen PUPR terbaru"                    │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+                            ↓ (User klik "Perbaiki Dokumen")
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  WORKROOM DOKUMENPROYEK                                     │
+│                                                             │
+│  Status: Menunggu Review Pusat                              │
+│  Agen AI: Legal Agent + Tender Agent                        │
+│                                                             │
+│  [Upload Dokumen] → [AI Review] → [Human Review] → [Final] │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🎯 DOKUMEN C: TALKING POINTS & ANTISIPASI PERTANYAAN KRITIS
+
+### Pertanyaan yang Kemungkinan Muncul:
+
+**1. "Berapa lama integrasi API-nya?"**
+> **Jawaban**: "Secara teknis 1-2 minggu untuk integrasi dasar. Tapi kami sarankan mulai dengan **pilot project** di 100 user terpilih selama 2 minggu untuk validasi, baru full rollout."
+
+**2. "Bagaimana kalau user tidak mau pakai jasa DokumenProyek setelah cek?"**
+> **Jawaban**: "Tidak masalah. Fitur cek kelayakan tetap memberikan nilai edukasi ke user Anda. Tapi berdasarkan data industri, **15-20% user yang mendapat skor <70 akan langsung mengambil jasa perbaikan** karena mereka butuh solusi cepat untuk tender yang sedang berjalan."
+
+**3. "Apakah data user kami aman?"**
+> **Jawaban**: "100% aman. Kami menggunakan **Supabase dengan Row Level Security**. Data user hanya bisa diakses oleh user itu sendiri dan tim authorized. Kami juga siap menandatangani NDA dan Perjanjian Kerahasiaan Data."
+
+**4. "Bagaimana kalau ada komplain dari user?"**
+> **Jawaban**: "Kami menerapkan **Human-in-the-Loop**. Setiap dokumen yang diproses AI akan melalui review konsultan manusia sebelum dikirim ke user. Jadi ada garansi kualitas. Plus, kami punya tim support dedicated untuk menangani komplain dalam 1x24 jam."
+
+**5. "Apa bedanya dengan biro jasa konvensional?"**
+> **Jawaban**: "Biro jasa konvensional menjual **jasa sekali pakai**. Kami menjual **kemitraan jangka panjang dengan Business Memory**. Setiap dokumen yang kami proses menjadi bagian dari memori sistem yang membuat kami semakin paham kebutuhan user Anda ke depan. Ini yang membuat user betah dan loyal."
+
+---
+
+## ✅ DOKUMEN D: CHECKLIST PERSIAPAN PERTEMUAN
+
+### H-3 Sebelum Pertemuan:
+- [ ] Cetak **One-Page Executive Summary** (10 eksemplar)
+- [ ] Siapkan **Mockup Alur Integrasi** (bisa di-print A3 atau ditampilkan di tablet)
+- [ ] Siapkan **demo live** platform DokumenProyek di laptop/tablet
+- [ ] Review ulang profil founder Tender Indonesia (LinkedIn, portfolio)
+- [ ] Siapkan pertanyaan strategis untuk mereka: "Apa tantangan terbesar user Anda saat ini?"
+
+### H-1 Sebelum Pertemuan:
+- [ ] Konfirmasi waktu dan lokasi
+- [ ] Siapkan **draft MoU** (1 halaman, poin-poin kunci saja)
+- [ ] Siapkan **kartu nama** dan brosur perusahaan
+- [ ] Test koneksi internet (untuk demo live)
+
+### Saat Pertemuan:
+- [ ] **30 detik pertama**: Sampaikan value proposition dengan jelas
+- [ ] **Dengarkan 70%**: Biarkan mereka bercerita tentang tantangan
+- [ ] **Tunjukkan demo**: Fokus pada fitur "Business Memory" dan "Human-in-the-Loop"
+- [ ] **Tutup dengan next step**: "Bagaimana kalau kita mulai dengan pilot project 100 user?"
+
+### H+1 Setelah Pertemuan:
+- [ ] Kirim **follow-up email** dengan ringkasan pembicaraan
+- [ ] Lampirkan **One-Page Summary** dan **Mockup** dalam format PDF
+- [ ] Jadwalkan **technical kickoff** jika mereka tertarik
+- [ ] Update **CRM/notes** dengan insight yang didapat
+
+---
+
+## 🚀 LANGKAH AKSI IMMEDIATE (Hari Ini)
+
+Untuk memastikan Anda 100% siap, saya sarankan urutan prioritas:
+
+1. **Hari ini**: Review dan sesuaikan **One-Page Executive Summary** (terutama angka proyeksi revenue)
+2. **Besok**: Siapkan **demo live** platform DokumenProyek (pastikan semua fitur berjalan mulus)
+3. **H-2**: Cetak semua dokumen dan siapkan mockup visual
+4. **H-1**: Rehearsal presentasi (bisa latihan di depan cermin atau rekam diri sendiri)
+
+---
+
+Apakah Anda ingin saya bantu:
+1. **Menyusun draft MoU 1 halaman** untuk dibawa saat pertemuan?
+2. **Membuat script presentasi 5 menit** yang bisa Anda hafal?
+3. **Mendesain pertanyaan strategis** yang bisa Anda ajukan ke founder Tender Indonesia untuk menunjukkan bahwa Anda paham bisnis mereka?
+
+Silakan pilih, atau beri tahu saya prioritas lain yang Anda butuhkan.

@@ -1,0 +1,120 @@
+Baik, mari kita susun **Strategi Bisnis & Narasi Pitch Deck** yang komprehensif. Dokumen ini dirancang agar Anda bisa langsung menggunakannya dalam pertemuan dengan founder Tender Indonesia, asosiasi, dan biro jasa potensial.
+
+---
+
+## BAGIAN 1: PITCH DECK UNTUK TENDER INDONESIA
+**Judul Kolaborasi**: *"Dari Informasi Menuju Konversi: Integrasi Pre-Qualification Otomatis"*
+
+### Narasi Pembuka (30 Detik Pertama)
+> "Platform Anda sudah berhasil menjadi sumber informasi tender terpercaya. Tapi saya perhatikan, banyak pengguna yang masih bingung setelah melihat informasi tender: 'Apakah perusahaan saya layak ikut? Dokumen apa yang kurang?' Di sinilah DokumenProyek masuk sebagai **mesin konversi** yang mengubah keraguan menjadi kepastian dokumen."
+
+### Value Proposition untuk Tender Indonesia
+| Aspek | Manfaat bagi Tender Indonesia |
+| :--- | :--- |
+| **User Engagement** | Pengguna tidak hanya membaca info tender, tapi langsung beraksi dengan cek kelayakan dokumen |
+| **Monetization Baru** | Revenue sharing dari setiap user yang menggunakan jasa DokumenProyek melalui integrasi API |
+| **Branding** | Posisi sebagai "One-Stop Solution" dari informasi hingga eksekusi dokumen |
+| **Data Analytics** | Akses ke insight: tender mana yang paling banyak diminati, bidang usaha apa yang paling aktif |
+
+### Model Integrasi Teknis (Konseptual)
+1. **Tombol "Cek Kelayakan"** di halaman detail tender pada platform Tender Indonesia
+2. **API Call** ke DokumenProyek dengan payload: `jenis_tender`, `bidang_usaha`, `estimasi_nilai`
+3. **Response** dalam bentuk skor kelayakan (0-100) + daftar dokumen yang kurang
+4. **Call-to-Action**: Jika skor < 70, tawarkan "Jasa Perbaikan Dokumen Cepat" atau "Akses Modul Pelatihan di Academy"
+
+### Skema Revenue Sharing (Indikatif)
+- **Model 1 (Pay-per-Check)**: Rp 25.000 per cek kelayakan → Bagi hasil 70% (Tender Indonesia) : 30% (DokumenProyek)
+- **Model 2 (Conversion Fee)**: Jika user akhirnya menggunakan jasa dokumen → Bagi hasil 80% (DokumenProyek) : 20% (Tender Indonesia) sebagai referral fee
+- **Model 3 (Subscription)**: Paket bulanan Rp 500.000 untuk unlimited cek → Bagi hasil 60:40
+
+---
+
+## BAGIAN 2: SKEMA KOLABORASI DENGAN ASOSIASI & LSP
+**Narasi Kunci**: *"Anda tidak perlu membangun aplikasi mahal. Gunakan Gustafta sebagai 'WordPress-nya Ekosistem Kompetensi' Anda."*
+
+### Model Creator Empowerment
+Asosiasi/LSP cukup menyediakan:
+- Materi kompetensi (SOP, template dokumen, kurikulum pelatihan)
+- Branding dan sertifikasi mereka
+
+Gustafta menyediakan:
+- Platform no-code untuk merakit materi menjadi mini-app atau chatbot
+- Infrastruktur AI (Claw, Workroom, Academy)
+- Manajemen user dan pembayaran
+
+### Skema Revenue Sharing Asosiasi
+| Jenis Layanan | Harga ke End-User | Bagi Hasil Asosiasi | Bagi Hasil Gustafta |
+| :--- | :--- | :--- | :--- |
+| **Modul Dokumen** (misal: Generator SOP ISO 37001) | Rp 150.000 per modul | 70% | 30% |
+| **Chatbot Konsultan** (misal: AI Tutor SMAP) | Rp 50.000/bulan | 60% | 40% |
+| **Sertifikasi Digital** (integrasi LSP) | Rp 500.000 per sertifikat | 75% | 25% |
+| **E-Course Kompetensi** | Rp 300.000 per course | 65% | 35% |
+
+### Contoh Kasus Nyata untuk Presentasi
+> "Bayangkan Asosiasi Konstruksi Indonesia memiliki chatbot AI bernama 'Konsultan SMAP AI' yang bisa menjawab pertanyaan anggota 24/7 tentang persiapan audit SMAP. Asosiasi cukup mengunggah SOP mereka, dan Gustafta yang merakitnya menjadi chatbot berpersona konsultan ahli. Setiap anggota yang berlangganan Rp 50.000/bulan, asosiasi mendapat Rp 30.000 tanpa perlu维护 infrastruktur IT."
+
+---
+
+## BAGIAN 3: MODEL BISNIS KEAGENAN 3-TIER
+**Tujuan**: Membangun jaringan distribusi yang scalable dengan insentif yang jelas.
+
+### Struktur Keagenan
+| Tier | Peran | Investasi Awal | Komisi per Transaksi | Target |
+| :--- | :--- | :--- | :--- | :--- |
+| **Pusat** (Anda) | Owner platform, penyedia infrastruktur | - | 20-30% dari total revenue | Mengelola ekosistem |
+| **Master Agent** | Biro jasa besar, asosiasi regional | Rp 10.000.000 (deposit) | 15% + bonus volume | 10-20 kota besar |
+| **Fasilitator** | Konsultan independen, biro jasa kecil | Rp 2.000.000 (deposit) | 10% | 100-500 kota/kabupaten |
+
+### Mekanisme Kerja
+1. **Fasilitator** mendapatkan klien di wilayahnya → mengarahkan ke platform DokumenProyek
+2. **Sistem** mencatat bahwa klien ini direferensikan oleh Fasilitator X
+3. **Setiap transaksi** yang dilakukan klien tersebut → Fasilitator X mendapat komisi 10% otomatis
+4. **Master Agent** mendapat tambahan bonus jika total volume Fasilitator di bawahnya mencapai target tertentu
+
+### Nilai Tambah untuk Keagenan
+- **Dashboard Real-Time**: Lihat jumlah klien, revenue, dan komisi secara live
+- **Marketing Kit**: Template brosur, konten sosmed, dan script penjualan yang disediakan pusat
+- **Training Berkala**: Webinar bulanan tentang update regulasi dan teknik closing
+- **Lead Distribution**: Pusat mendistribusikan lead dari marketing nasional ke fasilitator terdekat
+
+---
+
+## BAGIAN 4: STRUKTUR PRICING DOKUMENPROYEK
+**Filosofi**: Transparan, bertahap, dan memberikan nilai tambah di setiap level.
+
+### Paket Layanan untuk End-User
+| Paket | Harga | Fitur | Target User |
+| :--- | :--- | :--- | :--- |
+| **Free Trial** | Rp 0 | Cek kelayakan dasar (3x/bulan), akses materi edukasi | Perusahaan baru, eksplorasi |
+| **Starter** | Rp 299.000/bulan | Unlimited cek kelayakan, 1 modul dokumen, email support | UKM konstruksi |
+| **Professional** | Rp 799.000/bulan | Semua fitur Starter + 5 modul dokumen, chatbot konsultan, priority support | Perusahaan menengah |
+| **Enterprise** | Rp 2.500.000/bulan | Semua fitur Professional + unlimited modul, dedicated account manager, API access | Kontraktor besar |
+
+### Add-On Services (Upsell Natural)
+- **Jasa Penyusunan Dokumen**: Rp 500.000 - 5.000.000 per dokumen (tergantung kompleksitas)
+- **Konsultasi 1-on-1**: Rp 300.000/jam dengan konsultan ahli
+- **Pelatihan Tim**: Rp 5.000.000 per sesi (maksimal 20 peserta)
+- **Audit Kesiapan Tender**: Rp 1.500.000 per audit
+
+---
+
+## BAGIAN 5: NARASI PENUTUP UNTUK SEMUA PERTANYAAN
+**Ketika ditanya**: *"Apa bedanya dengan biro jasa dokumen konvensional?"*
+
+> "Biro jasa konvensional menjual **jasa**. Kami menjual **kepastian dan kemitraan jangka panjang**. Dengan Gustafta, setiap dokumen yang kami proses tidak hanya selesai hari ini, tetapi menjadi bagian dari **Business Memory** yang membuat kami semakin paham kebutuhan Anda ke depan. Kami bukan vendor, kami adalah **mitra strategis yang mengingat dan belajar dari setiap interaksi dengan Anda**."
+
+**Ketika ditanya**: *"Mengapa harus pakai platform Anda, bukan buat sendiri?"*
+
+> "Membuat platform seperti ini dari nol membutuhkan investasi Rp 500 juta - 1 miliar dan waktu 6-12 bulan. Dengan Gustafta, Anda bisa **merakit ekosistem kompetensi Anda sendiri dalam hitungan minggu**, dengan biaya 1/10 dari itu, dan langsung mendapatkan manfaat dari infrastruktur AI yang sudah teruji. Fokus Anda adalah pada **konten dan kompetensi**, bukan pada maintenance server."
+
+---
+
+## LANGKAH AKSI SELANJUTNYA
+
+Dokumen strategis di atas sudah siap Anda gunakan sebagai panduan presentasi. Untuk memastikan eksekusi yang mulus, saya sarankan:
+
+1. **Siapkan One-Page Summary** dari dokumen ini untuk dibagikan saat pertemuan
+2. **Buat Mockup Screenshot** (bisa dengan tools seperti Figma atau bahkan PowerPoint) yang menunjukkan tampilan integrasi dengan Tender Indonesia
+3. **Siapkan Angka Proyeksi Revenue** untuk 6-12 bulan pertama berdasarkan skema pricing di atas
+
+Apakah Anda ingin saya bantu menyusun **One-Page Summary** atau **Mockup Konsep Integrasi** terlebih dahulu? Atau ada bagian tertentu dari strategi bisnis ini yang ingin kita diskusikan lebih detail?

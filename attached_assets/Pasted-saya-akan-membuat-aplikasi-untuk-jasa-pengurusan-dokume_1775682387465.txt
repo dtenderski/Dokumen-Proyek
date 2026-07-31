@@ -1,0 +1,4152 @@
+saya akan membuat aplikasi untuk jasa pengurusan dokumen legalitas, perijinan, sertifikasi, dan tender dengan diskripsi dibawah ini :
+
+<!DOCTYPE html><html lang="id"><head>  <meta charset="UTF-8">  <meta name="viewport" content="width=device-width, initial-scale=1">  <title>dokumentender.com – Platform Digital Tender & Proyek</title>  <!-- Tailwind CSS -->  <script src="https://cdn.tailwindcss.com"></script>  <!-- Tailwind Custom Colors -->  <script>    tailwind.config = {      theme: {        extend: {          colors: {            primary: {              50:  '#eaf7ed',              100: '#d4eedb',              200: '#a9ddb7',              300: '#7ecb93',              400: '#53ba6f',              500: '#339933', // Main green              600: '#287a29',              700: '#1e5c1f',              800: '#133d14',              900: '#091f0a',            },            accent: {              500: '#000000'            }          }        }      }    }  </script>  <!-- Font Awesome -->  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  <!-- Grid.js CSS -->  <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">  <!-- ApexCharts -->  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>  <link rel="icon" href="https://mysterious-island-9780.laman.ai/assets/dokumentender-1.webp" type="image/webp"></head><body class="bg-gray-50 text-gray-800 font-sans">  <!-- Header -->  <header class="bg-white shadow-sm sticky top-0 z-30">    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">      <div class="flex items-center space-x-3">        <a href="#" aria-label="dokumentender.com Home" class="flex items-center">          <img src="https://mysterious-island-9780.laman.ai/assets/dokumentender-1.webp" alt="Logo dokumentender.com" class="w-12 h-12 rounded-full border-2 border-primary-500">          <span class="ml-3 text-2xl font-bold text-primary-600 tracking-tight">dokumentender.com</span>        </a>      </div>      <nav aria-label="Main navigation" class="hidden md:flex space-x-6">        <button class="menu-btn text-base font-medium text-gray-700 hover:text-primary-600 transition-colors focus:outline-none focus:text-primary-700" data-menu="AI" tabindex="0">          <i class="fas fa-robot mr-1"></i><span class="lang" data-id="AI">AI</span>        </button>        <button class="menu-btn text-base font-medium text-gray-700 hover:text-primary-600 transition-colors focus:outline-none focus:text-primary-700" data-menu="Ektalatog" tabindex="0">          <i class="fas fa-book mr-1"></i><span class="lang" data-id="Ektalatog">Ektalatog</span>        </button>        <button class="menu-btn text-base font-medium text-gray-700 hover:text-primary-600 transition-colors focus:outline-none focus:text-primary-700" data-menu="Learning" tabindex="0">          <i class="fas fa-graduation-cap mr-1"></i><span class="lang" data-id="Learning">Learning</span>        </button>        <button class="menu-btn text-base font-medium text-gray-700 hover:text-primary-600 transition-colors focus:outline-none focus:text-primary-700" data-menu="Management" tabindex="0">          <i class="fas fa-briefcase mr-1"></i><span class="lang" data-id="Management">Management</span>        </button>        <button class="menu-btn text-base font-medium text-gray-700 hover:text-primary-600 transition-colors focus:outline-none focus:text-primary-700" data-menu="Proyek" tabindex="0">          <i class="fas fa-project-diagram mr-1"></i><span class="lang" data-id="Proyek">Proyek</span>        </button>      </nav>      <div class="flex items-center space-x-2">        <!-- Language Switcher -->        <button id="langSwitch" aria-label="Switch language" class="px-3 py-2 rounded-md bg-primary-500 text-white font-semibold hover:bg-primary-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-400" tabindex="0">          <i class="fas fa-language mr-1"></i>          <span id="langSwitchText">EN</span>        </button>        <!-- Mobile menu button -->        <button id="mobileMenuBtn" class="md:hidden ml-2 text-gray-700 hover:text-primary-600 focus:outline-none" aria-label="Open menu">          <i class="fas fa-bars fa-lg"></i>        </button>      </div>    </div>    <!-- Mobile Menu -->    <nav id="mobileMenu" class="md:hidden bg-white border-t border-gray-100 px-4 py-2 hidden transition-all duration-200" aria-label="Mobile navigation">      <button class="menu-btn block w-full text-left py-2 text-base font-medium text-gray-700 hover:text-primary-600 transition-colors focus:outline-none" data-menu="AI" tabindex="0">        <i class="fas fa-robot mr-1"></i><span class="lang" data-id="AI">AI</span>      </button>      <button class="menu-btn block w-full text-left py-2 text-base font-medium text-gray-700 hover:text-primary-600 transition-colors focus:outline-none" data-menu="Ektalatog" tabindex="0">        <i class="fas fa-book mr-1"></i><span class="lang" data-id="Ektalatog">Ektalatog</span>      </button>      <button class="menu-btn block w-full text-left py-2 text-base font-medium text-gray-700 hover:text-primary-600 transition-colors focus:outline-none" data-menu="Learning" tabindex="0">        <i class="fas fa-graduation-cap mr-1"></i><span class="lang" data-id="Learning">Learning</span>      </button>      <button class="menu-btn block w-full text-left py-2 text-base font-medium text-gray-700 hover:text-primary-600 transition-colors focus:outline-none" data-menu="Management" tabindex="0">        <i class="fas fa-briefcase mr-1"></i><span class="lang" data-id="Management">Management</span>      </button>      <button class="menu-btn block w-full text-left py-2 text-base font-medium text-gray-700 hover:text-primary-600 transition-colors focus:outline-none" data-menu="Proyek" tabindex="0">        <i class="fas fa-project-diagram mr-1"></i><span class="lang" data-id="Proyek">Proyek</span>      </button>    </nav>  </header>  <main class="max-w-7xl mx-auto px-4 py-8">    <!-- Platform Introduction -->    <section class="mb-8">      <div class="bg-primary-50 rounded-lg p-6 flex flex-col md:flex-row items-center gap-6 shadow-sm border border-primary-100">        <img src="https://fakeimg.pl/400x300?text=Platform" alt="Platform illustration" class="w-full md:w-64 h-48 object-cover rounded-lg shadow-md" loading="lazy">        <div>          <h1 class="text-3xl md:text-4xl font-bold text-primary-700 mb-2 lang" data-id="intro-title">            Platform Digital Tender & Proyek Terintegrasi          </h1>          <p class="text-base text-gray-700 lang" data-id="intro-desc">            dokumentender.com adalah platform digital yang menyediakan berbagai layanan untuk pengelolaan tender, proyek, dokumen, dan pembelajaran secara efisien. Temukan fitur berbasis AI, katalog elektronik, manajemen proyek, dan pembelajaran dalam satu tempat.          </p>          <p class="text-base text-gray-700 lang hidden" data-id="intro-desc-en">            dokumentender.com is a digital platform offering integrated services for tender, project, document management, and learning. Discover AI-powered features, e-catalog, project management, and learning tools all in one place.          </p>        </div>      </div>    </section>    <!-- Search and Menu Section -->    <section class="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">      <div class="flex-1">        <label for="featureSearch" class="sr-only lang" data-id="search-label">Cari fitur</label>        <input id="featureSearch" type="text" placeholder="Cari fitur..." class="w-full md:w-80 px-4 py-2 border border-gray-200 rounded-md shadow-sm focus:ring-2 focus:ring-primary-200 focus:border-primary-400 transition-all" aria-label="Cari fitur" autocomplete="off">      </div>      <div class="flex space-x-2 mt-2 md:mt-0">        <button class="menu-btn px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded-md font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-primary-300" data-menu="AI" tabindex="0">          <i class="fas fa-robot mr-1"></i><span class="lang" data-id="AI">AI</span>        </button>        <button class="menu-btn px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded-md font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-primary-300" data-menu="Ektalatog" tabindex="0">          <i class="fas fa-book mr-1"></i><span class="lang" data-id="Ektalatog">Ektalatog</span>        </button>        <button class="menu-btn px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded-md font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-primary-300" data-menu="Learning" tabindex="0">          <i class="fas fa-graduation-cap mr-1"></i><span class="lang" data-id="Learning">Learning</span>        </button>        <button class="menu-btn px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded-md font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-primary-300" data-menu="Management" tabindex="0">          <i class="fas fa-briefcase mr-1"></i><span class="lang" data-id="Management">Management</span>        </button>        <button class="menu-btn px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded-md font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-primary-300" data-menu="Proyek" tabindex="0">          <i class="fas fa-project-diagram mr-1"></i><span class="lang" data-id="Proyek">Proyek</span>        </button>      </div>    </section>    <!-- Features Section -->    <section id="featuresSection" aria-label="Fitur" class="transition-all duration-300">      <!-- Cards will be injected here -->    </section>  </main>  <!-- Footer -->  <footer class="bg-white border-t border-gray-100 mt-12 py-6">    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">      <div class="flex items-center space-x-2">        <img src="https://mysterious-island-9780.laman.ai/assets/dokumentender-1.webp" alt="Logo dokumentender.com" class="w-8 h-8 rounded-full">        <span class="text-gray-600 font-semibold">dokumentender.com</span>      </div>      <div class="text-gray-500 text-sm lang" data-id="footer">        &copy; 2024 dokumentender.com. Seluruh hak cipta dilindungi.      </div>      <div class="text-gray-500 text-sm lang hidden" data-id="footer-en">        &copy; 2024 dokumentender.com. All rights reserved.      </div>    </div>  </footer>  <!-- Grid.js -->  <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>  <!-- ApexCharts already loaded in head -->  <!-- Main JS -->  <script>    // Bilingual content    const LANGUAGES = {      id: {        AI: "AI",        Ektalatog: "Ektalatog",        Learning: "Learning",        Management: "Manajemen",        Proyek: "Proyek",        "intro-title": "Platform Digital Tender & Proyek Terintegrasi",        "intro-desc": "dokumentender.com adalah platform digital yang menyediakan berbagai layanan untuk pengelolaan tender, proyek, dokumen, dan pembelajaran secara efisien. Temukan fitur berbasis AI, katalog elektronik, manajemen proyek, dan pembelajaran dalam satu tempat.",        "search-label": "Cari fitur",        "footer": "&copy; 2024 dokumentender.com. Seluruh hak cipta dilindungi.",        "AI-desc": "Fitur AI untuk membantu analisis dokumen dan otomatisasi proses tender.",        "Ektalatog-desc": "Katalog elektronik untuk pencarian dan pengelolaan produk/jasa.",        "Learning-desc": "Modul pembelajaran digital untuk pengembangan kompetensi.",        "Management-desc": "Alat manajemen dokumen dan proyek secara terintegrasi.",        "Proyek-desc": "Pengelolaan proyek dan tender secara efisien.",        "Buka Layanan": "Buka Layanan",        "No feature found": "Fitur tidak ditemukan.",        "AI-1-title": "AI Analisis Dokumen",        "AI-1-desc": "Analisis dokumen tender secara otomatis dengan kecerdasan buatan.",        "AI-2-title": "AI Rekomendasi Penawaran",        "AI-2-desc": "Dapatkan rekomendasi penawaran terbaik untuk proyek Anda.",        "Ektalatog-1-title": "E-Katalog Produk",        "Ektalatog-1-desc": "Cari dan bandingkan produk/jasa dari berbagai penyedia.",        "Ektalatog-2-title": "Manajemen Katalog",        "Ektalatog-2-desc": "Kelola katalog elektronik dengan mudah dan efisien.",        "Learning-1-title": "Modul Pembelajaran",        "Learning-1-desc": "Akses materi pembelajaran digital untuk tender & proyek.",        "Learning-2-title": "Pelatihan Interaktif",        "Learning-2-desc": "Ikuti pelatihan interaktif untuk meningkatkan keahlian.",        "Management-1-title": "Manajemen Dokumen",        "Management-1-desc": "Kelola dokumen tender dan proyek secara terpusat.",        "Management-2-title": "Kolaborasi Tim",        "Management-2-desc": "Kolaborasi tim dalam pengelolaan proyek dan dokumen.",        "Proyek-1-title": "Manajemen Proyek",        "Proyek-1-desc": "Pantau dan kelola proyek dari awal hingga selesai.",        "Proyek-2-title": "Monitoring Progres",        "Proyek-2-desc": "Lacak progres proyek secara real-time.",        "Proyek-3-title": "Evaluasi Proyek",        "Proyek-3-desc": "Evaluasi hasil proyek dengan laporan terperinci.",        "Proyek-4-title": "Manajemen Tender",        "Proyek-4-desc": "Kelola proses tender dengan transparan dan efisien."      },      en: {        AI: "AI",        Ektalatog: "E-Catalog",        Learning: "Learning",        Management: "Management",        Proyek: "Project",        "intro-title": "Integrated Digital Tender & Project Platform",        "intro-desc": "dokumentender.com is a digital platform offering integrated services for tender, project, document management, and learning. Discover AI-powered features, e-catalog, project management, and learning tools all in one place.",        "search-label": "Search feature",        "footer": "&copy; 2024 dokumentender.com. All rights reserved.",        "AI-desc": "AI features for document analysis and tender process automation.",        "Ektalatog-desc": "Electronic catalog for product/service search and management.",        "Learning-desc": "Digital learning modules for skill development.",        "Management-desc": "Integrated document and project management tools.",        "Proyek-desc": "Efficient project and tender management.",        "Buka Layanan": "Open Service",        "No feature found": "No feature found.",        "AI-1-title": "AI Document Analysis",        "AI-1-desc": "Automatically analyze tender documents with artificial intelligence.",        "AI-2-title": "AI Bid Recommendation",        "AI-2-desc": "Get the best bid recommendations for your project.",        "Ektalatog-1-title": "E-Catalog Product",        "Ektalatog-1-desc": "Search and compare products/services from various providers.",        "Ektalatog-2-title": "Catalog Management",        "Ektalatog-2-desc": "Easily manage your electronic catalog efficiently.",        "Learning-1-title": "Learning Module",        "Learning-1-desc": "Access digital learning materials for tenders & projects.",        "Learning-2-title": "Interactive Training",        "Learning-2-desc": "Join interactive training to enhance your skills.",        "Management-1-title": "Document Management",        "Management-1-desc": "Centralized management for tender and project documents.",        "Management-2-title": "Team Collaboration",        "Management-2-desc": "Collaborate with your team on project and document management.",        "Proyek-1-title": "Project Management",        "Proyek-1-desc": "Monitor and manage projects from start to finish.",        "Proyek-2-title": "Progress Monitoring",        "Proyek-2-desc": "Track project progress in real-time.",        "Proyek-3-title": "Project Evaluation",        "Proyek-3-desc": "Evaluate project results with detailed reports.",        "Proyek-4-title": "Tender Management",        "Proyek-4-desc": "Manage tender processes transparently and efficiently."      }    };    // Features data    const FEATURES = [      // AI      {        menu: "AI",        titleId: "AI-1-title",        descId: "AI-1-desc",        url: "https://xcellent-ocean-2905.laman.ai",        img: "https://fakeimg.pl/400x300?text=AI+Analisis"      },      {        menu: "AI",        titleId: "AI-2-title",        descId: "AI-2-desc",        url: "https://xcellent-forest-1407.laman.ai",        img: "https://fakeimg.pl/400x300?text=AI+Rekomendasi"      },      // Ektalatog      {        menu: "Ektalatog",        titleId: "Ektalatog-1-title",        descId: "Ektalatog-1-desc",        url: "https://jolly-kingdom-6153.laman.ai",        img: "https://fakeimg.pl/400x300?text=E-Katalog"      },      {        menu: "Ektalatog",        titleId: "Ektalatog-2-title",        descId: "Ektalatog-2-desc",        url: "https://eager-nest-7908.laman.ai",        img: "https://fakeimg.pl/400x300?text=Manajemen+Katalog"      },      // Learning      {        menu: "Learning",        titleId: "Learning-1-title",        descId: "Learning-1-desc",        url: "https://clever-jungle-3103.laman.ai",        img: "https://fakeimg.pl/400x300?text=Modul+Belajar"      },      {        menu: "Learning",        titleId: "Learning-2-title",        descId: "Learning-2-desc",        url: "https://unique-diamond-7663.laman.ai",        img: "https://fakeimg.pl/400x300?text=Pelatihan"      },      // Management      {        menu: "Management",        titleId: "Management-1-title",        descId: "Management-1-desc",        url: "https://daring-harbor-7096.laman.ai",        img: "https://fakeimg.pl/400x300?text=Manajemen+Dokumen"      },      {        menu: "Management",        titleId: "Management-2-title",        descId: "Management-2-desc",        url: "https://nice-venture-3359.laman.ai",        img: "https://fakeimg.pl/400x300?text=Kolaborasi+Tim"      },      // Proyek      {        menu: "Proyek",        titleId: "Proyek-1-title",        descId: "Proyek-1-desc",        url: "https://clever-project-2994.laman.ai",        img: "https://fakeimg.pl/400x300?text=Manajemen+Proyek"      },      {        menu: "Proyek",        titleId: "Proyek-2-title",        descId: "Proyek-2-desc",        url: "https://honest-river-3114.laman.ai",        img: "https://fakeimg.pl/400x300?text=Monitoring+Progres"      },      {        menu: "Proyek",        titleId: "Proyek-3-title",        descId: "Proyek-3-desc",        url: "https://brave-project-6065.laman.ai",        img: "https://fakeimg.pl/400x300?text=Evaluasi+Proyek"      },      {        menu: "Proyek",        titleId: "Proyek-4-title",        descId: "Proyek-4-desc",        url: "https://epic-zebra-6317.laman.ai",        img: "https://fakeimg.pl/400x300?text=Manajemen+Tender"      }    ];    // State    let currentLang = 'id';    let currentMenu = 'AI';    let searchQuery = '';    // Utility: Get translation    function t(key) {      return LANGUAGES[currentLang][key] || key;    }    // Render features    function renderFeatures() {      const section = document.getElementById('featuresSection');      // Filter features by menu and search      const filtered = FEATURES.filter(f =>        f.menu === currentMenu &&        (          t(f.titleId).toLowerCase().includes(searchQuery) ||          t(f.descId).toLowerCase().includes(searchQuery)        )      );      if (filtered.length === 0) {        section.innerHTML = `          <div class="text-center py-12 text-gray-400 text-lg font-semibold">            <i class="fas fa-search fa-2x mb-2"></i><br>            <span>${t("No feature found")}</span>          </div>        `;        return;      }      section.innerHTML = `        <h2 class="text-2xl font-semibold text-primary-700 mb-4 flex items-center gap-2">          <i class="${getMenuIcon(currentMenu)}"></i>          <span>${t(currentMenu)}</span>        </h2>        <p class="text-gray-600 mb-6">${t(currentMenu + "-desc")}</p>        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">          ${filtered.map(f => `            <div class="card bg-white rounded-lg shadow-sm border border-gray-100 p-6 flex flex-col transition-transform duration-200 hover:shadow-md hover:-translate-y-1 focus-within:shadow-lg">              <img src="${f.img}" alt="${t(f.titleId)}" class="w-full h-40 object-cover rounded-lg mb-4 transition-opacity duration-200 hover:opacity-90" loading="lazy">              <h3 class="text-lg font-bold text-primary-600 mb-2">${t(f.titleId)}</h3>              <p class="text-gray-700 mb-4 flex-1">${t(f.descId)}</p>              <a href="${f.url}" target="_blank" rel="noopener" class="inline-block px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-md font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-primary-300 text-center" aria-label="${t('Buka Layanan')} ${t(f.titleId)}">                <i class="fas fa-arrow-right mr-1"></i> ${t('Buka Layanan')}              </a>            </div>          `).join('')}        </div>      `;    }    // Get menu icon class    function getMenuIcon(menu) {      switch(menu) {        case "AI": return "fas fa-robot";        case "Ektalatog": return "fas fa-book";        case "Learning": return "fas fa-graduation-cap";        case "Management": return "fas fa-briefcase";        case "Proyek": return "fas fa-project-diagram";        default: return "fas fa-cube";      }    }    // Update all bilingual texts    function updateLangTexts() {      document.querySelectorAll('.lang').forEach(el => {        const id = el.getAttribute('data-id');        if (id && LANGUAGES[currentLang][id]) {          el.textContent = LANGUAGES[currentLang][id];        }      });      // Special: intro-desc has two paragraphs for both languages      if (currentLang === 'id') {        document.querySelector('[data-id="intro-desc"]').classList.remove('hidden');        document.querySelector('[data-id="intro-desc-en"]').classList.add('hidden');        document.querySelector('[data-id="footer"]').classList.remove('hidden');        document.querySelector('[data-id="footer-en"]').classList.add('hidden');      } else {        document.querySelector('[data-id="intro-desc"]').classList.add('hidden');        document.querySelector('[data-id="intro-desc-en"]').classList.remove('hidden');        document.querySelector('[data-id="footer"]').classList.add('hidden');        document.querySelector('[data-id="footer-en"]').classList.remove('hidden');      }      // Update menu buttons      document.querySelectorAll('.menu-btn .lang').forEach(el => {        const id = el.getAttribute('data-id');        if (id && LANGUAGES[currentLang][id]) {          el.textContent = LANGUAGES[currentLang][id];        }      });      // Update search placeholder      const searchInput = document.getElementById('featureSearch');      searchInput.setAttribute('placeholder', t('search-label') + '...');    }    // Menu switching    function setMenu(menu) {      currentMenu = menu;      // Highlight active menu      document.querySelectorAll('.menu-btn').forEach(btn => {        if (btn.getAttribute('data-menu') === menu) {          btn.classList.add('bg-primary-600', 'text-white');          btn.classList.remove('bg-primary-500', 'text-gray-700');        } else {          btn.classList.remove('bg-primary-600', 'text-white');          btn.classList.add('bg-primary-500', 'text-gray-700');        }      });      renderFeatures();    }    // Language switcher    document.getElementById('langSwitch').addEventListener('click', function() {      currentLang = currentLang === 'id' ? 'en' : 'id';      document.getElementById('langSwitchText').textContent = currentLang === 'id' ? 'EN' : 'ID';      updateLangTexts();      renderFeatures();    });    // Menu button events (desktop & mobile)    function setupMenuButtons() {      document.querySelectorAll('.menu-btn').forEach(btn => {        btn.addEventListener('click', function() {          setMenu(this.getAttribute('data-menu'));        });        btn.addEventListener('keydown', function(e) {          if (e.key === 'Enter' || e.key === ' ') {            setMenu(this.getAttribute('data-menu'));          }        });      });    }    // Search feature    document.getElementById('featureSearch').addEventListener('input', function() {      searchQuery = this.value.trim().toLowerCase();      renderFeatures();    });    // Mobile menu toggle    document.getElementById('mobileMenuBtn').addEventListener('click', function() {      const menu = document.getElementById('mobileMenu');      menu.classList.toggle('hidden');      menu.classList.toggle('block');    });    // Close mobile menu on menu click    document.getElementById('mobileMenu').addEventListener('click', function(e) {      if (e.target.classList.contains('menu-btn')) {        this.classList.add('hidden');        this.classList.remove('block');      }    });    // Keyboard accessibility for mobile menu    document.getElementById('mobileMenuBtn').addEventListener('keydown', function(e) {      if (e.key === 'Enter' || e.key === ' ') {        document.getElementById('mobileMenu').classList.toggle('hidden');        document.getElementById('mobileMenu').classList.toggle('block');      }    });    // Initial render    setupMenuButtons();    updateLangTexts();    setMenu(currentMenu);    // Responsive: close mobile menu on resize to md+    window.addEventListener('resize', function() {      if (window.innerWidth >= 768) {        document.getElementById('mobileMenu').classList.add('hidden');        document.getElementById('mobileMenu').classList.remove('block');      }    });    // Accessibility: close mobile menu on outside click    document.addEventListener('click', function(e) {      const mobileMenu = document.getElementById('mobileMenu');      const btn = document.getElementById('mobileMenuBtn');      if (!mobileMenu.contains(e.target) && e.target !== btn && window.innerWidth < 768) {        mobileMenu.classList.add('hidden');        mobileMenu.classList.remove('block');      }    });  </script></body></html>
+
+dan 
+
+<!DOCTYPE html><html lang="id"><head>  <meta charset="UTF-8">  <meta name="viewport" content="width=device-width, initial-scale=1">  <title>Dokumen Tender - E-Katalog Jasa Pengurusan Dokumen, Legalitas, Sertifikasi & Tender</title>  <!-- Tailwind CSS -->  <script src="https://cdn.tailwindcss.com"></script>  <script>    tailwind.config = {      theme: {        fontFamily: {          'sans': ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],          'display': ['Inter', 'Montserrat', 'ui-sans-serif', 'system-ui', 'sans-serif'],        },        extend: {          colors: {            primary: {              50:  '#eaf3fc',              100: '#d1e7fa',              200: '#a3cff5',              300: '#75b7f0',              400: '#479fea',              500: '#1a87e5',              600: '#156bb7',              700: '#105089',              800: '#0a355b',              900: '#051b2e',            },            accent: {              50:  '#feeaea',              100: '#fcd1d1',              200: '#f9a3a3',              300: '#f67575',              400: '#f34747',              500: '#f01a1a',              600: '#c71515',              700: '#9e1010',              800: '#660a0a',              900: '#330505',            },            success: {              500: '#22c55e'            },            warning: {              500: '#f59e42'            },            error: {              500: '#ef4444'            },            greenlogo: {              50: '#eafaf2',              100: '#d1f5e1',              200: '#a3ebc3',              300: '#75e0a5',              400: '#47d687',              500: '#25913A',              600: '#1a9e4b',              700: '#137738',              800: '#0b5025',              900: '#052913',            },            neutral: {              50: '#F7F7F7',              100: '#E5E7EB',              200: '#D1D5DB',              300: '#9CA3AF',              400: '#6B7280',              500: '#374151',              600: '#1F2937',              700: '#111827',              800: '#0F172A',              900: '#030712',            }          }        }      }    }  </script>  <!-- Google Fonts: Inter -->  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">  <!-- Font Awesome -->  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  <style>    body {      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;    }    .hero-gradient {      background: linear-gradient(120deg, #F7F7F7 0%, #eafaf2 100%);    }    .section-bg {      background: linear-gradient(90deg, #F7F7F7 0%, #eafaf2 100%);    }    .green-blur {      position: absolute;      z-index: 0;      filter: blur(60px);      opacity: 0.22;      pointer-events: none;    }    .green-blur-1 {      top: -60px; left: -80px; width: 220px; height: 220px; background: #25913A;    }    .green-blur-2 {      bottom: -60px; right: -80px; width: 180px; height: 180px; background: #1a87e5;    }    .green-blur-3 {      top: 60%; left: 50%; width: 120px; height: 120px; background: #a3ebc3;      transform: translate(-50%, -50%);    }    .tender-step-active {      background-color: #a3ebc3;      color: #137738;      font-weight: bold;    }    .tender-step {      background-color: #F7F7F7;      color: #6B7280;    }    .slider-dot {      width: 12px;      height: 12px;      border-radius: 9999px;      background: #a3ebc3;      margin: 0 6px;      cursor: pointer;      transition: background 0.2s;      display: inline-block;    }    .slider-dot.active {      background: #25913A;    }    .slider-arrow {      background: #eafaf2;      color: #25913A;      border-radius: 9999px;      width: 36px;      height: 36px;      display: flex;      align-items: center;      justify-content: center;      transition: background 0.2s, color 0.2s;      border: none;      cursor: pointer;    }    .slider-arrow:hover {      background: #25913A;      color: #fff;    }  </style></head><body class="bg-neutral-50 text-gray-700 antialiased relative overflow-x-hidden">  <!-- Decorative Blurs -->  <div class="green-blur green-blur-1 rounded-full"></div>  <div class="green-blur green-blur-2 rounded-full"></div>  <!-- Header -->  <header class="bg-white shadow-sm sticky top-0 z-30">    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">      <div class="flex items-center gap-4 md:gap-6">        <div class="flex-shrink-0 flex items-center">          <!-- Main Logo -->          <img src="https://xcellent-ocean-2905.laman.ai/assets/dokumentender-1.webp" alt="Logo Dokumen Tender" class="w-14 h-14 md:w-16 md:h-16 rounded-lg bg-neutral-50 shadow-md object-contain transition-transform hover:scale-105" />        </div>        <div class="flex flex-col leading-tight">          <span class="font-extrabold text-xl md:text-2xl tracking-tight select-none font-display" style="letter-spacing:-0.03em; color:#339944;">            Dokumen <span class="text-neutral-400">Tender</span>          </span>          <span class="text-xs md:text-sm font-medium text-neutral-400 tracking-wide" style="letter-spacing:0.04em;">E-Katalog Jasa Pengurusan Dokumen</span>        </div>      </div>      <nav aria-label="Navigasi utama" class="hidden md:flex gap-6">        <a href="#beranda" class="text-greenlogo-700 hover:text-greenlogo-500 font-semibold transition-colors">Beranda</a>        <a href="#katalog" class="text-greenlogo-700 hover:text-greenlogo-500 font-semibold transition-colors">Katalog Jasa</a>        <a href="#keunggulan" class="text-greenlogo-700 hover:text-greenlogo-500 font-semibold transition-colors">Keunggulan</a>        <a href="#panduan" class="text-greenlogo-700 hover:text-greenlogo-500 font-semibold transition-colors">Panduan</a>        <a href="#faq" class="text-greenlogo-700 hover:text-greenlogo-500 font-semibold transition-colors">FAQ</a>        <a href="#testimoni" class="text-greenlogo-700 hover:text-greenlogo-500 font-semibold transition-colors">Testimoni</a>        <a href="#konsultasi" class="text-greenlogo-700 hover:text-greenlogo-500 font-semibold transition-colors">Konsultasi</a>        <a href="#kontak" class="text-greenlogo-700 hover:text-greenlogo-500 font-semibold transition-colors">Kontak</a>      </nav>      <button id="mobileMenuBtn" class="md:hidden text-greenlogo-700 focus:outline-none" aria-label="Buka menu">        <i class="fas fa-bars fa-2x"></i>      </button>    </div>    <!-- Mobile Menu -->    <div id="mobileMenu" class="md:hidden fixed inset-0 bg-black bg-opacity-40 z-40 hidden transition-opacity">      <div class="absolute top-0 right-0 w-64 bg-white h-full shadow-lg flex flex-col py-6 px-6 gap-4">        <button id="closeMobileMenu" class="self-end mb-4 text-greenlogo-700 focus:outline-none" aria-label="Tutup menu">          <i class="fas fa-times fa-lg"></i>        </button>        <a href="#beranda" class="py-2 text-greenlogo-700 hover:text-greenlogo-500 font-semibold transition-colors">Beranda</a>        <a href="#katalog" class="py-2 text-greenlogo-700 hover:text-greenlogo-500 font-semibold transition-colors">Katalog Jasa</a>        <a href="#keunggulan" class="py-2 text-greenlogo-700 hover:text-greenlogo-500 font-semibold transition-colors">Keunggulan</a>        <a href="#panduan" class="py-2 text-greenlogo-700 hover:text-greenlogo-500 font-semibold transition-colors">Panduan</a>        <a href="#faq" class="py-2 text-greenlogo-700 hover:text-greenlogo-500 font-semibold transition-colors">FAQ</a>        <a href="#testimoni" class="py-2 text-greenlogo-700 hover:text-greenlogo-500 font-semibold transition-colors">Testimoni</a>        <a href="#konsultasi" class="py-2 text-greenlogo-700 hover:text-greenlogo-500 font-semibold transition-colors">Konsultasi</a>        <a href="#kontak" class="py-2 text-greenlogo-700 hover:text-greenlogo-500 font-semibold transition-colors">Kontak</a>      </div>    </div>  </header>  <main>    <!-- Hero Section -->    <section id="beranda" class="hero-gradient py-16 md:py-24 relative overflow-hidden">      <div class="green-blur green-blur-3 rounded-full"></div>      <div class="max-w-7xl mx-auto px-4 flex flex-col-reverse md:flex-row items-center gap-10 relative z-10">        <div class="flex-1 flex flex-col justify-center">          <h1 class="font-extrabold text-3xl md:text-5xl lg:text-6xl font-display leading-tight tracking-tight mb-4" style="color:#339944; letter-spacing:-0.04em;">            E-Katalog Jasa Pengurusan Dokumen, Legalitas, Sertifikasi &amp; Tender          </h1>          <p class="text-lg md:text-2xl text-neutral-500 mb-8 font-medium max-w-xl">            Solusi satu pintu untuk pengurusan <span class="font-semibold text-greenlogo-700">dokumen usaha</span>, <span class="font-semibold text-greenlogo-700">legalitas</span>, <span class="font-semibold text-greenlogo-700">sertifikasi</span>, dan <span class="font-semibold text-greenlogo-700">tender</span> dengan proses <span class="font-semibold text-success-500">cepat</span>, <span class="font-semibold text-greenlogo-600">mudah</span>, dan <span class="font-semibold text-accent-600">terpercaya</span>.          </p>          <div class="flex flex-col sm:flex-row gap-4">            <a href="#katalog" class="inline-block px-8 py-4 bg-greenlogo-600 hover:bg-greenlogo-700 text-white font-bold rounded-lg shadow-lg transition-colors focus:outline-none focus:ring-2 focus:ring-greenlogo-400 focus:ring-offset-2 text-xl tracking-wide" aria-label="Lihat Katalog Jasa">              <i class="fas fa-list mr-2"></i> Lihat Katalog Jasa            </a>            <a href="#konsultasi" class="inline-block px-8 py-4 bg-white border-2 border-greenlogo-600 text-greenlogo-700 hover:bg-greenlogo-50 font-bold rounded-lg shadow-lg transition-colors focus:outline-none focus:ring-2 focus:ring-greenlogo-200 focus:ring-offset-2 text-xl tracking-wide" aria-label="Konsultasi Gratis">              <i class="fas fa-comments mr-2"></i> Konsultasi Gratis            </a>          </div>        </div>        <div class="flex-1 flex flex-col items-center justify-center relative w-full">          <!-- Ilustrasi representatif -->          <img             src="https://fakeimg.pl/600x400"             alt="Ilustrasi jasa pengurusan dokumen dan tender"             class="w-[340px] md:w-[400px] lg:w-[480px] max-w-xs md:max-w-sm lg:max-w-lg rounded-2xl shadow-xl object-cover bg-white border border-greenlogo-100 transition-transform duration-300 hover:scale-105"            style="margin-top:0; margin-bottom:0;"          />        </div>      </div>    </section>    <!-- Katalog Jasa Kami -->    <section id="katalog" class="max-w-7xl mx-auto px-4 py-16">      <h2 class="text-3xl md:text-4xl font-extrabold text-center text-greenlogo-800 mb-12 tracking-tight font-display">Katalog Jasa Kami</h2>      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">        <!-- SBU Konstruksi -->        <div class="bg-white rounded-xl shadow-md p-7 flex flex-col items-center border border-greenlogo-100 transition-transform hover:-translate-y-1 hover:shadow-lg">          <div class="w-16 h-16 flex items-center justify-center rounded-full bg-greenlogo-100 mb-3">            <i class="fas fa-building fa-2x text-greenlogo-600"></i>          </div>          <h3 class="text-lg font-bold text-greenlogo-700 mb-1 text-center">SBU Konstruksi</h3>          <p class="text-sm text-gray-600 text-center mb-4">Pengurusan Sertifikasi Badan Usaha (SBU) untuk sektor konstruksi dan jasa terkait.</p>          <a href="#konsultasi" class="px-5 py-2 bg-greenlogo-600 hover:bg-greenlogo-700 text-white rounded font-semibold transition-colors text-sm">Ajukan</a>        </div>        <!-- SKK & Ahli K3 -->        <div class="bg-white rounded-xl shadow-md p-7 flex flex-col items-center border border-greenlogo-100 transition-transform hover:-translate-y-1 hover:shadow-lg">          <div class="w-16 h-16 flex items-center justify-center rounded-full bg-greenlogo-100 mb-3">            <i class="fas fa-user-shield fa-2x text-greenlogo-600"></i>          </div>          <h3 class="text-lg font-bold text-greenlogo-700 mb-1 text-center">SKK &amp; Ahli K3</h3>          <p class="text-sm text-gray-600 text-center mb-4">Sertifikasi Kompetensi Kerja (SKK) dan pengurusan Ahli K3 untuk perusahaan.</p>          <a href="#konsultasi" class="px-5 py-2 bg-greenlogo-600 hover:bg-greenlogo-700 text-white rounded font-semibold transition-colors text-sm">Ajukan</a>        </div>        <!-- ISO -->        <div class="bg-white rounded-xl shadow-md p-7 flex flex-col items-center border border-greenlogo-100 transition-transform hover:-translate-y-1 hover:shadow-lg">          <div class="w-16 h-16 flex items-center justify-center rounded-full bg-greenlogo-100 mb-3">            <i class="fas fa-certificate fa-2x text-greenlogo-600"></i>          </div>          <h3 class="text-lg font-bold text-greenlogo-700 mb-1 text-center">ISO</h3>          <p class="text-sm text-gray-600 text-center mb-4">Sertifikasi ISO 37001, 9001, 45001, 14001, dan standar manajemen lainnya.</p>          <a href="#konsultasi" class="px-5 py-2 bg-greenlogo-600 hover:bg-greenlogo-700 text-white rounded font-semibold transition-colors text-sm">Ajukan</a>        </div>        <!-- SLO Kelistrikan -->        <div class="bg-white rounded-xl shadow-md p-7 flex flex-col items-center border border-greenlogo-100 transition-transform hover:-translate-y-1 hover:shadow-lg">          <div class="w-16 h-16 flex items-center justify-center rounded-full bg-greenlogo-100 mb-3">            <i class="fas fa-plug fa-2x text-greenlogo-600"></i>          </div>          <h3 class="text-lg font-bold text-greenlogo-700 mb-1 text-center">SLO Kelistrikan</h3>          <p class="text-sm text-gray-600 text-center mb-4">Pengurusan Sertifikat Laik Operasi (SLO) untuk instalasi listrik.</p>          <a href="#konsultasi" class="px-5 py-2 bg-greenlogo-600 hover:bg-greenlogo-700 text-white rounded font-semibold transition-colors text-sm">Ajukan</a>        </div>        <!-- Laporan Akuntan -->        <div class="bg-white rounded-xl shadow-md p-7 flex flex-col items-center border border-greenlogo-100 transition-transform hover:-translate-y-1 hover:shadow-lg">          <div class="w-16 h-16 flex items-center justify-center rounded-full bg-greenlogo-100 mb-3">            <i class="fas fa-file-invoice-dollar fa-2x text-greenlogo-600"></i>          </div>          <h3 class="text-lg font-bold text-greenlogo-700 mb-1 text-center">Laporan Akuntan</h3>          <p class="text-sm text-gray-600 text-center mb-4">Laporan keuangan, audit, dan review akuntan publik untuk kebutuhan tender.</p>          <a href="#konsultasi" class="px-5 py-2 bg-greenlogo-600 hover:bg-greenlogo-700 text-white rounded font-semibold transition-colors text-sm">Ajukan</a>        </div>        <!-- Pengurusan Tender -->        <div class="bg-white rounded-xl shadow-md p-7 flex flex-col items-center border border-greenlogo-100 transition-transform hover:-translate-y-1 hover:shadow-lg">          <div class="w-16 h-16 flex items-center justify-center rounded-full bg-greenlogo-100 mb-3">            <i class="fas fa-gavel fa-2x text-greenlogo-600"></i>          </div>          <h3 class="text-lg font-bold text-greenlogo-700 mb-1 text-center">Pengurusan Tender</h3>          <p class="text-sm text-gray-600 text-center mb-4">Pendampingan dan pengurusan dokumen tender pemerintah/BUMN.</p>          <a href="#konsultasi" class="px-5 py-2 bg-greenlogo-600 hover:bg-greenlogo-700 text-white rounded font-semibold transition-colors text-sm">Ajukan</a>        </div>        <!-- Legalitas Usaha -->        <div class="bg-white rounded-xl shadow-md p-7 flex flex-col items-center border border-greenlogo-100 transition-transform hover:-translate-y-1 hover:shadow-lg">          <div class="w-16 h-16 flex items-center justify-center rounded-full bg-greenlogo-100 mb-3">            <i class="fas fa-briefcase fa-2x text-greenlogo-600"></i>          </div>          <h3 class="text-lg font-bold text-greenlogo-700 mb-1 text-center">Legalitas Usaha</h3>          <p class="text-sm text-gray-600 text-center mb-4">Pengurusan OSS, NIB, IUJK, IUP, dan legalitas usaha lainnya.</p>          <a href="#konsultasi" class="px-5 py-2 bg-greenlogo-600 hover:bg-greenlogo-700 text-white rounded font-semibold transition-colors text-sm">Ajukan</a>        </div>        <!-- Layanan Lainnya -->        <div class="bg-white rounded-xl shadow-md p-7 flex flex-col items-center border border-greenlogo-100 transition-transform hover:-translate-y-1 hover:shadow-lg">          <div class="w-16 h-16 flex items-center justify-center rounded-full bg-greenlogo-100 mb-3">            <i class="fas fa-ellipsis-h fa-2x text-greenlogo-600"></i>          </div>          <h3 class="text-lg font-bold text-greenlogo-700 mb-1 text-center">Layanan Lainnya</h3>          <p class="text-sm text-gray-600 text-center mb-4">Konsultasi kebutuhan dokumen, izin, dan sertifikasi lainnya sesuai permintaan.</p>          <a href="#konsultasi" class="px-5 py-2 bg-greenlogo-600 hover:bg-greenlogo-700 text-white rounded font-semibold transition-colors text-sm">Detail</a>        </div>      </div>    </section>    <!-- Keunggulan/Benefit -->    <section id="keunggulan" class="section-bg max-w-7xl mx-auto px-4 py-16 rounded-3xl my-12 shadow-md relative">      <h2 class="text-3xl md:text-4xl font-extrabold text-center text-greenlogo-800 mb-12 tracking-tight font-display">Mengapa Memilih <span class="text-greenlogo-700">Dokumen Tender</span>?</h2>      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">        <div class="bg-white rounded-xl shadow-md p-7 flex flex-col items-center border border-greenlogo-100 transition-transform hover:-translate-y-1 hover:shadow-lg">          <div class="w-16 h-16 flex items-center justify-center rounded-full bg-greenlogo-100 mb-3">            <i class="fas fa-bolt fa-2x text-greenlogo-600"></i>          </div>          <h3 class="text-lg font-bold text-greenlogo-700 mb-1">Cepat</h3>          <p class="text-sm text-gray-600 text-center">Proses pengurusan dokumen, izin &amp; sertifikasi lebih singkat dan efisien.</p>        </div>        <div class="bg-white rounded-xl shadow-md p-7 flex flex-col items-center border border-greenlogo-100 transition-transform hover:-translate-y-1 hover:shadow-lg">          <div class="w-16 h-16 flex items-center justify-center rounded-full bg-greenlogo-100 mb-3">            <i class="fas fa-magic fa-2x text-greenlogo-600"></i>          </div>          <h3 class="text-lg font-bold text-greenlogo-700 mb-1">Mudah</h3>          <p class="text-sm text-gray-600 text-center">Sistem online, panduan jelas, dan tim support siap membantu.</p>        </div>        <div class="bg-white rounded-xl shadow-md p-7 flex flex-col items-center border border-greenlogo-100 transition-transform hover:-translate-y-1 hover:shadow-lg">          <div class="w-16 h-16 flex items-center justify-center rounded-full bg-greenlogo-100 mb-3">            <i class="fas fa-shield-check fa-2x text-greenlogo-600"></i>          </div>          <h3 class="text-lg font-bold text-greenlogo-700 mb-1">Terpercaya</h3>          <p class="text-sm text-gray-600 text-center">Didukung konsultan berpengalaman &amp; mitra resmi pemerintah.</p>        </div>        <div class="bg-white rounded-xl shadow-md p-7 flex flex-col items-center border border-greenlogo-100 transition-transform hover:-translate-y-1 hover:shadow-lg">          <div class="w-16 h-16 flex items-center justify-center rounded-full bg-greenlogo-100 mb-3">            <i class="fas fa-door-open fa-2x text-greenlogo-600"></i>          </div>          <h3 class="text-lg font-bold text-greenlogo-700 mb-1">Satu Pintu</h3>          <p class="text-sm text-gray-600 text-center">Semua kebutuhan dokumen, izin, sertifikasi, dan tender dalam satu platform.</p>        </div>      </div>    </section>    <!-- Panduan & FAQ -->    <section id="panduan" class="max-w-7xl mx-auto px-4 py-16">      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">        <!-- Panduan Step/Accordion -->        <div>          <h2 class="text-2xl font-bold text-greenlogo-800 mb-5 flex items-center gap-2 font-display"><i class="fas fa-book-open text-greenlogo-500"></i> Panduan Pengurusan Dokumen</h2>          <div class="space-y-4" id="panduan-steps">            <div class="bg-white rounded-xl shadow-md border border-greenlogo-100 p-5 transition-all">              <button class="w-full flex justify-between items-center text-left text-greenlogo-700 font-semibold text-lg focus:outline-none panduan-toggle" aria-expanded="true">                <span>1. Pilih Jasa &amp; Konsultasi Kebutuhan</span>                <i class="fas fa-chevron-down transition-transform"></i>              </button>              <div class="panduan-content mt-3 text-gray-700 text-base">                Pilih layanan yang sesuai kebutuhan Anda di katalog, lalu konsultasikan detail kebutuhan dokumen, legalitas, atau tender dengan tim kami.              </div>            </div>            <div class="bg-white rounded-xl shadow-md border border-greenlogo-100 p-5 transition-all">              <button class="w-full flex justify-between items-center text-left text-greenlogo-700 font-semibold text-lg focus:outline-none panduan-toggle" aria-expanded="false">                <span>2. Pengumpulan &amp; Verifikasi Dokumen</span>                <i class="fas fa-chevron-down transition-transform"></i>              </button>              <div class="panduan-content mt-3 text-gray-700 text-base hidden">                Upload atau kirim dokumen persyaratan sesuai instruksi. Tim kami akan melakukan verifikasi dan konfirmasi kelengkapan.              </div>            </div>            <div class="bg-white rounded-xl shadow-md border border-greenlogo-100 p-5 transition-all">              <button class="w-full flex justify-between items-center text-left text-greenlogo-700 font-semibold text-lg focus:outline-none panduan-toggle" aria-expanded="false">                <span>3. Proses Pengurusan &amp; Update Status</span>                <i class="fas fa-chevron-down transition-transform"></i>              </button>              <div class="panduan-content mt-3 text-gray-700 text-base hidden">                Proses pengurusan dokumen, legalitas, atau sertifikasi dilakukan oleh tim ahli. Anda akan mendapatkan update status secara berkala.              </div>            </div>            <div class="bg-white rounded-xl shadow-md border border-greenlogo-100 p-5 transition-all">              <button class="w-full flex justify-between items-center text-left text-greenlogo-700 font-semibold text-lg focus:outline-none panduan-toggle" aria-expanded="false">                <span>4. Dokumen Selesai &amp; Penyerahan</span>                <i class="fas fa-chevron-down transition-transform"></i>              </button>              <div class="panduan-content mt-3 text-gray-700 text-base hidden">                Setelah selesai, dokumen/sertifikat/izin akan dikirimkan ke Anda secara digital/fisik sesuai permintaan.              </div>            </div>          </div>        </div>        <!-- FAQ -->        <div id="faq">          <h2 class="text-2xl font-bold text-greenlogo-800 mb-5 flex items-center gap-2 font-display"><i class="fas fa-question-circle text-greenlogo-500"></i> FAQ</h2>          <div class="space-y-4">            <div class="bg-white rounded-xl shadow-md border border-greenlogo-100 p-5 transition-all">              <button class="w-full flex justify-between items-center text-left text-greenlogo-700 font-semibold text-lg focus:outline-none faq-toggle" aria-expanded="false">                <span>Apa saja dokumen yang dibutuhkan untuk pengurusan jasa?</span>                <i class="fas fa-chevron-down transition-transform"></i>              </button>              <div class="faq-content mt-3 text-gray-700 text-base hidden">                Dokumen umum: identitas perusahaan/perorangan, NPWP, legalitas usaha, dan dokumen pendukung sesuai jenis jasa. Untuk SKK, diperlukan data tenaga kerja.              </div>            </div>            <div class="bg-white rounded-xl shadow-md border border-greenlogo-100 p-5 transition-all">              <button class="w-full flex justify-between items-center text-left text-greenlogo-700 font-semibold text-lg focus:outline-none faq-toggle" aria-expanded="false">                <span>Berapa lama proses pengurusan dokumen/sertifikasi?</span>                <i class="fas fa-chevron-down transition-transform"></i>              </button>              <div class="faq-content mt-3 text-gray-700 text-base hidden">                Estimasi waktu 5-14 hari kerja tergantung jenis layanan dan kelengkapan dokumen.              </div>            </div>            <div class="bg-white rounded-xl shadow-md border border-greenlogo-100 p-5 transition-all">              <button class="w-full flex justify-between items-center text-left text-greenlogo-700 font-semibold text-lg focus:outline-none faq-toggle" aria-expanded="false">                <span>Apakah bisa konsultasi sebelum pengajuan?</span>                <i class="fas fa-chevron-down transition-transform"></i>              </button>              <div class="faq-content mt-3 text-gray-700 text-base hidden">                Tentu! Silakan gunakan fitur <b>Konsultasi Gratis</b> untuk diskusi kebutuhan Anda.              </div>            </div>            <div class="bg-white rounded-xl shadow-md border border-greenlogo-100 p-5 transition-all">              <button class="w-full flex justify-between items-center text-left text-greenlogo-700 font-semibold text-lg focus:outline-none faq-toggle" aria-expanded="false">                <span>Bagaimana cara memantau status pengajuan?</span>                <i class="fas fa-chevron-down transition-transform"></i>              </button>              <div class="faq-content mt-3 text-gray-700 text-base hidden">                Anda dapat memantau status melalui menu <b>Konsultasi</b> atau menghubungi tim kami.              </div>            </div>          </div>        </div>      </div>    </section>    <!-- Testimoni/Kepercayaan (Slider) -->    <section id="testimoni" class="bg-white py-16 border-t border-gray-100 relative">      <div class="max-w-4xl mx-auto px-4 relative z-10">        <h2 class="text-3xl md:text-4xl font-extrabold text-center text-greenlogo-800 mb-12 tracking-tight font-display">Testimoni Klien</h2>        <div class="relative">          <div id="testimoni-slider" class="overflow-hidden">            <div id="testimoni-slides" class="flex transition-transform duration-500">              <!-- Slides will be injected by JS -->            </div>          </div>          <!-- Slider Controls -->          <div class="flex items-center justify-center mt-8 gap-4">            <button id="testimoni-prev" class="slider-arrow" aria-label="Sebelumnya"><i class="fas fa-chevron-left"></i></button>            <div id="testimoni-dots" class="flex items-center"></div>            <button id="testimoni-next" class="slider-arrow" aria-label="Selanjutnya"><i class="fas fa-chevron-right"></i></button>          </div>        </div>      </div>    </section>    <!-- Konsultasi -->    <section id="konsultasi" class="py-16 bg-greenlogo-50">      <div class="max-w-2xl mx-auto px-4">        <div class="bg-white rounded-2xl p-10 flex flex-col items-center border border-greenlogo-100 shadow-lg">          <div class="w-20 h-20 flex items-center justify-center rounded-full bg-greenlogo-100 mb-4">            <i class="fas fa-comments fa-2x text-greenlogo-600"></i>          </div>          <h2 class="text-3xl font-extrabold text-greenlogo-800 mb-5 font-display">Konsultasi &amp; Ajukan Pertanyaan</h2>          <p class="text-gray-700 mb-5 text-center text-lg">Isi form singkat atau hubungi kami langsung via WhatsApp untuk konsultasi gratis.</p>          <form id="formKonsultasi" class="w-full space-y-4 mb-4" autocomplete="off">            <div>              <input type="text" id="konsultasi-nama" name="konsultasi-nama" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-greenlogo-400 focus:border-greenlogo-400 transition text-base" placeholder="Nama Anda" aria-label="Nama">            </div>            <div>              <input type="text" id="konsultasi-kontak" name="konsultasi-kontak" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-greenlogo-400 focus:border-greenlogo-400 transition text-base" placeholder="No. WhatsApp / Email" aria-label="Kontak">            </div>            <div>              <textarea id="konsultasi-pesan" name="konsultasi-pesan" rows="2" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-greenlogo-400 focus:border-greenlogo-400 transition text-base" placeholder="Pertanyaan atau kebutuhan Anda" aria-label="Pesan"></textarea>            </div>            <button type="submit" class="w-full px-4 py-3 bg-greenlogo-600 hover:bg-greenlogo-700 text-white font-bold rounded-lg transition-colors flex items-center justify-center gap-2 text-base">              <i class="fas fa-paper-plane"></i> Kirim Konsultasi            </button>            <div id="konsultasiSuccess" class="hidden mt-2 text-green-600 text-center font-medium" role="status" aria-live="polite"></div>          </form>          <div class="flex flex-col sm:flex-row gap-4 items-center justify-center">            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" class="flex items-center gap-2 px-5 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2 text-lg" aria-label="WhatsApp">              <i class="fab fa-whatsapp fa-lg"></i> WhatsApp            </a>            <a href="mailto:info@layanan-sbuskk.com" class="flex items-center gap-2 px-5 py-3 bg-greenlogo-600 hover:bg-greenlogo-700 text-white rounded-lg font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-greenlogo-300 focus:ring-offset-2 text-lg" aria-label="Email">              <i class="fas fa-envelope fa-lg"></i> Email            </a>          </div>        </div>      </div>    </section>  </main>  <!-- Footer -->  <footer class="bg-greenlogo-800 text-gray-100 py-10 mt-12">    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-8">      <div class="flex items-center gap-4 md:gap-6">        <img src="https://xcellent-ocean-2905.laman.ai/assets/dokumentender-1.webp" alt="Logo Dokumen Tender" class="w-10 h-10 rounded bg-greenlogo-700 shadow-md object-contain" />        <span class="font-extrabold text-xl tracking-tight font-display" style="color:#339944;">Dokumen <span class="text-neutral-200">Tender</span></span>      </div>      <div class="flex gap-5 text-base font-medium">        <a href="#beranda" class="hover:text-greenlogo-300 transition-colors">Beranda</a>        <a href="#katalog" class="hover:text-greenlogo-300 transition-colors">Katalog</a>        <a href="#keunggulan" class="hover:text-greenlogo-300 transition-colors">Keunggulan</a>        <a href="#panduan" class="hover:text-greenlogo-300 transition-colors">Panduan</a>        <a href="#faq" class="hover:text-greenlogo-300 transition-colors">FAQ</a>        <a href="#testimoni" class="hover:text-greenlogo-300 transition-colors">Testimoni</a>        <a href="#konsultasi" class="hover:text-greenlogo-300 transition-colors">Konsultasi</a>      </div>      <div class="flex gap-5 items-center">        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" class="hover:text-green-400 transition-colors" aria-label="WhatsApp"><i class="fab fa-whatsapp fa-lg"></i></a>        <a href="mailto:info@layanan-sbuskk.com" class="hover:text-greenlogo-200 transition-colors" aria-label="Email"><i class="fas fa-envelope fa-lg"></i></a>        <a href="#" class="hover:text-greenlogo-200 transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin fa-lg"></i></a>        <a href="#" class="hover:text-greenlogo-200 transition-colors" aria-label="Instagram"><i class="fab fa-instagram fa-lg"></i></a>      </div>    </div>    <div class="max-w-7xl mx-auto px-4 mt-8 text-center text-xs text-greenlogo-100">      &copy; 2024 Dokumen Tender. All rights reserved.    </div>  </footer>  <!-- Custom JS -->  <script>    // Mobile menu    const mobileMenuBtn = document.getElementById('mobileMenuBtn');    const mobileMenu = document.getElementById('mobileMenu');    const closeMobileMenu = document.getElementById('closeMobileMenu');    mobileMenuBtn.addEventListener('click', () => {      mobileMenu.classList.remove('hidden');      setTimeout(() => mobileMenu.classList.add('opacity-100'), 10);    });    closeMobileMenu.addEventListener('click', () => {      mobileMenu.classList.add('hidden');      mobileMenu.classList.remove('opacity-100');    });    mobileMenu.addEventListener('click', (e) => {      if (e.target === mobileMenu) {        mobileMenu.classList.add('hidden');        mobileMenu.classList.remove('opacity-100');      }    });    mobileMenu.querySelectorAll('a').forEach(link => {      link.addEventListener('click', () => {        mobileMenu.classList.add('hidden');        mobileMenu.classList.remove('opacity-100');      });    });    // Smooth scroll for anchor links    document.querySelectorAll('a[href^="#"]').forEach(anchor => {      anchor.addEventListener('click', function(e) {        const targetId = this.getAttribute('href').slice(1);        const target = document.getElementById(targetId);        if (target) {          e.preventDefault();          target.scrollIntoView({ behavior: 'smooth', block: 'start' });        }      });    });    // FAQ accordion    document.querySelectorAll('.faq-toggle').forEach(btn => {      btn.addEventListener('click', function() {        const expanded = this.getAttribute('aria-expanded') === 'true';        document.querySelectorAll('.faq-toggle').forEach(b => {          b.setAttribute('aria-expanded', 'false');          b.querySelector('i').classList.remove('rotate-180');          b.parentElement.querySelector('.faq-content').classList.add('hidden');        });        if (!expanded) {          this.setAttribute('aria-expanded', 'true');          this.querySelector('i').classList.add('rotate-180');          this.parentElement.querySelector('.faq-content').classList.remove('hidden');        }      });    });    // Panduan accordion    document.querySelectorAll('.panduan-toggle').forEach((btn, idx) => {      btn.addEventListener('click', function() {        const expanded = this.getAttribute('aria-expanded') === 'true';        document.querySelectorAll('.panduan-toggle').forEach((b, i) => {          b.setAttribute('aria-expanded', 'false');          b.querySelector('i').classList.remove('rotate-180');          b.parentElement.querySelector('.panduan-content').classList.add('hidden');        });        if (!expanded) {          this.setAttribute('aria-expanded', 'true');          this.querySelector('i').classList.add('rotate-180');          this.parentElement.querySelector('.panduan-content').classList.remove('hidden');        }      });      // Open first step by default      if (idx === 0) {        btn.setAttribute('aria-expanded', 'true');        btn.querySelector('i').classList.add('rotate-180');        btn.parentElement.querySelector('.panduan-content').classList.remove('hidden');      }    });    // Testimoni slider    const testimoniData = [      {        nama: "PT Maju Jaya",        isi: "Pengurusan SBU dan SKK sangat cepat, timnya responsif dan profesional. Sangat direkomendasikan untuk perusahaan konstruksi!",        icon: "fa-user",        verified: true      },      {        nama: "CV Energi Mandiri",        isi: "Layanan konsultasi tender sangat membantu, kami berhasil memenangkan proyek BUMN berkat pendampingan mereka.",        icon: "fa-user",        verified: true      },      {        nama: "PT Tambang Sejahtera",        isi: "Satu pintu untuk semua kebutuhan dokumen, izin dan sertifikasi. Prosesnya transparan dan mudah dipantau.",        icon: "fa-user",        verified: true      },      {        nama: "PT Sukses Abadi",        isi: "Tim sangat komunikatif dan membantu dari awal hingga dokumen selesai. Prosesnya jelas dan tidak ribet.",        icon: "fa-user",        verified: true      }    ];    const testimoniSlides = document.getElementById('testimoni-slides');    const testimoniDots = document.getElementById('testimoni-dots');    let testimoniIndex = 0;    function renderTestimoniSlides() {      testimoniSlides.innerHTML = '';      testimoniData.forEach((t, i) => {        const slide = document.createElement('div');        slide.className = "min-w-full flex flex-col items-center px-4";        slide.innerHTML = `          <div class="bg-greenlogo-50 rounded-xl p-8 shadow-md border border-greenlogo-100 flex flex-col items-center max-w-xl mx-auto">            <div class="w-20 h-20 rounded-full mb-3 flex items-center justify-center bg-greenlogo-100">              <i class="fas ${t.icon} fa-2x text-greenlogo-400"></i>            </div>            <p class="text-gray-700 text-center mb-3">"${t.isi}"</p>            <div class="flex items-center gap-2">              <span class="font-semibold text-greenlogo-700">${t.nama}</span>              ${t.verified ? '<i class="fas fa-check-circle text-success-500"></i>' : ''}            </div>          </div>        `;        testimoniSlides.appendChild(slide);      });      testimoniSlides.style.width = `${testimoniData.length * 100}%`;    }    function renderTestimoniDots() {      testimoniDots.innerHTML = '';      testimoniData.forEach((_, i) => {        const dot = document.createElement('span');        dot.className = 'slider-dot' + (i === testimoniIndex ? ' active' : '');        dot.setAttribute('data-idx', i);        dot.addEventListener('click', () => {          testimoniIndex = i;          updateTestimoniSlider();        });        testimoniDots.appendChild(dot);      });    }    function updateTestimoniSlider() {      testimoniSlides.style.transform = `translateX(-${testimoniIndex * 100}%)`;      Array.from(testimoniDots.children).forEach((dot, i) => {        dot.classList.toggle('active', i === testimoniIndex);      });    }    document.getElementById('testimoni-prev').addEventListener('click', () => {      testimoniIndex = (testimoniIndex - 1 + testimoniData.length) % testimoniData.length;      updateTestimoniSlider();    });    document.getElementById('testimoni-next').addEventListener('click', () => {      testimoniIndex = (testimoniIndex + 1) % testimoniData.length;      updateTestimoniSlider();    });    // Auto-slide    let testimoniInterval = setInterval(() => {      testimoniIndex = (testimoniIndex + 1) % testimoniData.length;      updateTestimoniSlider();    }, 6000);    // Pause on hover    testimoniSlides.addEventListener('mouseenter', () => clearInterval(testimoniInterval));    testimoniSlides.addEventListener('mouseleave', () => {      testimoniInterval = setInterval(() => {        testimoniIndex = (testimoniIndex + 1) % testimoniData.length;        updateTestimoniSlider();      }, 6000);    });    // Init    renderTestimoniSlides();    renderTestimoniDots();    updateTestimoniSlider();    // Konsultasi form    document.getElementById('formKonsultasi').addEventListener('submit', function(e) {      e.preventDefault();      const nama = document.getElementById('konsultasi-nama').value.trim();      const kontak = document.getElementById('konsultasi-kontak').value.trim();      if (!nama || !kontak) {        showKonsultasiSuccess('Mohon lengkapi nama dan kontak.', true);        return;      }      showKonsultasiSuccess('Mengirim data...', false, true);      setTimeout(() => {        showKonsultasiSuccess('Terima kasih, konsultasi Anda telah dikirim! Kami akan menghubungi Anda segera.', false);        document.getElementById('formKonsultasi').reset();      }, 1200);    });    function showKonsultasiSuccess(message, isError = false, isLoading = false) {      const el = document.getElementById('konsultasiSuccess');      el.classList.remove('hidden');      el.textContent = message;      el.className = 'mt-2 text-center font-medium ' + (isError ? 'text-red-600' : 'text-green-600');      if (isLoading) {        el.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>' + message;      }      setTimeout(() => {        if (!isLoading) el.classList.add('hidden');      }, isError ? 2500 : 3500);    }  </script></body></html>
+Apr 8
+Konsep Anda sudah kuat, tetapi saat ini ada dua arah produk yang berbeda:
+Versi 1 = portal multi-layanan / super app  
+AI, e-katalog, learning, management, proyek.
+Versi 2 = landing page katalog jasa yang lebih fokus  
+jasa pengurusan dokumen, legalitas, sertifikasi, dan tender.
+Menurut saya, untuk bisnis yang lebih cepat jalan, Anda sebaiknya memakai:
+Rekomendasi utama
+Gunakan versi 2 sebagai MVP utama, lalu jadikan versi 1 sebagai dashboard lanjutan/member area.
+Alasannya:
+Versi 2 lebih jelas menjawab kebutuhan pasar: “saya butuh urus apa?”
+Lebih cocok untuk lead generation: calon klien langsung paham jasa yang dijual
+Lebih mudah diiklankan
+Lebih mudah diuji ke pasar
+Lebih sinkron dengan domain yang memang sudah kuat di workspace Anda: tender, SBU, SKK, compliance, dan pendampingan dokumen.⁠
+⁠⁠
+⁠⁠
+⁠​
+Posisi produk yang saya sarankan
+Nama produk
+Dokumen Tender
+Tagline
+Satu pintu pengurusan dokumen usaha, legalitas, sertifikasi, dan tender.
+Positioning
+Platform digital + jasa pendampingan untuk:
+pengurusan legalitas usaha
+perizinan
+sertifikasi badan usaha dan tenaga ahli
+dokumen pendukung tender
+monitoring progres pengajuan
+konsultasi ahli
+Ini sangat cocok dengan aset pengetahuan yang sudah Anda punya, seperti:
+lifecycle pengadaan/tender
+regulatory compliance
+pendampingan kompetensi/sertifikasi
+review dokumen tender dan persyaratan teknis.⁠
+⁠⁠
+⁠​
+Cara menggabungkan 2 desain Anda
+Struktur produk ideal
+A. Website publik
+Pakai gaya versi 2
+Tujuan:
+branding
+katalog layanan
+lead masuk
+trust building
+FAQ
+CTA konsultasi
+B. Dashboard member / internal portal
+Ambil elemen versi 1
+Tujuan:
+tracking pengajuan
+AI assistant
+document management
+e-katalog jasa
+learning center
+project/tender management
+Jadi bukan memilih salah satu sepenuhnya, tetapi:
+Versi 2 = frontend marketing
+Versi 1 = aplikasi operasional
+Saran fitur inti aplikasi
+1. Modul publik
+Untuk pengunjung website:
+Beranda
+Katalog jasa
+Detail layanan
+FAQ
+Testimoni
+Konsultasi
+Cek status pengajuan
+Blog / knowledge center
+2. Modul customer area
+Untuk klien yang sudah daftar:
+Registrasi/login
+Dashboard pengajuan
+Upload dokumen
+Checklist persyaratan
+Status proses
+Notifikasi revisi/kekurangan
+Invoice & pembayaran
+Chat/konsultasi
+3. Modul admin/ops
+Untuk tim internal:
+CRM calon klien
+Manajemen order
+Workflow dokumen
+Assignment staf
+SLA processing
+Template dokumen
+Approval internal
+Audit trail
+4. Modul AI
+Karena di workspace Anda sudah ada arah AI untuk tender/compliance, modul ini akan sangat kuat bila difokuskan ke:⁠
+⁠​
+AI cek kelengkapan dokumen
+AI rekomendasi layanan yang dibutuhkan
+AI review dokumen tender
+AI checklist compliance
+AI tanya jawab persyaratan SBU/SKK/tender
+AI drafting surat/permohonan/form
+5. Modul tender
+Karena domain tender adalah kekuatan utama Anda:
+klasifikasi paket tender
+checklist persyaratan tender
+evaluasi kesiapan perusahaan
+upload dokumen penawaran
+compliance matrix
+review administratif/teknis
+monitoring deadline
+Workspace Anda juga sudah punya basis konten untuk dokumen review, compliance matrix, dan go/no-go checklist, yang sangat cocok dijadikan fitur aplikasi.⁠
+⁠⁠
+⁠⁠
+⁠​
+Layanan yang sebaiknya masuk katalog
+Saya sarankan katalog jasa dipecah menjadi 6 grup besar:
+A. Legalitas Usaha
+NIB
+OSS RBA
+perubahan data perusahaan
+izin usaha sektor terkait
+NPWP badan
+akta & perubahan
+B. Sertifikasi Konstruksi
+SBU
+perpanjangan SBU
+perubahan klasifikasi/subklasifikasi
+SKK
+pendampingan PJT/PJK
+Ahli K3 konstruksi
+C. Sertifikasi Sistem Manajemen
+ISO 9001
+ISO 14001
+ISO 45001
+ISO 37001
+audit kesiapan sertifikasi
+D. Dokumen Tender
+review dokumen pemilihan
+penyusunan dokumen administrasi
+dokumen teknis
+dokumen harga
+compliance matrix
+checklist final submission
+E. Keuangan & Pendukung Tender
+laporan akuntan
+laporan keuangan
+audit/review
+dukungan bank / referensi keuangan
+F. Layanan Khusus
+SLO
+sertifikat kelistrikan
+legal drafting
+perizinan sektor khusus
+konsultasi custom
+Rekomendasi user flow
+Flow calon klien
+Masuk website
+Pilih layanan
+Klik Ajukan / Konsultasi
+Isi form kebutuhan
+Sistem klasifikasikan layanan
+Admin follow up
+Klien upload dokumen
+Tim verifikasi
+Proses berjalan
+Status dipantau di dashboard
+Dokumen selesai & diserahkan
+Flow internal
+Lead masuk
+Lead scoring
+Tentukan layanan
+Generate checklist
+Minta dokumen
+Review & validasi
+Proses oleh PIC
+QA/check akhir
+Serah hasil
+Upsell layanan lanjutan
+Masalah terbesar pada HTML Anda saat ini
+Secara bisnis, bukan teknis semata, ada beberapa hal yang perlu dibenahi:
+1. Fokus produk masih bercabang
+Di versi 1, menu:
+AI
+Ektalatog
+Learning
+Management
+Proyek
+Ini terasa seperti platform general, bukan layanan pengurusan dokumen.
+Saran
+Ganti menu publik menjadi:
+Beranda
+Layanan
+Kategori
+Cara Kerja
+FAQ
+Testimoni
+Konsultasi
+Cek Status
+2. Istilah “Ektalatog” kurang kuat
+Lebih baik gunakan:
+E-Katalog Jasa
+Katalog Layanan
+Layanan
+Marketplace Jasa Dokumen
+3. Belum ada CTA transaksional yang jelas
+Saat ini banyak tombol “Ajukan” dan “Konsultasi”, tapi belum jelas output-nya:
+apakah langsung order?
+apakah masuk WhatsApp?
+apakah isi form?
+apakah pilih paket?
+Saran
+Gunakan 3 CTA utama:
+Ajukan Sekarang
+Konsultasi Gratis
+Cek Persyaratan
+4. Belum ada pembeda yang konkret
+“Cepat, mudah, terpercaya” bagus, tapi generik.
+Saran value proposition yang lebih tajam:
+Checklist persyaratan otomatis
+Pendampingan sampai selesai
+Update status real-time
+Konsultan berpengalaman
+Dokumen tender lebih siap submit
+Semua kebutuhan legalitas dan tender dalam satu dashboard
+5. Belum ada bukti proses / trust proof
+Untuk jasa seperti ini, trust sangat penting.
+Tambahkan:
+alur kerja 4 langkah
+estimasi SLA per layanan
+jumlah klien
+kategori industri
+contoh output dokumen
+badge “didampingi konsultan”
+status tracking
+Saran arsitektur halaman yang paling efektif
+Landing page ideal
+Section 1 — Hero
+Judul:
+Jasa Pengurusan Dokumen, Legalitas, Sertifikasi & Tender dalam Satu Platform
+Subjudul:
+Bantu perusahaan Anda mengurus legalitas usaha, SBU, SKK, ISO, dokumen tender, dan perizinan dengan proses lebih cepat, terstruktur, dan mudah dipantau.
+CTA:
+Ajukan Sekarang
+Konsultasi Gratis
+Section 2 — Kategori Layanan
+Card:
+Legalitas Usaha
+SBU & SKK
+ISO
+Dokumen Tender
+Laporan Keuangan/Akuntan
+Perizinan Teknis
+SLO Kelistrikan
+Layanan Khusus
+Section 3 — Cara Kerja
+Pilih layanan
+Upload dokumen
+Verifikasi & proses
+Dokumen selesai
+Section 4 — Kenapa Memilih Kami
+Satu pintu
+Tim ahli
+Proses transparan
+Tracking status
+Checklist persyaratan
+Pendampingan tender
+Section 5 — FAQ
+Yang sudah Anda buat sudah cukup bagus
+Section 6 — Testimoni
+Bagus, tapi nanti lebih kuat kalau pakai:
+nama perusahaan
+jenis layanan
+hasil yang didapat
+Section 7 — Form konsultasi
+Sudah tepat
+Saran fitur dashboard versi aplikasi
+Kalau nanti dikembangkan jadi aplikasi penuh, dashboard bisa punya menu:
+Dashboard
+Pengajuan Saya
+Upload Dokumen
+Checklist Persyaratan
+Status Proses
+Invoice
+Konsultasi
+AI Assistant
+Dokumen Tender
+Pelatihan / Knowledge
+Ini nyambung dengan kebutuhan tender dan dokumen yang memang sudah muncul di knowledge workspace Anda, termasuk persyaratan upload dokumen seperti SKK, ijazah, bukti alat, dan laporan keuangan audited untuk kesiapan tender.⁠
+⁠​
+Rekomendasi MVP 30 hari
+MVP tahap 1
+Bangun dulu:
+Landing page
+Katalog layanan
+Detail layanan
+Form konsultasi
+WhatsApp CTA
+Dashboard sederhana untuk status order
+Upload dokumen
+Admin panel sederhana
+Fitur AI jangan terlalu banyak dulu
+Mulai dari 2 saja:
+AI klasifikasi kebutuhan layanan
+AI checklist kelengkapan dokumen
+Model data yang sebaiknya disiapkan
+Tabel inti
+Users
+Companies
+ServiceCategories
+Services
+Applications
+ApplicationDocuments
+Requirements
+ApplicationRequirements
+StatusLogs
+Consultations
+StaffAssignments
+Payments
+Testimonials
+KnowledgeArticles
+Status pengajuan
+Draft
+Menunggu Dokumen
+Verifikasi
+Revisi
+Diproses
+Menunggu Pihak Ketiga
+Selesai
+Ditolak
+Ditunda
+Saran bisnis: produk jasa + SaaS hybrid
+Model terbaik untuk Anda kemungkinan bukan pure SaaS, tapi:
+Hybrid model
+Lead generation website
+Managed service
+Customer dashboard
+AI assistant untuk efisiensi
+Knowledge base premium
+Upsell pelatihan / bimtek
+Ini cocok sekali dengan arah workspace Anda yang sudah menghubungkan:
+compliance
+pengadaan
+sertifikasi
+simulasi/pembelajaran
+dokumentasi tender.⁠
+⁠⁠
+⁠⁠
+⁠​
+Keputusan desain: mana yang lebih baik?
+Jawaban singkat
+Untuk jualan dan validasi pasar: pakai desain kedua
+Untuk aplikasi jangka panjang: kembangkan desain pertama sebagai dashboard/member portal
+Jadi strategi terbaik:
+Homepage publik = desain kedua
+Aplikasi internal/member = desain pertama
+Copy headline yang saya rekomendasikan
+Opsi 1
+Platform Jasa Pengurusan Dokumen, Legalitas, Sertifikasi & Tender
+Opsi 2
+Satu Platform untuk Legalitas Usaha, Sertifikasi, dan Dokumen Tender
+Opsi 3
+Cepat, Mudah, Terpercaya untuk Pengurusan Dokumen & Tender Perusahaan
+Copy subheadline yang lebih tajam
+Bantu perusahaan Anda mengurus SBU, SKK, ISO, legalitas usaha, laporan pendukung, dan dokumen tender melalui proses yang lebih terstruktur, transparan, dan mudah dipantau.
+Jika saya ringkas, arah terbaik Anda adalah:
+Jadikan “Dokumen Tender” sebagai brand utama
+Fokus dulu pada katalog jasa dan lead conversion
+Bangun dashboard status pengajuan
+Tambahkan AI hanya pada use case yang benar-benar membantu
+Jangan tampil terlalu luas di homepage
+Pisahkan website pemasaran dan aplikasi operasional
+Kalau Anda mau, saya bisa bantu langkah berikutnya dalam bentuk:
+PRD / spesifikasi aplikasi
+struktur database
+user flow lengkap
+copywriting landing page final
+prompt AI untuk fitur konsultasi & cek dokumen
+roadmap MVP 3 bulan
+⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠​
+lanjut detailkan dan elaborasikan dengan kecanggihan metode dan logika sistem dan aplikasi yang memiliki framework Agentic, Multi Agen, dan Open Claw
+Apr 8
+Tentu. Kalau dilanjutkan ke level yang lebih canggih, maka Dokumen Tender jangan diposisikan hanya sebagai website katalog jasa, tetapi sebagai Agentic Service Operating System untuk pengurusan legalitas, perizinan, sertifikasi, dan tender.
+Dan karena di workspace Anda sudah ada fondasi OpenClaw, agent directory, knowledge base domain tender/pengadaan, review dokumen, risk, SBU/SKK, dan e-procurement, maka arah terbaiknya adalah membangun aplikasi yang bukan sekadar “CRUD + form”, tetapi sistem orkestrasi kerja berbasis multi-agent.⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠​
+1. Visi sistem: dari website menjadi Agentic Operating Platform
+Definisi
+Aplikasi ini menjadi platform yang dapat:
+menerima kebutuhan klien
+memahami jenis layanan yang dibutuhkan
+memecah pekerjaan menjadi subtugas
+memilih agen spesialis yang tepat
+mengecek dokumen dan regulasi
+menyusun checklist dan strategi
+memantau progres end-to-end
+memberi rekomendasi tindakan berikutnya
+melakukan quality assurance sebelum submit
+menjaga audit trail keputusan
+Jadi logikanya bukan:
+user isi form → admin proses manual
+Tetapi:
+user isi kebutuhan → sistem memahami intent → conductor agent membuat rencana kerja → specialist agents bekerja → hasil digabung → human reviewer approve → proses lanjut
+Ini persis cocok dengan arah OpenClaw yang sudah Anda bangun sebagai ekosistem multi-agent per domain teknis dan pengadaan.⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠​
+2. Prinsip arsitektur: Agentic, Multi-Agent, OpenClaw
+A. Agentic
+Artinya sistem memiliki kemampuan:
+memahami tujuan
+menyusun langkah
+memilih alat
+menjalankan aksi
+membaca hasil
+merevisi strategi
+meminta bantuan manusia bila perlu
+Secara praktis, setiap permintaan tidak diproses secara linear, tapi melalui loop:
+Goal → Plan → Act → Observe → Evaluate → Refine → Complete
+B. Multi-Agent
+Artinya satu permintaan besar tidak ditangani oleh satu AI umum, tetapi oleh banyak agen spesialis, misalnya:
+agen intake
+agen klasifikasi layanan
+agen regulasi
+agen legalitas
+agen SBU/SKK
+agen tender review
+agen penyusun dokumen
+agen risk/compliance
+agen QA/final checker
+agen komunikasi klien
+agen monitoring progres
+C. OpenClaw framework
+Dalam konteks aplikasi Anda, OpenClaw bisa dijadikan sebagai framework orkestrasi domain-spesifik, yaitu:
+punya agent directory
+punya prompt domain
+punya memory/domain KB
+punya alur delegasi
+punya standar output
+punya evaluasi performa/KPI
+punya loop pembelajaran dan simulasi
+Ini selaras dengan aset yang sudah ada seperti:
+system prompt multi-agent pengadaan dan tender konstruksi⁠
+⁠​
+KPI/performance analysis⁠
+⁠​
+domain teknis pengadaan/tender⁠
+⁠​
+navigator penggunaan sistem⁠
+⁠​
+agent konsultasi, review, risk, SBU, profession, simulation⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠​
+3. Arsitektur logika sistem tingkat tinggi
+Saya sarankan 7 lapisan sistem:
+Layer 1 — Experience Layer
+Antarmuka pengguna:
+landing page
+dashboard klien
+dashboard admin
+portal konsultan
+chat assistant
+upload dokumen
+status tracker
+notification center
+Layer 2 — Intent & Case Intake Layer
+Lapisan untuk:
+membaca kebutuhan user
+mengidentifikasi tujuan utama
+mengubah input bebas menjadi case terstruktur
+Contoh:
+“Saya mau urus perpanjangan SBU dan persiapan tender”
+Sistem memecah menjadi:
+Case A: perpanjangan SBU
+Case B: readiness tender
+dependency: Case B bergantung sebagian pada status A
+Layer 3 — Orchestration Layer
+Otak utama sistem:
+conductor agent
+workflow engine
+task graph
+priority engine
+escalation engine
+retry/fallback rules
+Ini pusat agentic logic.
+Layer 4 — Specialist Agent Layer
+Kumpulan agen domain:
+Legalitas Agent
+SBU Agent
+SKK Agent
+ISO Agent
+Tender Agent
+Compliance Agent
+Risk Agent
+Document Composer Agent
+Review Agent
+Client Success Agent
+Layer 5 — Knowledge & Reasoning Layer
+Sumber berpikir sistem:
+regulasi
+SOP internal
+template dokumen
+database requirement
+riwayat case
+decision trees
+vector search / RAG
+rule engine
+graph of dependencies
+Layer 6 — Execution Layer
+Aksi nyata:
+generate checklist
+validasi dokumen
+buat draft surat
+minta dokumen tambahan
+assign PIC
+update status
+generate ringkasan case
+susun compliance matrix
+final review bundle
+Layer 7 — Governance Layer
+Keamanan dan kontrol:
+audit trail
+permissioning
+human approval
+confidence scoring
+evidence-based answer
+traceability per keputusan
+SLA monitoring
+logging per agent
+4. Model inti: “Case Graph” bukan sekadar ticket
+Aplikasi jangan hanya memakai model:
+customer
+order
+status
+Tetapi gunakan model utama bernama:
+Case Graph
+Satu case adalah objek hidup yang punya:
+tujuan
+jenis layanan
+daftar requirement
+dokumen yang tersedia
+dokumen yang kurang
+dependensi antar-task
+agent assignment
+evidences
+risk flags
+approval states
+timeline
+confidence level
+recommended next actions
+Contoh case graph
+Case: Pengurusan SBU + Tender Pemerintah
+Node:
+verifikasi legalitas badan
+validasi NIB/OSS
+validasi tenaga ahli/SKK
+cek klasifikasi SBU
+cek kesiapan LPSE/SIKaP
+susun checklist tender
+review dokumen administrasi
+review teknis
+review harga
+QA final submission
+Edges:
+validasi tenaga ahli → mempengaruhi eligibility SBU
+status SBU → mempengaruhi tender readiness
+gap dokumen → memicu request revisi
+Dengan model graph ini, sistem lebih cerdas daripada sekadar status “diproses”.
+5. Peran utama tiap agent dalam framework OpenClaw
+5.1 Conductor Agent
+Ini agent tertinggi.
+Tugas:
+menerima intent user
+membuat rencana kerja
+membagi tugas ke agen lain
+menyusun urutan proses
+memonitor hasil antar agen
+menggabungkan jawaban
+meminta human approval bila risiko tinggi
+Output:
+case plan
+task decomposition
+dependency map
+assignment list
+progress summary
+escalation note
+Ini analoginya:
+project manager + dispatcher + quality gate
+5.2 Intake & Classification Agent
+Tugas:
+membaca input natural language user
+mengenali layanan yang diminta
+mendeteksi industri/domain
+mengenali urgensi
+mengelompokkan kebutuhan
+Contoh klasifikasi:
+legalitas usaha
+sertifikasi badan usaha
+sertifikasi tenaga ahli
+tender preparation
+tender submission support
+compliance review
+konsultasi custom
+Metode:
+intent classification
+entity extraction
+service taxonomy mapping
+ambiguity detection
+5.3 Requirement Intelligence Agent
+Tugas:
+menentukan persyaratan wajib
+menyusun checklist
+mendeteksi missing documents
+mengurutkan dokumen berdasarkan prioritas
+menyesuaikan syarat dengan profil perusahaan
+Sumber:
+rule engine
+template persyaratan
+knowledge base domain
+riwayat case sukses/gagal
+Ini sangat cocok dengan fondasi knowledge tentang SBU, SKK, dan persyaratan tender yang sudah ada.⁠
+⁠⁠
+⁠⁠
+⁠​
+5.4 Regulation & Compliance Agent
+Tugas:
+membaca regulasi yang relevan
+memetakan aturan ke requirement operasional
+mendeteksi pelanggaran syarat
+memberi penjelasan “mengapa” suatu dokumen wajib
+menilai compliance level
+Metode:
+RAG berbasis regulasi
+citation-aware answer
+rule-based verification
+contradiction detection
+Ini terhubung dengan knowledge regulasi dan e-procurement yang sudah ada di workspace.⁠
+⁠⁠
+⁠​
+5.5 SBU/SKK Domain Agent
+Tugas:
+cek klasifikasi/subklasifikasi
+validasi kecocokan tenaga ahli
+cek kebutuhan PJT/PJK
+cek masa berlaku
+cek kelayakan perusahaan untuk klasifikasi tertentu
+sarankan gap closure
+Ini adalah salah satu domain paling kuat dalam struktur OpenClaw Anda.⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠​
+5.6 Tender Strategy Agent
+Tugas:
+menilai kesiapan ikut tender
+melakukan go/no-go analysis
+menyusun strategi pemenuhan administrasi, teknis, harga
+membuat compliance matrix
+mengidentifikasi risiko gugur
+memberi rekomendasi tindakan
+Sangat nyambung dengan aset seperti compliance matrix, checklist final submission, dan audit penawaran.⁠
+⁠⁠
+⁠⁠
+⁠​
+5.7 Document Composer Agent
+Tugas:
+membuat draft surat
+menyiapkan template dokumen
+menyusun formulir
+generate cover letter
+generate checklist internal
+generate ringkasan case
+Metode:
+template-based generation
+slot filling
+structured drafting
+clause library reuse
+5.8 Review & QA Agent
+Tugas:
+membaca hasil dari agent lain
+memeriksa konflik
+mendeteksi gap
+memberi skor kualitas
+memutuskan siap submit atau belum
+QA logic:
+completeness score
+compliance score
+consistency score
+evidence score
+risk score
+Output:
+pass
+revise minor
+revise major
+blocked
+Ini sangat dekat dengan pola review dokumen yang sudah ada.⁠
+⁠⁠
+⁠​
+5.9 Risk Agent
+Tugas:
+mendeteksi risiko administratif
+risiko teknis
+risiko waktu
+risiko regulasi
+risiko reputasi
+risiko kegagalan tender
+Output:
+risk register per case
+severity level
+mitigation steps
+escalation trigger
+Ini selaras dengan kerangka risk pengadaan yang sudah ada di OpenClaw.⁠
+⁠⁠
+⁠​
+5.10 Client Success Agent
+Tugas:
+menjelaskan progres ke klien
+mengirim permintaan revisi
+menerjemahkan status teknis menjadi bahasa sederhana
+menjawab FAQ berbasis case
+menjaga engagement sampai case selesai
+6. Metode berpikir sistem: hybrid intelligence
+Agar sistem benar-benar canggih, jangan hanya mengandalkan LLM generatif. Gunakan hybrid reasoning stack:
+A. LLM reasoning
+Dipakai untuk:
+memahami intent
+merangkum
+menyusun strategi
+menjelaskan hasil
+draft dokumen
+B. Rule engine
+Dipakai untuk:
+syarat wajib
+if/then compliance
+dependency validation
+validasi format
+gating logic
+C. Retrieval/RAG
+Dipakai untuk:
+ambil regulasi
+ambil template
+ambil SOP
+ambil precedent case
+ambil knowledge OpenClaw domain
+D. Knowledge graph
+Dipakai untuk:
+relasi layanan
+relasi dokumen
+relasi regulasi
+relasi klasifikasi
+relasi role personel
+relasi tahapan tender
+E. Scoring engine
+Dipakai untuk:
+eligibility score
+readiness score
+confidence score
+risk score
+service recommendation score
+F. Workflow engine
+Dipakai untuk:
+step progression
+approvals
+assignment
+SLA
+reminders
+branching case
+Jadi secara teknik, “kecerdasan” sistem bukan dari satu model AI, tapi dari kombinasi:
+LLM + Rules + Retrieval + Workflow + Scoring + Human Oversight
+7. Metode logika agentic yang saya rekomendasikan
+7.1 Task Decomposition Tree
+Setiap permintaan dipecah jadi pohon pekerjaan.
+Contoh:
+Tujuan: “ikut tender proyek gedung pemerintah”
+Subtask:
+validasi legalitas badan
+validasi SBU
+validasi SKK tenaga ahli
+validasi keuangan
+validasi peralatan
+review dokumen tender
+susun compliance matrix
+final QA
+Setiap subtask punya:
+owner agent
+required evidence
+deadline
+pass criteria
+7.2 Blackboard Collaboration
+Semua agen tidak saling bicara bebas tanpa struktur.  
+Mereka menulis ke satu “blackboard” atau shared case memory.
+Isi blackboard:
+case summary
+extracted facts
+missing items
+assumptions
+findings
+risks
+recommendations
+citations/evidence
+Keuntungannya:
+jejak keputusan jelas
+agent baru bisa baca konteks lama
+hasil tidak tercecer
+7.3 Plan-Execute-Reflect Loop
+Setelah agent bekerja, sistem wajib refleksi:
+apakah hasil lengkap?
+apakah ada konflik?
+apakah ada evidence?
+apakah confidence cukup?
+apakah butuh human review?
+Kalau tidak, conductor akan:
+revisi plan
+kirim ulang ke agent terkait
+atau eskalasi ke manusia
+7.4 Confidence-Gated Automation
+Bukan semua hasil boleh otomatis diteruskan.
+Contoh:
+confidence > 90% dan risk rendah → otomatis lanjut
+confidence 70–90% → review admin
+confidence < 70% → wajib konsultasi ahli
+Ini penting untuk domain legalitas dan tender.
+7.5 Multi-Pass Review
+Untuk dokumen penting, lakukan review berlapis:
+pass 1: completeness
+pass 2: compliance
+pass 3: consistency
+pass 4: strategic fit
+pass 5: final submission QA
+7.6 Event-Driven Orchestration
+Setiap perubahan memicu event.
+Contoh event:
+document_uploaded
+document_rejected
+requirement_completed
+deadline_near
+case_blocked
+agent_failed
+human_approved
+submission_ready
+Event ini memicu aksi agent berikutnya.
+8. Desain workflow utama aplikasi
+Workflow 1 — Intake & Triage
+Input:
+form
+chat
+upload dokumen
+WhatsApp inquiry
+manual admin input
+Proses:
+ekstraksi intent
+identifikasi layanan
+entity extraction
+prioritas/urgensi
+case creation
+assignment awal
+Output:
+structured case
+recommended service bundle
+initial checklist
+estimated timeline
+Workflow 2 — Requirement Resolution
+Tujuan:
+Menentukan dokumen apa saja yang wajib dan apa yang kurang.
+Proses:
+baca profil klien
+baca layanan yang dipilih
+mapping requirement
+cek dokumen yang tersedia
+flag kekurangan
+generate request list
+Output:
+checklist persyaratan
+missing docs list
+order of submission
+Workflow 3 — Verification & Qualification
+Tujuan:
+Menilai apakah klien layak lanjut.
+Pemeriksaan:
+legalitas dasar
+domain usaha
+masa berlaku dokumen
+kecocokan klasifikasi
+syarat personel
+syarat finansial
+syarat teknis
+Output:
+eligible
+conditionally eligible
+not eligible
+remediation needed
+Workflow 4 — Document Intelligence
+Tujuan:
+Membaca dan menilai kualitas dokumen.
+Fungsi:
+OCR/parser
+metadata extraction
+field validation
+version tracking
+inconsistency detection
+evidence linking
+Workflow 5 — Tender Readiness & Strategy
+Tujuan:
+Menilai kesiapan tender.
+Komponen:
+go/no-go score
+gap analysis
+compliance matrix
+risk analysis
+deadline sensitivity
+bid pack readiness
+Workflow 6 — Final QA & Submission Readiness
+Tujuan:
+Memastikan tidak ada gap sebelum finalisasi.
+Hasil:
+ready
+revise
+blocked
+escalate
+9. OpenClaw domain mesh untuk aplikasi ini
+Saya sarankan OpenClaw Anda punya mesh agent seperti ini:
+Core agents
+OCL-Conductor
+OCL-Intake
+OCL-Classifier
+OCL-Requirement
+OCL-Regulation
+OCL-Compliance
+OCL-Reviewer
+OCL-Risk
+OCL-DocGen
+OCL-ClientSuccess
+Domain agents
+OCL-SBU
+OCL-SKK
+OCL-ISO
+OCL-Legalitas
+OCL-Tender
+OCL-LPSE/eSPSE
+OCL-FinanceSupport
+OCL-K3
+OCL-SLO
+OCL-IndustrySpecific
+Oversight agents
+OCL-QA
+OCL-Audit
+OCL-Performance
+OCL-LessonsLearned
+Ini sangat nyambung dengan pola agent directory dan performance/risk/simulation yang sudah tampak di workspace Anda.⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠​
+10. Memory architecture yang harus ada
+Agar agentic system benar-benar kuat, harus ada 4 jenis memory:
+10.1 Session Memory
+Konteks percakapan saat ini:
+apa yang user minta
+dokumen apa diupload
+issue apa yang sedang dibahas
+10.2 Case Memory
+Riwayat satu kasus:
+timeline
+hasil review
+dokumen
+status
+keputusan
+catatan PIC
+output agent
+10.3 Domain Memory
+Pengetahuan stabil:
+regulasi
+SOP
+klasifikasi
+template
+FAQ
+pola persyaratan
+10.4 Organizational Memory
+Pengetahuan bisnis Anda:
+SLA
+kebijakan internal
+template komunikasi
+strategi pricing
+prioritas layanan
+playbook eskalasi
+11. Knowledge model: jangan hanya file, tapi “Requirement Graph”
+Untuk domain legalitas dan tender, saya sangat sarankan membuat Requirement Graph.
+Contoh hubungan:
+layanan = “Perpanjangan SBU”
+membutuhkan = legalitas badan aktif
+membutuhkan = klasifikasi sesuai
+membutuhkan = tenaga ahli aktif
+membutuhkan = dokumen pendukung X/Y/Z
+mempunyai kondisi = jika kualifikasi tertentu maka syarat tambahan
+menghasilkan = sertifikat/status tertentu
+menjadi prasyarat = kesiapan tender
+Dengan graph ini, agent dapat menjawab:
+apa yang kurang
+kenapa kurang
+apa prioritasnya
+apa dampaknya jika belum lengkap
+12. Logika pengambilan keputusan
+Decision engine utama
+Gunakan formula logika campuran:
+A. Eligibility Score
+Apakah case layak diproses?
+B. Completeness Score
+Seberapa lengkap dokumen?
+C. Compliance Score
+Seberapa sesuai dengan aturan?
+D. Readiness Score
+Seberapa siap untuk pengajuan/tender?
+E. Risk Score
+Seberapa besar risiko kegagalan?
+F. Confidence Score
+Seberapa yakin sistem terhadap kesimpulan?
+Contoh formula sederhana
+Final Decision Index
+25% Eligibility
+20% Completeness
+25% Compliance
+15% Readiness
+15% Risk inverse
+Lalu hasil:
+85–100 = lanjut cepat
+70–84 = lanjut dengan revisi minor
+50–69 = revisi mayor
+<50 = tahan / konsultasi ahli
+13. Human in the Loop: wajib, bukan opsional
+Untuk domain Anda, AI tidak boleh dibiarkan full autopilot.
+Wajib ada approval manusia pada:
+interpretasi regulasi kritis
+dokumen legal formal
+final recommendation untuk tender
+status “siap submit”
+dokumen yang memengaruhi eligibility
+case dengan confidence rendah
+Peran manusia:
+supervisor legal
+supervisor tender
+reviewer compliance
+approver final
+account manager
+14. Auditability dan explainability
+Aplikasi ini harus bisa menjawab:
+mengapa sistem meminta dokumen ini?
+agent mana yang memberi rekomendasi ini?
+sumber aturan apa yang dipakai?
+skor ini berasal dari apa?
+apa faktor risiko utamanya?
+perubahan status terjadi karena apa?
+Jadi setiap keputusan harus punya:
+evidence
+timestamp
+actor
+rationale
+confidence
+trace
+Ini penting agar sistem punya kredibilitas operasional.
+15. Contoh skenario agentic end-to-end
+Skenario A — Klien ingin urus SBU + persiapan tender
+Langkah sistem:
+Intake agent membaca kebutuhan
+Classifier menentukan bundle layanan:
+SBU
+validasi SKK
+tender readiness
+Conductor membuat task graph
+Requirement agent susun checklist
+SBU agent cek klasifikasi/subklasifikasi
+SKK agent cek personel dan masa aktif
+Regulation agent cek aturan relevan
+Compliance agent nilai gap
+Tender agent susun kesiapan tender
+Risk agent memberi risiko
+QA agent menyimpulkan
+Client success agent mengirim ringkasan tindakan ke klien
+Human approver menyetujui next plan
+Skenario B — Klien upload dokumen tender
+Langkah sistem:
+Parser ekstrak dokumen
+Doc Intelligence membaca isi dan metadata
+Requirement agent membandingkan dengan checklist
+Review agent cek administrasi
+Compliance agent cek kecocokan syarat
+Risk agent beri warning area rawan gugur
+DocGen agent menyusun checklist perbaikan
+QA agent beri verdict:
+siap
+revisi minor
+revisi mayor
+16. Fitur aplikasi yang paling “agentic”
+Berikut fitur yang akan membuat aplikasi Anda berbeda dari kompetitor biasa:
+1. Smart Intake
+User cukup cerita kebutuhan, sistem yang memetakan layanan.
+2. Dynamic Checklist
+Checklist berubah otomatis berdasarkan profil klien, jenis layanan, dan kondisi dokumen.
+3. Gap Detector
+Sistem mendeteksi kekurangan dan konflik dokumen.
+4. Next Best Action Engine
+Sistem selalu memberi langkah terbaik berikutnya.
+5. Submission Readiness Score
+Sistem memberi skor kesiapan sebelum submit.
+6. Explainable AI Review
+Setiap temuan ada alasannya.
+7. Agent Collaboration Timeline
+Admin bisa lihat agent mana mengerjakan apa.
+8. Case Copilot
+Setiap case punya AI copilot sendiri.
+9. Risk Early Warning
+Sistem memberi peringatan dini sebelum case bermasalah.
+10. Continuous Learning Loop
+Hasil case sukses/gagal dipakai untuk memperbaiki rule dan prompt.
+17. Continuous improvement: sistem belajar dari kasus
+Agar OpenClaw makin matang, bangun loop:
+Observe
+ambil data kasus selesai/gagal
+Analyze
+lihat:
+dokumen apa paling sering kurang
+tahapan mana paling lambat
+agent mana paling akurat
+alasan kegagalan paling umum
+Improve
+update prompt
+update rules
+update checklist
+update risk pattern
+update template komunikasi
+Ini sejalan dengan adanya aset performance dan postmortem dalam workspace Anda.⁠
+⁠⁠
+⁠​
+18. Roadmap implementasi sistem
+Tahap 1 — Structured service platform
+landing page
+katalog layanan
+case intake
+checklist
+upload dokumen
+tracking status
+admin review
+Tahap 2 — Agentic copilots
+classifier agent
+requirement agent
+compliance agent
+doc review agent
+client summary agent
+Tahap 3 — Multi-agent orchestration
+conductor
+task graph
+blackboard memory
+event bus
+confidence gating
+escalation engine
+Tahap 4 — OpenClaw operating mesh
+agent registry
+performance monitor
+self-evaluation
+reusable domain prompts
+lessons learned memory
+simulation environment
+19. Teknologi logika yang saya sarankan secara konseptual
+Tanpa masuk ke stack vendor tertentu, pola sistemnya begini:
+Backend core
+case engine
+workflow engine
+event bus
+agent orchestrator
+rules engine
+knowledge retrieval service
+audit log service
+AI core
+LLM router
+prompt registry
+tool registry
+memory manager
+evaluator
+planner
+critic/reviewer
+fallback handler
+Data core
+relational DB untuk transaksi
+vector store untuk knowledge retrieval
+object storage untuk dokumen
+graph layer untuk requirement dependencies
+analytics store untuk KPI
+20. Rumusan posisi akhir aplikasi Anda
+Bukan sekadar:
+website jasa
+katalog layanan
+form konsultasi
+CRM pengajuan
+Tetapi:
+Agentic Multi-Agent Service Intelligence Platform
+untuk:
+legalitas usaha
+sertifikasi
+perizinan
+kesiapan tender
+review dokumen
+orkestrasi end-to-end pengurusan
+21. Kalimat positioning premium yang bisa dipakai
+Opsi positioning
+Dokumen Tender adalah platform agentic berbasis multi-agent framework OpenClaw yang mengorkestrasi pengurusan dokumen legalitas, perizinan, sertifikasi, dan tender secara cerdas, terstruktur, dapat diaudit, dan mudah dipantau.
+Opsi versi bisnis
+Bukan hanya membantu mengurus dokumen, tetapi mengelola seluruh keputusan, persyaratan, risiko, dan kualitas proses melalui orkestrasi AI multi-agent dan supervisi ahli.
+22. Kesimpulan strategis
+Kalau ingin benar-benar unggul, maka aplikasi Anda harus dibangun dengan 5 DNA utama:
+Domain-specific intelligence  
+bukan AI umum, tetapi AI yang paham legalitas, sertifikasi, dan tender.
+Multi-agent collaboration  
+setiap masalah ditangani agen spesialis.
+Workflow-driven execution  
+bukan chatbot lepas, tetapi sistem kerja.
+Explainable compliance logic  
+setiap keputusan bisa dijelaskan.
+Human-supervised automation  
+AI mempercepat, manusia mengesahkan.
+Kalau Anda mau, saya bisa lanjutkan ke salah satu format berikut secara sangat detail:
+arsitektur modul aplikasi lengkap
+desain agent satu per satu
+PRD / software requirement specification
+database schema + entity relationship
+flowchart sistem multi-agent OpenClaw
+prompt system untuk tiap agent
+roadmap build MVP → enterprise
+Kalau saya lanjutkan, yang paling ideal berikutnya adalah desain arsitektur modul + peta agent OpenClaw per fitur aplikasi.
+lanjut
+Apr 8
+lanjut
+Apr 8
+Baik. Saya lanjut ke level yang lebih operasional: desain arsitektur modul aplikasi + peta agent OpenClaw per fitur + logika kerja sistem secara end-to-end.
+Fondasi ini sangat cocok dengan aset yang sudah Anda miliki di workspace: system prompt multi-agent pengadaan/tender, navigator OpenClaw, agent SBU, agent review, agent risk, agent consult, dan panduan e-procurement.⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠​
+1. Blue print besar aplikasi
+Saya sarankan aplikasi dibangun dalam 4 zona utama:
+A. Public Experience Zone
+Area untuk market-facing:
+Landing page
+Katalog layanan
+Detail layanan
+FAQ
+Blog/knowledge
+Kalkulator kebutuhan awal
+Form konsultasi
+CTA WhatsApp / booking
+B. Client Workspace Zone
+Area untuk klien:
+Dashboard pengajuan
+Status case
+Upload dokumen
+Checklist persyaratan
+Chat & konsultasi
+Riwayat revisi
+Tagihan
+Download hasil
+AI copilot per case
+C. Operations Control Zone
+Area internal tim:
+Intake queue
+Case board
+SLA monitor
+Assignment PIC
+Review dokumen
+Approval
+Escalation
+Audit log
+KPI agent & KPI tim
+D. Intelligence & Orchestration Zone
+Otak sistem:
+OpenClaw Conductor
+Agent Registry
+Workflow Engine
+Rules Engine
+Knowledge Retrieval
+Confidence Scoring
+Event Bus
+Memory Layer
+Evaluation Layer
+2. Prinsip framework OpenClaw untuk aplikasi ini
+OpenClaw sebaiknya tidak diposisikan hanya sebagai nama AI, tetapi sebagai:
+OpenClaw = Agentic Orchestration Framework
+Framework ini punya 8 komponen inti:
+Agent Registry  
+daftar seluruh agent dan skill-nya
+Task Router  
+menentukan agent mana yang menerima tugas
+Case Blackboard  
+memori bersama per case
+Workflow Engine  
+mengatur step, dependency, branching
+Tool Layer  
+parser, OCR, validator, retrieval, generator
+Reasoning Layer  
+planner, reviewer, critic, scorer
+Governance Layer  
+audit, approval, permission, guardrail
+Learning Layer  
+postmortem, evaluasi hasil, prompt improvement
+3. Struktur modul aplikasi
+Berikut struktur modular yang paling ideal.
+Modul 1 — Identity & Organization
+Untuk data pengguna dan entitas bisnis.
+Fitur:
+registrasi akun
+multi-company
+role-based access
+team invitation
+profil perusahaan
+profil legalitas perusahaan
+profil personel ahli
+Entitas:
+User
+Organization
+Branch
+Role
+TeamMember
+ExternalAdvisor
+Modul 2 — Service Catalog Engine
+Mesin katalog layanan.
+Fungsi:
+tampilkan layanan per kategori
+bundling layanan
+dynamic pricing/paket
+dependency antar layanan
+service recommendation
+Contoh kategori:
+Legalitas Usaha
+Perizinan
+SBU
+SKK
+ISO
+Tender
+Keuangan Pendukung
+Layanan Khusus
+Entitas:
+ServiceCategory
+Service
+ServicePackage
+ServiceRequirementTemplate
+ServiceDependency
+Modul 3 — Smart Intake Engine
+Gerbang masuk semua permintaan.
+Sumber intake:
+form website
+chat AI
+WhatsApp handoff
+admin entry
+upload dokumen
+import lead
+Fungsi:
+intent parsing
+entity extraction
+classification
+urgency scoring
+service matching
+case creation
+Output:
+case terstruktur
+rekomendasi layanan
+initial checklist
+initial risk flags
+Modul 4 — Case Management Core
+Ini pusat operasional aplikasi.
+Fungsi:
+buat case
+pecah case jadi task
+simpan timeline
+dependency graph
+status management
+blocker tracking
+approval checkpoints
+Status level case:
+Draft
+Intake Review
+Awaiting Documents
+Verification
+In Analysis
+Need Revision
+In Processing
+Pending External
+QA Review
+Ready for Delivery
+Completed
+Escalated
+On Hold
+Entitas:
+Case
+CaseTask
+CaseStage
+CaseDependency
+CaseNote
+CaseDecision
+CaseTimelineEvent
+Modul 5 — Document Intelligence System
+Modul paling penting dalam domain Anda.
+Fungsi:
+upload dokumen
+klasifikasi jenis dokumen
+ekstraksi metadata
+OCR/text parse
+versioning
+duplicate detection
+inconsistency detection
+completeness check
+requirement matching
+Jenis dokumen:
+legalitas usaha
+akta
+NIB/OSS
+NPWP
+SBU
+SKK
+laporan keuangan
+dokumen tender
+surat dukungan
+sertifikat ISO
+dokumen teknis
+Output:
+extracted facts
+field map
+issues list
+required follow-up
+Modul 6 — Requirement & Compliance Engine
+Ini modul logika aturan.
+Fungsi:
+mapping syarat per layanan
+conditional requirement
+rule evaluation
+compliance scoring
+gap analysis
+explanation engine
+Contoh rule:
+jika layanan = perpanjangan SBU
+dan klasifikasi = BG/BS/IN tertentu
+maka wajib cek tenaga ahli terkait
+jika tender pemerintah
+maka cek kesiapan LPSE/SIKaP
+jika dokumen keuangan > periode tertentu
+maka minta versi terbaru
+Komponen:
+Requirement Graph
+Rule Library
+Regulation Mapping
+Compliance Evaluator
+Modul 7 — Tender Intelligence Engine
+Karena ini pembeda utama.
+Fungsi:
+tender readiness scoring
+go/no-go analysis
+compliance matrix
+document bid review
+risiko gugur
+readiness dashboard
+pre-submission QA
+Cocok dikaitkan dengan aset workspace seperti:
+audit penawaran
+compliance matrix
+checklist final submission
+review pengadaan.⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠​
+Modul 8 — Communication & Collaboration Hub
+Agar semua interaksi tercatat.
+Fungsi:
+chat klien
+chat internal
+permintaan revisi
+ringkasan otomatis
+handoff antar PIC
+reminder & notification
+customer explanation layer
+Channel:
+in-app
+email
+WhatsApp bridge
+notifikasi dashboard
+Modul 9 — AI Copilot Layer
+Lapisan AI yang terlihat oleh user dan tim.
+Copilot yang bisa dibuat:
+Client Copilot
+Admin Copilot
+Tender Copilot
+Compliance Copilot
+SBU/SKK Copilot
+Document Copilot
+Setiap copilot bukan model terpisah, tapi persona/interface ke orchestration layer yang sama.
+Modul 10 — Governance, Risk & Audit
+Wajib untuk domain ini.
+Fungsi:
+approval matrix
+audit trail
+explainability
+confidence threshold
+override management
+escalation
+compliance history
+quality score
+Modul 11 — Analytics & Learning
+Untuk membuat sistem terus makin pintar.
+Fungsi:
+KPI case
+win/loss analysis
+delay pattern
+failure reason map
+prompt performance
+agent effectiveness
+postmortem
+rules tuning
+Ini nyambung kuat dengan pola AGENT-PERFORMANCE dan postmortem/risk yang sudah ada.⁠
+⁠⁠
+⁠⁠
+⁠​
+4. Peta agent OpenClaw per modul
+Sekarang kita detailkan agent-nya.
+A. Core orchestration agents
+1. OCL-Conductor
+Peran: otak utama orkestrasi  
+Fungsi:
+memahami goal
+membuat task graph
+delegasi kerja
+monitor hasil
+merge output
+kontrol escalation
+2. OCL-Planner
+Peran: menyusun rencana operasional  
+Fungsi:
+memecah goal ke subtugas
+menentukan sequence
+menentukan dependency
+membuat success criteria
+3. OCL-Router
+Peran: dispatcher  
+Fungsi:
+kirim task ke agent yang tepat
+fallback jika agent gagal
+route by domain, risk, confidence
+4. OCL-Evaluator
+Peran: penilai kualitas  
+Fungsi:
+cek konsistensi hasil agent
+hitung confidence
+minta retry atau approval
+B. Intake & classification agents
+5. OCL-Intake
+Fungsi:
+membaca permintaan klien
+normalisasi input
+merangkum kebutuhan
+6. OCL-Classifier
+Fungsi:
+menentukan jenis layanan
+menentukan domain masalah
+mendeteksi multi-service bundle
+7. OCL-ProfileBuilder
+Fungsi:
+membangun profil perusahaan
+mendeteksi missing profile data
+menyusun data readiness awal
+C. Domain specialist agents
+8. OCL-Legalitas
+Fungsi:
+legalitas usaha
+NIB/OSS
+akta
+izin usaha
+struktur badan usaha
+9. OCL-SBU
+Fungsi:
+klasifikasi/subklasifikasi
+kualifikasi badan usaha
+gap pemenuhan SBU
+dependensi PJT/PJK  
+Ini sangat selaras dengan agent SBU dan KB klasifikasi yang sudah ada.⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠​
+10. OCL-SKK
+Fungsi:
+validasi personel
+status kompetensi
+masa berlaku
+kecocokan jabatan kerja
+mapping tenaga ahli ke kebutuhan layanan
+11. OCL-ISO
+Fungsi:
+readiness sertifikasi ISO
+gap audit
+dokumen sistem manajemen
+12. OCL-Tender
+Fungsi:
+review persyaratan tender
+go/no-go
+kesiapan administrasi/teknis/harga
+strategi kelengkapan
+13. OCL-eProc
+Fungsi:
+kesiapan LPSE/e-SPSE/SIKaP
+verifikasi aspek elektronik tender  
+Ini cocok dengan basis pengetahuan e-procurement yang sudah Anda punya.⁠
+⁠​
+14. OCL-FinanceSupport
+Fungsi:
+laporan keuangan
+dukungan keuangan tender
+audit/review readiness
+15. OCL-K3
+Fungsi:
+kebutuhan K3
+ahli K3
+dokumen pendukung keselamatan
+16. OCL-SLO
+Fungsi:
+layanan SLO kelistrikan
+dokumen teknis
+kecocokan jalur pengurusan
+D. Compliance & review agents
+17. OCL-Requirement
+Fungsi:
+menyusun checklist
+conditional requirement
+mendeteksi kekurangan
+18. OCL-Compliance
+Fungsi:
+uji kesesuaian terhadap aturan
+cek mandatory items
+buat alasan kepatuhan
+19. OCL-Reviewer
+Fungsi:
+review kualitas dokumen
+review narasi
+review bundle
+review final sebelum submit  
+Ini selaras dengan agen review yang sudah ada.⁠
+⁠​
+20. OCL-QA
+Fungsi:
+quality gate terakhir
+verdict: pass/revise/block
+cek konsistensi lintas dokumen
+21. OCL-Risk
+Fungsi:
+identifikasi risiko
+severity
+mitigation
+escalation  
+Ini sangat sinkron dengan risk framework OpenClaw.⁠
+⁠​
+E. Document production agents
+22. OCL-DocParser
+Fungsi:
+ekstraksi teks
+parsing metadata
+segmentasi dokumen
+23. OCL-DocGen
+Fungsi:
+draft surat
+template form
+checklist internal
+ringkasan case
+matriks dokumen
+24. OCL-DocAssembler
+Fungsi:
+susun paket dokumen
+merge artefak
+final bundling
+F. Client-facing agents
+25. OCL-ClientSuccess
+Fungsi:
+menjelaskan progres
+meminta revisi
+memberi next step ke klien
+26. OCL-Consult
+Fungsi:
+konsultasi awal
+rekomendasi layanan
+pre-intake diagnosis  
+Ini sejalan dengan agent konsultasi yang sudah ada.⁠
+⁠​
+27. OCL-Explainer
+Fungsi:
+menerjemahkan bahasa teknis jadi bahasa awam
+menjawab “kenapa saya perlu dokumen ini?”
+G. Oversight & learning agents
+28. OCL-Audit
+Fungsi:
+audit trail
+traceability
+siapa memutuskan apa
+29. OCL-Performance
+Fungsi:
+KPI agent
+latency
+akurasi
+failure monitoring  
+Sangat cocok dengan pola AGENT-PERFORMANCE yang sudah ada.⁠
+⁠​
+30. OCL-Postmortem
+Fungsi:
+belajar dari kegagalan
+rekomendasi perbaikan
+update playbook  
+Ini nyambung dengan halaman postmortem yang ada.⁠
+⁠​
+5. Pemetaan fitur → agent
+Berikut mapping yang praktis.
+Fitur: “Konsultasi layanan”
+Agent:
+OCL-Consult
+OCL-Intake
+OCL-Classifier
+OCL-Explainer
+Fitur: “Cek kebutuhan dokumen”
+Agent:
+OCL-Requirement
+OCL-Compliance
+OCL-ProfileBuilder
+Fitur: “Upload & analisis dokumen”
+Agent:
+OCL-DocParser
+OCL-Reviewer
+OCL-Compliance
+OCL-QA
+Fitur: “SBU/SKK readiness”
+Agent:
+OCL-SBU
+OCL-SKK
+OCL-Requirement
+OCL-Risk
+Fitur: “Tender readiness”
+Agent:
+OCL-Tender
+OCL-eProc
+OCL-Compliance
+OCL-Risk
+OCL-QA
+Fitur: “Generate surat / draft”
+Agent:
+OCL-DocGen
+OCL-Reviewer
+OCL-QA
+Fitur: “Status & next step”
+Agent:
+OCL-Conductor
+OCL-ClientSuccess
+OCL-Explainer
+Fitur: “Internal QA & approval”
+Agent:
+OCL-Evaluator
+OCL-QA
+OCL-Audit
+6. Kontrak data antar agent
+Agar sistem multi-agent stabil, setiap agent harus bicara dengan format standar.
+Standard Agent Output
+Setiap agent output minimal punya:
+task_id
+agent_name
+objective
+input_summary
+findings
+issues
+missing_items
+recommended_actions
+confidence_score
+risk_flags
+evidence_refs
+status
+Contoh:
+{
+  "task_id": "TASK-REQ-001",
+  "agent_name": "OCL-Requirement",
+  "objective": "Menilai kelengkapan dokumen SBU",
+  "input_summary": "Perusahaan mengajukan perpanjangan SBU BG",
+  "findings": [
+    "Legalitas dasar tersedia",
+    "Data tenaga ahli belum lengkap"
+  ],
+  "issues": [
+    "SKK PJT belum terverifikasi"
+  ],
+  "missing_items": [
+    "SKK aktif",
+    "Dokumen pendukung personel"
+  ],
+  "recommended_actions": [
+    "Minta upload SKK terbaru",
+    "Validasi personel PJT"
+  ],
+  "confidence_score": 0.89,
+  "risk_flags": [
+    "eligibility_risk"
+  ],
+  "status": "needs_followup"
+}
+​
+7. Case Blackboard: memori bersama per kasus
+Semua agent harus membaca dan menulis ke Case Blackboard.
+Isi blackboard:
+case summary
+client profile
+target layanan
+dokumen terkumpul
+requirement checklist
+temuan review
+risk map
+keputusan approval
+next best action
+agent outputs
+timeline
+evidence
+Aturan blackboard:
+tidak ada agent yang overwrite total
+update bersifat incremental
+setiap perubahan bertimestamp
+semua temuan punya source
+konflik diberi flag
+8. Workflow engine: state machine utama
+Berikut state machine yang saya sarankan.
+State 1 — Intake
+Masuknya lead atau permintaan
+Trigger: form/chat/WA/admin  
+Agent aktif: Intake, Classifier, Consult
+State 2 — Profiling
+Sistem melengkapi profil perusahaan
+Trigger: case dibuat  
+Agent aktif: ProfileBuilder, Requirement
+State 3 — Requirement Resolution
+Checklist syarat dibangun
+Agent aktif: Requirement, Compliance, domain agent
+State 4 — Document Collection
+Klien upload dokumen
+Agent aktif: ClientSuccess, DocParser
+State 5 — Verification
+Dokumen diverifikasi
+Agent aktif: Reviewer, Compliance, domain agent
+State 6 — Gap Resolution
+Ada kekurangan/revisi
+Agent aktif: Explainer, ClientSuccess, Requirement
+State 7 — Processing
+Case diproses sesuai layanan
+Agent aktif: domain specialist
+State 8 — QA
+Final check
+Agent aktif: QA, Evaluator, Risk
+State 9 — Approval
+Human supervisor setuju atau tidak
+Actor: manusia + Audit
+State 10 — Delivery
+Hasil diserahkan
+Agent aktif: ClientSuccess, Audit
+State 11 — Learning
+Hasil dievaluasi
+Agent aktif: Performance, Postmortem
+9. Event bus: pemicu kerja agent
+Aplikasi Anda harus event-driven.
+Event penting:
+lead_created
+case_created
+service_classified
+requirements_generated
+document_uploaded
+document_parsed
+document_rejected
+document_approved
+compliance_failed
+risk_detected
+case_blocked
+case_reopened
+qa_passed
+human_approved
+delivery_completed
+case_closed
+Contoh reaksi:
+Event:
+document_uploaded
+Auto flow:
+OCL-DocParser jalan
+hasil dikirim ke OCL-Requirement
+OCL-Compliance cek dampak
+jika ada gap, OCL-ClientSuccess kirim request revisi
+OCL-Conductor update case plan
+10. Decision logic: kapan agent jalan, kapan manusia masuk
+Otomatis penuh
+Boleh otomatis jika:
+risk rendah
+rule jelas
+confidence tinggi
+dampak rendah
+Semi otomatis
+Perlu review admin jika:
+confidence sedang
+dokumen penting
+ada ambiguity kecil
+Human mandatory
+Wajib manusia jika:
+regulasi kritikal
+final submission
+interpretasi tender
+rekomendasi go/no-go
+risiko tinggi
+ada konflik agent
+11. Confidence & scoring architecture
+Gunakan 5 skor inti.
+1. Completeness Score
+Seberapa lengkap syarat?
+2. Compliance Score
+Seberapa sesuai dengan aturan?
+3. Eligibility Score
+Seberapa layak lanjut?
+4. Risk Score
+Seberapa rawan gagal?
+5. Confidence Score
+Seberapa yakin sistem terhadap kesimpulannya?
+Rumus keputusan:
+tinggi completeness, compliance, eligibility + rendah risk = lanjut
+jika salah satu mandatory item kosong = block
+jika confidence rendah = escalate
+12. Desain database konseptual
+Berikut ERD konseptual tingkat tinggi.
+Entitas utama
+Users
+Organizations
+Services
+ServicePackages
+Cases
+CaseTasks
+CaseRequirements
+Documents
+DocumentVersions
+Reviews
+Findings
+Decisions
+RiskFlags
+Approvals
+Messages
+Notifications
+AgentRuns
+AgentOutputs
+AuditLogs
+KnowledgeItems
+Rules
+Templates
+Metrics
+13. Skema database inti yang saya rekomendasikan
+Tabel: cases
+Kolom:
+id
+organization_id
+primary_service_id
+case_type
+title
+summary
+status
+priority
+urgency_level
+created_by
+assigned_owner
+readiness_score
+compliance_score
+risk_score
+confidence_score
+created_at
+updated_at
+Tabel: case_tasks
+id
+case_id
+parent_task_id
+task_type
+assigned_agent
+assigned_user
+status
+due_at
+dependency_count
+output_ref
+Tabel: case_requirements
+id
+case_id
+requirement_code
+requirement_title
+requirement_type
+source_rule
+mandatory
+status
+evidence_document_id
+notes
+Tabel: documents
+id
+case_id
+organization_id
+document_type
+title
+current_version_id
+extraction_status
+verification_status
+uploaded_by
+Tabel: document_versions
+id
+document_id
+version_no
+file_url
+parsed_text
+extracted_fields_json
+uploaded_at
+Tabel: agent_runs
+id
+case_id
+task_id
+agent_name
+objective
+input_hash
+output_json
+confidence_score
+duration_ms
+status
+started_at
+completed_at
+Tabel: risk_flags
+id
+case_id
+source_agent
+risk_type
+severity
+description
+mitigation
+status
+Tabel: approvals
+id
+case_id
+approval_type
+approver_user_id
+decision
+rationale
+created_at
+14. Desain knowledge layer
+Knowledge layer jangan campur semuanya jadi satu.
+Pisahkan menjadi 5 repositori:
+A. Regulatory KB
+regulasi
+peraturan
+standar
+interpretasi internal
+B. Service KB
+deskripsi layanan
+syarat per layanan
+SLA
+pricing logic
+C. Template KB
+surat
+checklist
+matriks
+form
+D. Case Pattern KB
+kasus sukses
+kasus gagal
+common pitfalls
+remediation patterns
+E. Agent Prompt KB
+system prompt
+output schema
+escalation rules
+evaluation rubric
+Ini akan sangat kuat bila ditautkan dengan aset OpenClaw yang sudah berisi knowledge domain dan agent navigators.⁠
+⁠⁠
+⁠​
+15. Desain prompt stack per agent
+Setiap agent sebaiknya punya 4 lapisan prompt:
+Layer 1 — Identity Prompt
+Siapa agent ini, domain apa, batas tugas apa
+Layer 2 — Policy Prompt
+Aturan kerja:
+jangan halusinasi
+gunakan evidence
+tandai ambiguity
+minta human review jika perlu
+Layer 3 — Task Prompt
+Apa yang sedang harus dikerjakan saat ini
+Layer 4 — Output Contract
+Format JSON/struktur output yang wajib
+16. Contoh prompt contract agent
+OCL-Requirement
+Tujuan: tentukan dokumen wajib dan gap  
+Input: case profile, service bundle, dokumen tersedia  
+Output: checklist + missing items + priority
+OCL-Compliance
+Tujuan: nilai kesesuaian  
+Input: requirement list + extracted document facts  
+Output: compliant / partial / non-compliant + reasons
+OCL-Risk
+Tujuan: nilai risiko operasional  
+Input: temuan, deadline, dokumen hilang, dependency  
+Output: risk register + mitigation
+OCL-QA
+Tujuan: simpulkan siap atau belum  
+Input: semua output agent  
+Output: pass / revise minor / revise major / blocked
+17. Human role architecture
+Selain agent, manusia juga harus dipetakan jelas.
+Role internal:
+Intake Officer
+Compliance Analyst
+Tender Reviewer
+Legal Advisor
+Certification Specialist
+Case Manager
+QA Supervisor
+Final Approver
+Customer Success
+Relasi dengan agent:
+agent melakukan pre-analysis
+manusia melakukan validation
+agent menyiapkan ringkasan
+manusia mengambil keputusan final
+18. UI/UX agentic yang saya rekomendasikan
+Agar berbeda dari aplikasi biasa, UI harus memperlihatkan kecerdasan sistem.
+Di dashboard klien tampilkan:
+status pengajuan
+progress bar
+dokumen yang kurang
+next step
+alasan kenapa perlu dokumen tertentu
+estimasi waktu
+chat dengan AI case copilot
+Di dashboard internal tampilkan:
+case board
+risk alerts
+confidence meter
+agent timeline
+blocker map
+pending approvals
+recommended actions
+Di halaman case tampilkan:
+case summary
+readiness score
+compliance score
+required documents
+findings
+risk flags
+agent output summary
+approval history
+19. Dashboard utama yang perlu dibuat
+Dashboard 1 — Executive
+jumlah case
+SLA compliance
+agent throughput
+conversion
+delay reasons
+failure patterns
+Dashboard 2 — Operations
+case by stage
+overdue items
+pending documents
+blocker count
+agent escalation count
+Dashboard 3 — QA & Compliance
+pass/revise/block rate
+common non-compliance items
+most risky services
+confidence anomalies
+Dashboard 4 — Client Success
+response time
+revision turnaround
+customer satisfaction
+active chats
+20. Desain road map pengembangan
+Fase 1 — Smart Service Platform
+Durasi: 4–8 minggu
+katalog layanan
+case intake
+dashboard klien
+upload dokumen
+checklist dasar
+admin board
+Fase 2 — Agentic Copilot
+Durasi: 6–10 minggu
+intake agent
+classifier
+requirement agent
+doc parser
+compliance agent
+client explainer
+Fase 3 — Multi-Agent Orchestration
+Durasi: 8–12 minggu
+conductor
+blackboard
+workflow engine
+event bus
+confidence gating
+QA agent
+risk agent
+Fase 4 — OpenClaw Operating System
+Durasi: 12+ minggu
+full agent registry
+reusable agent contracts
+KPI monitor
+postmortem loop
+prompt governance
+cross-case learning
+21. Model produk final yang paling kuat
+Saya sarankan Anda posisikan produk ini dalam 3 layer bisnis:
+Layer 1 — Managed Service
+Tim Anda tetap memproses jasa
+Layer 2 — Client Portal
+Klien memantau dan berinteraksi
+Layer 3 — Agentic Intelligence
+OpenClaw mempercepat analisis, review, rekomendasi, dan orkestrasi
+Jadi produknya bukan sekadar SaaS, tapi:
+AI-augmented managed services platform
+22. Kalimat positioning sistem yang matang
+Versi strategis
+Dokumen Tender adalah platform orkestrasi layanan berbasis OpenClaw yang menghubungkan katalog jasa, manajemen kasus, intelligence dokumen, compliance logic, dan kolaborasi multi-agent untuk pengurusan legalitas, sertifikasi, perizinan, dan tender.
+Versi teknis-bisnis
+Sistem ini mengubah proses pengurusan dokumen dari model manual berbasis follow-up menjadi workflow cerdas berbasis case graph, requirement engine, dan multi-agent orchestration dengan human-in-the-loop.
+23. Apa langkah paling tepat setelah ini
+Kalau diteruskan secara sistematis, urutan terbaik berikutnya adalah:
+definisikan modul MVP yang benar-benar dibangun dulu
+susun ERD/database schema detail
+buat daftar agent satu per satu beserta prompt dan output contract
+gambar workflow dan state machine
+susun PRD lengkap
+24. Rekomendasi saya untuk sesi lanjutan
+Agar langsung bisa dipakai sebagai blueprint build, saya sarankan tahap berikutnya saya buat salah satu dari 3 hal ini:
+Opsi A — PRD lengkap aplikasi
+Isi:
+visi
+user persona
+modul
+user stories
+acceptance criteria
+roadmap
+Opsi B — ERD + database schema detail
+Isi:
+tabel
+relasi
+field
+enum status
+indexing logic
+Opsi C — desain 30 agent OpenClaw satu per satu
+Isi:
+nama agent
+peran
+input
+output
+tools
+guardrail
+prompt ringkas
+Kalau Anda mau, saya bisa lanjut langsung ke PRD lengkap + ERD + daftar agent OpenClaw dalam format yang sudah siap dijadikan dokumen pengembangan.
+aplikasi ini bukan  merupakan aplkikasi lembaga yang memiliki kewenangan melaksanakan aktivitas legalitas, perijinan, sertifikasi, tender, aplikasi hanya membantu user sebelum dilaksuanakan aktivitas di lembaga yang memiliki kewenangan. jadi arah aplikasi ini lebih kepada pra asesment kelengkapan dan validitas data dan dokumen permohonan.
+bisa dibilatn aplikasi ini berupa layanan informasi dan proses dokumen legalitas, perijinan, sertifikasi, dan tendeer
+Apr 8
+Ya, ini koreksi arah yang sangat penting — dan justru membuat positioning aplikasinya menjadi lebih tepat, lebih aman, dan lebih kuat.
+Berarti aplikasi Anda bukan platform eksekusi kewenangan resmi, melainkan:
+Posisi yang benar
+platform pra-asesmen, layanan informasi, dan asistensi proses dokumen untuk:
+legalitas
+perizinan
+sertifikasi
+tender
+Fungsi utamanya adalah membantu user:
+memahami persyaratan
+memeriksa kelengkapan
+memvalidasi konsistensi data/dokumen
+menilai kesiapan permohonan
+menyiapkan paket dokumen sebelum diajukan ke lembaga/instansi berwenang
+Arah ini juga sangat konsisten dengan aset knowledge yang sudah Anda punya, yang kuat di area review dokumen, compliance matrix, checklist final submission, audit penawaran, dan kesiapan e-procurement, bukan sebagai lembaga penerbit otorisasi.⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠​
+1. Reframing inti produk
+Bukan:
+aplikasi penerbit izin
+aplikasi penerbit sertifikat
+aplikasi lembaga sertifikasi
+aplikasi LPSE
+aplikasi otoritas legalitas
+aplikasi pelaksana tender resmi
+Tetapi:
+aplikasi pra-asesmen
+aplikasi document readiness
+aplikasi pre-submission intelligence
+aplikasi layanan informasi & proses dokumen
+aplikasi pendamping kesiapan permohonan
+aplikasi quality gate sebelum submit ke lembaga berwenang
+2. Definisi produk yang lebih presisi
+Rumusan paling tepat
+Aplikasi layanan informasi, pra-asesmen kelengkapan, validasi data, dan kesiapan dokumen permohonan legalitas, perizinan, sertifikasi, dan tender sebelum diajukan ke lembaga yang berwenang.
+Versi singkat
+Platform pra-asesmen dan kesiapan dokumen permohonan.
+Versi bisnis
+Sistem pendamping persiapan dokumen dan validasi kesiapan pengajuan ke instansi/otoritas terkait.
+3. Implikasi strategis: seluruh arsitektur harus diubah dari “executor” menjadi “pre-assessment assistant”
+Ini sangat penting.
+Sistem Anda jangan didesain dengan logika:
+sistem mengurus dan menyelesaikan legalitas/izin/sertifikasi/tender
+Tetapi:
+sistem membantu user menyiapkan, memeriksa, menilai, dan meningkatkan kesiapan dokumen serta data sebelum proses resmi dilakukan di lembaga yang berwenang
+4. Pilar fungsi aplikasi yang baru
+Saya sarankan aplikasinya dibangun di atas 5 pilar utama:
+A. Information Intelligence
+Memberikan informasi terstruktur tentang:
+jenis layanan
+syarat umum
+syarat khusus
+alur pengajuan
+estimasi dokumen
+potensi gap
+titik rawan penolakan
+B. Pre-Assessment Engine
+Menilai kesiapan awal user:
+apakah jenis layanan sudah tepat
+apakah data dasar sudah tersedia
+apakah dokumen inti sudah lengkap
+apakah ada ketidaksesuaian profil
+apakah ada dokumen yang expired/tidak valid
+C. Document Readiness System
+Memeriksa kualitas kesiapan dokumen:
+lengkap atau belum
+konsisten atau tidak
+format sesuai atau tidak
+ada konflik data atau tidak
+siap submit atau masih revisi
+D. Guided Process Assistant
+Memandu user langkah demi langkah:
+apa yang harus disiapkan dulu
+urutan prioritas dokumen
+mana yang wajib
+mana yang opsional
+tindakan berikutnya
+E. Submission Readiness Dashboard
+Menampilkan status kesiapan:
+belum siap
+siap sebagian
+perlu revisi
+siap diajukan
+butuh konsultasi lanjutan
+5. Perubahan istilah: ini sangat krusial
+Supaya positioning aman dan akurat, Anda harus mengganti banyak istilah.
+Istilah yang sebaiknya dihindari
+“pengurusan oleh sistem”
+“proses legalitas oleh aplikasi”
+“aplikasi pengurusan izin resmi”
+“platform sertifikasi”
+“platform tender pemerintah”
+“sistem penerbitan”
+“sistem pengesahan”
+“approval otomatis”
+“verifikasi resmi”
+“menentukan kelulusan”
+Istilah yang lebih tepat
+pra-asesmen
+review kesiapan
+simulasi kelengkapan
+validasi awal
+pemeriksaan internal
+pendampingan persiapan dokumen
+asesmen readiness
+screening dokumen
+diagnostic engine
+pre-submission review
+rekomendasi perbaikan
+asistensi pengajuan
+6. Positioning baru untuk website dan aplikasi
+Homepage statement
+Platform layanan informasi dan pra-asesmen dokumen legalitas, perizinan, sertifikasi, dan tender.
+Subheadline
+Membantu Anda memeriksa kelengkapan, validitas, konsistensi, dan kesiapan data serta dokumen permohonan sebelum diajukan ke lembaga atau instansi yang berwenang.
+Disclaimer positioning
+Aplikasi ini tidak menerbitkan legalitas, izin, sertifikasi, atau keputusan tender, melainkan membantu proses persiapan, pemeriksaan awal, dan peningkatan kesiapan dokumen permohonan.
+7. Reframing framework Agentic / Multi-Agent / OpenClaw
+Nah, dengan arah baru ini, maka agent-agent OpenClaw Anda tidak lagi berperan sebagai “pelaksana kewenangan”, tetapi sebagai:
+Agentic Pre-Assessment & Readiness Framework
+Fungsi AI bukan:
+menerbitkan keputusan
+mengesahkan dokumen
+menyetujui permohonan
+menggantikan otoritas
+Fungsi AI adalah:
+membaca dokumen
+membandingkan dengan requirement
+mendeteksi gap
+mendeteksi inkonsistensi
+menilai kesiapan
+memberi skor readiness
+memberi rekomendasi perbaikan
+menyusun urutan tindakan
+menyiapkan user sebelum masuk proses resmi
+8. Peran baru setiap agent
+1. Intake Agent
+Membaca kebutuhan user dan memetakan jenis permohonan.
+2. Classification Agent
+Menentukan apakah kebutuhan user termasuk:
+legalitas
+perizinan
+sertifikasi
+tender
+kombinasi beberapa layanan
+3. Requirement Agent
+Menyusun daftar persyaratan awal.
+4. Validation Agent
+Memeriksa:
+data lengkap atau tidak
+dokumen cocok atau tidak
+masa berlaku masih aktif atau tidak
+struktur data konsisten atau tidak
+5. Compliance Screening Agent
+Bukan memberi keputusan resmi, tetapi:
+memeriksa kesesuaian awal terhadap persyaratan
+memberi flag risiko kekurangan
+6. Readiness Scoring Agent
+Menilai tingkat kesiapan permohonan.
+7. Risk Agent
+Mengidentifikasi potensi hambatan sebelum submit.
+8. Recommendation Agent
+Menyusun:
+prioritas perbaikan
+next best action
+urutan tindak lanjut
+9. Explainer Agent
+Menjelaskan ke user:
+kenapa dokumen tertentu dibutuhkan
+apa yang kurang
+apa yang harus diperbaiki
+apa dampak jika belum dilengkapi
+10. QA Agent
+Melakukan final pre-submission check:
+belum layak
+cukup layak
+siap diajukan
+butuh pendampingan manual
+9. Output sistem yang benar
+Aplikasi Anda jangan menghasilkan output seperti ini:
+“permohonan Anda disetujui”
+“sertifikasi Anda lolos”
+“izin Anda terbit”
+“tender Anda valid”
+“dokumen telah diverifikasi resmi”
+Output yang benar:
+“dokumen Anda siap diajukan”
+“masih ada kekurangan dokumen”
+“data belum konsisten”
+“kesiapan permohonan saat ini 78%”
+“terdapat risiko penolakan administratif”
+“perlu revisi sebelum diajukan”
+“butuh validasi tambahan pada dokumen X”
+“berdasarkan pra-asesmen internal, paket dokumen belum lengkap”
+10. Status workflow yang lebih tepat
+Saya sarankan status sistem diubah menjadi seperti ini:
+Status kesiapan
+Draft
+Profil Belum Lengkap
+Dokumen Belum Lengkap
+Sedang Ditinjau
+Perlu Revisi
+Data Tidak Konsisten
+Siap Sebagian
+Siap Diajukan
+Perlu Konsultasi Lanjutan
+Diarsipkan
+Hindari status seperti:
+Disetujui
+Ditolak Resmi
+Lulus Sertifikasi
+Izin Terbit
+Menang Tender
+Karena itu masuk domain otoritas/lembaga resmi.
+11. Model nilai utama aplikasi
+Dengan arah baru, value proposition Anda jadi sangat kuat:
+Nilai 1 — Mengurangi kesalahan administratif
+User tidak langsung submit dengan dokumen berantakan.
+Nilai 2 — Menghemat waktu
+User tahu apa yang kurang sebelum masuk proses resmi.
+Nilai 3 — Mengurangi bolak-balik revisi
+Karena sudah ada pre-check.
+Nilai 4 — Meningkatkan kesiapan
+User datang ke lembaga berwenang dengan dokumen lebih rapi.
+Nilai 5 — Meningkatkan kualitas keputusan user
+User tahu:
+layanan apa yang tepat
+syarat apa yang wajib
+prioritas apa yang harus diselesaikan dulu
+12. Kategori fitur yang paling cocok
+A. Layanan Informasi
+basis pengetahuan persyaratan
+panduan alur permohonan
+FAQ
+kamus istilah
+simulasi kebutuhan dokumen
+B. Layanan Pra-Asesmen
+cek kelengkapan awal
+cek validitas data
+cek masa berlaku dokumen
+cek konsistensi identitas
+cek kecocokan layanan
+C. Layanan Proses Dokumen
+checklist persiapan
+request dokumen
+upload file
+review internal
+catatan revisi
+rangkuman kesiapan
+D. Layanan Tender Readiness
+pre-review dokumen tender
+compliance matrix
+checklist final submission
+warning risiko gugur administratif  
+Ini sangat cocok dengan fondasi konten yang sudah Anda punya.⁠
+⁠⁠
+⁠⁠
+⁠​
+13. Definisi baru user journey
+Journey user yang benar
+User memilih jenis kebutuhan
+Sistem memetakan jenis layanan
+Sistem menampilkan syarat awal
+User mengisi data dan upload dokumen
+Sistem melakukan pra-asesmen
+Sistem memberi hasil screening
+Sistem menampilkan gap/kekurangan
+User memperbaiki kekurangan
+Sistem menyatakan tingkat kesiapan
+User melanjutkan ke instansi/lembaga berwenang
+Jadi titik akhir aplikasi adalah:
+“ready for official submission”
+bukan:
+“officially approved”
+14. Perubahan arsitektur modul aplikasi
+Berikut arsitektur yang lebih tepat dengan arah baru:
+Modul 1 — Information Hub
+Pusat informasi layanan, syarat, alur, istilah.
+Modul 2 — Intake & Service Mapping
+Membaca kebutuhan user dan menentukan jalur permohonan.
+Modul 3 — Profile & Entity Validation
+Memeriksa profil perusahaan/perorangan.
+Modul 4 — Requirement Builder
+Membangun checklist persyaratan dinamis.
+Modul 5 — Document Screening
+Memeriksa dokumen dan data.
+Modul 6 — Consistency Checker
+Membandingkan antar dokumen:
+nama
+nomor identitas
+masa berlaku
+klasifikasi
+alamat
+jabatan
+entitas
+Modul 7 — Readiness Scoring
+Menghitung kesiapan permohonan.
+Modul 8 — Risk & Gap Engine
+Mengidentifikasi area lemah.
+Modul 9 — Guided Remediation
+Memberi langkah perbaikan.
+Modul 10 — Pre-Submission Pack
+Menyusun paket siap ajukan.
+15. Formula inti sistem
+Saya sarankan sistem memakai 4 logika utama:
+A. Completeness Logic
+Apakah semua syarat wajib sudah ada?
+B. Validity Logic
+Apakah dokumen/data masih valid?
+C. Consistency Logic
+Apakah isi antar dokumen selaras?
+D. Readiness Logic
+Apakah secara keseluruhan paket sudah siap diajukan?
+16. Contoh logika penilaian
+Contoh hasil pre-assessment
+Output:
+Skor Kesiapan: 74/100
+Rincian:
+Kelengkapan: 80
+Validitas: 70
+Konsistensi: 76
+Risiko Administratif: Sedang
+Temuan:
+2 dokumen wajib belum tersedia
+1 dokumen sudah kedaluwarsa
+terdapat ketidaksesuaian nama entitas pada 2 file
+data personel belum sepenuhnya sinkron
+Rekomendasi:
+lengkapi dokumen A
+perbarui dokumen B
+sinkronkan nama entitas pada dokumen C dan D
+lakukan review ulang sebelum diajukan
+Itu adalah output yang aman, bernilai, dan jelas.
+17. Rumusan legal/disclaimer sistem
+Ini wajib ada dalam aplikasi.
+Disclaimer utama
+Platform ini merupakan layanan informasi, pra-asesmen, dan asistensi persiapan dokumen. Platform ini tidak mewakili lembaga/instansi berwenang, tidak menerbitkan persetujuan resmi, dan tidak menggantikan proses verifikasi, evaluasi, atau keputusan final oleh otoritas terkait.
+Disclaimer hasil AI
+Hasil analisis sistem merupakan evaluasi awal berbasis data dan dokumen yang diunggah pengguna, serta tidak dapat dianggap sebagai keputusan resmi dari lembaga yang berwenang.
+Disclaimer tender
+Analisis kesiapan tender hanya merupakan penilaian awal untuk membantu pengguna mempersiapkan dokumen dan strategi administratif sebelum mengikuti proses tender resmi.
+18. Positioning brand yang paling tepat
+Opsi 1
+Platform Pra-Asesmen Dokumen Legalitas, Perizinan, Sertifikasi & Tender
+Opsi 2
+Layanan Informasi dan Kesiapan Dokumen Permohonan
+Opsi 3
+Sistem Pemeriksaan Awal dan Kesiapan Dokumen Sebelum Pengajuan Resmi
+Opsi 4
+AI-Assisted Pre-Assessment untuk Legalitas, Sertifikasi, Perizinan, dan Tender
+19. Naming fitur yang lebih aman
+Ubah nama fitur:
+“Verifikasi” → Pemeriksaan Awal
+“Approval” → Rekomendasi Kesiapan
+“Validasi Resmi” → Validasi Internal
+“Status Pengajuan” → Status Kesiapan
+“Hasil Sertifikasi” → Hasil Pra-Asesmen
+“Kelulusan” → Kesiapan / Kecukupan Dokumen
+“Evaluasi Tender” → Tender Readiness Review
+20. Kesimpulan arah final
+Dengan penyesuaian ini, aplikasi Anda menjadi:
+bukan platform otoritatif
+melainkan
+platform pra-asesmen, layanan informasi, dan asistensi proses dokumen
+yang fokus pada:
+screening awal
+kelengkapan dokumen
+validitas data
+konsistensi antar dokumen
+kesiapan pengajuan
+mitigasi risiko administratif
+kesiapan sebelum masuk proses resmi
+Dan menurut saya, justru ini lebih realistis, lebih scalable, lebih aman secara positioning, dan lebih cocok dengan pendekatan OpenClaw berbasis:
+review
+compliance
+checklist
+readiness
+audit
+risk analysis.⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠​
+21. Rumusan satu kalimat paling tepat
+Dokumen Tender adalah platform layanan informasi, pra-asesmen, dan kesiapan dokumen permohonan legalitas, perizinan, sertifikasi, dan tender yang membantu pengguna memeriksa kelengkapan, validitas, dan konsistensi data sebelum proses resmi dilakukan oleh lembaga yang berwenang.
+Kalimat itu menurut saya sudah paling tepat untuk menjadi dasar:
+profil bisnis
+homepage
+PRD
+legal disclaimer
+pitch deck
+arsitektur sistem
+lanjut
+Apr 8
+Thought
+Baik, saya lanjutkan ke tahap yang lebih siap dijadikan blueprint produk.
+Sekarang, karena positioning-nya sudah jelas sebagai platform layanan informasi + pra-asesmen + kesiapan dokumen, maka desain aplikasinya harus difokuskan ke:
+screening awal
+penilaian kesiapan
+validasi internal non-otoritatif
+pemeriksaan kelengkapan dan konsistensi
+pendampingan sebelum submit resmi
+Arah ini paling selaras dengan aset yang sudah Anda punya di workspace: review/audit dokumen pengadaan, compliance matrix, checklist final submission, SBU readiness, dan panduan e-procurement.⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠​
+1. PRD inti aplikasi versi yang sudah dikoreksi
+Nama kerja produk
+Dokumen Tender
+Deskripsi produk
+Platform digital untuk membantu pengguna melakukan:
+identifikasi kebutuhan layanan
+pemeriksaan awal persyaratan
+validasi internal data dan dokumen
+penilaian kesiapan permohonan
+penyusunan langkah perbaikan sebelum diajukan ke lembaga berwenang
+Batasan produk
+Aplikasi tidak:
+menerbitkan izin
+menerbitkan sertifikat
+mengesahkan legalitas
+menetapkan pemenang tender
+menggantikan otoritas resmi
+Aplikasi hanya:
+membantu persiapan
+melakukan screening
+memberi skor readiness
+mengidentifikasi gap
+memandu perbaikan
+2. Tujuan bisnis utama
+Objective 1
+Membantu user memahami apa yang perlu disiapkan.
+Objective 2
+Mengurangi submit yang gagal karena dokumen tidak lengkap atau tidak konsisten.
+Objective 3
+Menyediakan layanan informasi dan proses dokumen secara lebih terstruktur.
+Objective 4
+Menjadikan OpenClaw sebagai mesin pra-asesmen multi-agent.
+Objective 5
+Membuat proses dokumen lebih:
+cepat
+jelas
+terukur
+terdokumentasi
+bisa diaudit secara internal
+3. User persona utama
+Persona A — Pemilik usaha / direktur
+Butuh jawaban cepat:
+dokumen apa yang kurang
+apa yang harus disiapkan
+apakah sudah siap diajukan
+Persona B — Staf administrasi
+Butuh:
+checklist rinci
+urutan kerja
+template
+status kelengkapan
+Persona C — Konsultan internal / pendamping
+Butuh:
+review summary
+temuan inkonsistensi
+risk flags
+readiness score
+task list per klien
+Persona D — Tim pre-check / QA
+Butuh:
+ringkasan hasil agent
+audit trail
+alasan scoring
+daftar blocker
+keputusan siap / revisi
+4. Value proposition final
+Nilai inti aplikasi
+“Sebelum diajukan ke lembaga berwenang, pastikan data dan dokumen Anda sudah siap.”
+6 manfaat utama
+tahu syarat lebih awal  
+tahu dokumen yang kurang  
+tahu data yang tidak konsisten  
+tahu risiko administratif  
+tahu urutan tindakan berikutnya  
+tahu kapan paket sudah cukup siap diajukan  
+5. Modul produk versi MVP yang paling tepat
+Saya sarankan MVP fokus pada 7 modul inti.
+Modul 1 — Service Information Hub
+Pusat informasi layanan.
+Fungsi:
+daftar layanan
+syarat umum
+syarat khusus
+estimasi kebutuhan dokumen
+FAQ
+alur proses umum
+disclaimer kewenangan
+Output ke user:
+pemahaman awal
+layanan yang relevan
+gambaran proses
+Modul 2 — Smart Intake & Need Mapping
+Mesin intake kebutuhan.
+Input:
+form
+chat
+pilihan kategori layanan
+upload dokumen awal
+Fungsi:
+identifikasi kebutuhan user
+klasifikasi kategori
+rekomendasi layanan
+deteksi kombinasi layanan
+Contoh:
+“saya mau perpanjangan SBU dan siap ikut tender”
+→ sistem memetakan:
+layanan A: pre-check SBU
+layanan B: tender readiness check
+Modul 3 — Profile Readiness
+Memeriksa profil dasar pengguna/perusahaan.
+Data yang dicek:
+identitas perusahaan
+legalitas dasar
+bidang usaha
+personel terkait
+alamat/kontak
+status dokumen inti
+Hasil:
+profil lengkap / belum lengkap
+data dasar belum konsisten
+butuh dokumen tambahan
+Modul 4 — Requirement Builder
+Generator checklist dinamis.
+Fungsi:
+menghasilkan syarat berdasarkan jenis layanan
+membedakan:
+wajib
+pendukung
+bersyarat
+menyusun prioritas
+Output:
+daftar syarat
+checklist kelengkapan
+prioritas pengumpulan
+Ini sangat cocok dengan logika compliance checklist dan final submission checklist yang sudah ada dalam aset Anda.⁠
+⁠⁠
+⁠​
+Modul 5 — Document Screening
+Pemeriksaan dokumen yang diunggah.
+Fungsi:
+klasifikasi jenis dokumen
+cek keterbacaan
+ekstraksi field penting
+cek masa berlaku
+cek format
+cek kelengkapan minimum
+Hasil:
+dokumen valid untuk pemeriksaan awal
+dokumen buram / tidak lengkap
+dokumen kedaluwarsa
+dokumen tidak sesuai kategori
+Modul 6 — Consistency & Readiness Engine
+Mesin penilaian utama.
+Pemeriksaan:
+apakah nama entitas konsisten
+apakah nomor identitas cocok
+apakah masa berlaku masih aktif
+apakah syarat wajib sudah terpenuhi
+apakah ada gap kritis
+apakah paket cukup siap diajukan
+Output:
+completeness score
+validity score
+consistency score
+readiness score
+risk flags
+Modul 7 — Guided Remediation & Report
+Panduan tindak lanjut.
+Fungsi:
+tampilkan gap
+jelaskan masalah
+beri langkah perbaikan
+susun urutan prioritas
+generate report kesiapan
+Output:
+daftar perbaikan
+next best action
+ringkasan pre-assessment
+status akhir kesiapan
+6. Arsitektur OpenClaw yang disesuaikan
+Sekarang agent-nya harus dibangun untuk pre-assessment, bukan execution.
+Core agents
+OCL-Conductor → orkestrasi alur
+OCL-Intake → baca kebutuhan awal
+OCL-Classifier → klasifikasi layanan
+OCL-Requirement → susun checklist
+OCL-Validator → cek validitas data/dokumen
+OCL-Consistency → cek sinkronisasi antar dokumen
+OCL-ComplianceScreen → screening syarat awal
+OCL-Readiness → hitung kesiapan
+OCL-Risk → tandai area rawan
+OCL-Explainer → jelaskan hasil ke user
+OCL-QA → simpulkan status final internal
+7. Tugas detail tiap agent
+OCL-Intake
+Tugas:
+ringkas kebutuhan user
+ekstrak kata kunci
+identifikasi jenis permohonan
+buat case awal
+OCL-Classifier
+Tugas:
+klasifikasi ke kategori:
+legalitas
+perizinan
+sertifikasi
+tender
+identifikasi subkategori
+tentukan bundle layanan
+OCL-Requirement
+Tugas:
+bangun checklist
+tandai syarat wajib
+tandai syarat kondisional
+tandai prioritas
+OCL-Validator
+Tugas:
+cek field penting dokumen
+cek keberlakuan
+cek format minimum
+cek apakah dokumen dapat dinilai
+OCL-Consistency
+Tugas:
+bandingkan data antar file
+deteksi konflik identitas
+deteksi beda nama badan
+deteksi gap personel/data pendukung
+OCL-ComplianceScreen
+Tugas:
+bandingkan hasil screening terhadap requirement
+hasilkan:
+sesuai awal
+belum sesuai
+belum cukup data
+OCL-Readiness
+Tugas:
+hitung skor
+tentukan level kesiapan
+siapkan summary
+OCL-Risk
+Tugas:
+tandai risiko:
+administratif
+validitas
+konsistensi
+deadline
+dependensi dokumen
+OCL-Explainer
+Tugas:
+ubah hasil teknis jadi bahasa sederhana
+jawab “kenapa ini kurang?”
+jawab “apa yang harus saya lakukan berikutnya?”
+OCL-QA
+Tugas:
+simpulkan hasil akhir internal:
+belum siap
+perlu revisi
+siap sebagian
+siap diajukan
+8. Case flow end-to-end
+Flow 1 — User baru
+user memilih kebutuhan
+intake agent membaca intent
+classifier menentukan jenis layanan
+requirement agent membangun checklist
+sistem meminta data & dokumen minimum
+user upload
+validator + consistency engine memeriksa
+readiness engine memberi skor
+explainer menjelaskan hasil
+user mendapat daftar perbaikan
+Flow 2 — User sudah punya dokumen
+user upload bundle
+doc screening berjalan
+field penting diekstrak
+requirement dicocokkan
+consistency dicek
+risk ditandai
+QA memberi hasil akhir internal
+sistem keluarkan Pre-Submission Readiness Report
+9. Status yang disarankan di aplikasi
+Status Case
+Draft
+Intake Selesai
+Menunggu Data Dasar
+Menunggu Dokumen
+Sedang Diperiksa
+Perlu Revisi
+Data Tidak Konsisten
+Siap Sebagian
+Siap Diajukan
+Butuh Konsultasi Manual
+Arsip
+Status Requirement
+Belum Ada
+Belum Dipenuhi
+Sudah Diunggah
+Sedang Ditinjau
+Sesuai
+Tidak Sesuai
+Perlu Klarifikasi
+Status Dokumen
+Uploaded
+Parsable
+Buram
+Tidak Lengkap
+Kedaluwarsa
+Terbaca
+Perlu Penggantian
+10. Model scoring yang tepat
+Saya sarankan 4 skor utama:
+1. Completeness Score
+Persentase syarat wajib yang sudah tersedia.
+2. Validity Score
+Menilai apakah dokumen:
+masih berlaku
+terbaca
+sesuai tipe
+memenuhi minimum field
+3. Consistency Score
+Menilai kesesuaian antar dokumen.
+4. Readiness Score
+Skor gabungan kesiapan.
+Rumus awal sederhana:
+Completeness = 35%
+Validity = 25%
+Consistency = 20%
+Risk inverse = 20%
+11. Level hasil readiness
+Level 1 — Belum Siap
+Masih banyak syarat wajib belum ada.
+Level 2 — Perlu Perbaikan Mayor
+Ada gap penting yang menghambat.
+Level 3 — Perlu Perbaikan Minor
+Mayoritas sudah ada, tapi masih perlu sinkronisasi/perbaikan kecil.
+Level 4 — Siap Sebagian
+Bisa lanjut ke tahap konsultasi/pengecekan lanjutan.
+Level 5 — Siap Diajukan
+Berdasarkan pra-asesmen internal, paket dokumen sudah cukup siap diajukan ke instansi/lembaga berwenang.
+12. Output report yang harus dihasilkan sistem
+Aplikasi ini wajib punya 1 output unggulan:
+Pre-Submission Readiness Report
+Isi report:
+identitas case
+jenis kebutuhan
+ringkasan hasil screening
+skor kesiapan
+status kesiapan
+daftar dokumen diterima
+daftar dokumen kurang
+daftar temuan inkonsistensi
+daftar risiko administratif
+rekomendasi tindakan
+disclaimer hasil non-resmi
+13. Contoh isi report
+Ringkasan hasil
+Jenis layanan: Pra-asesmen dokumen SBU + Tender Readiness
+Skor kesiapan: 76/100
+Status: Perlu Perbaikan Minor
+Temuan utama
+1 dokumen wajib belum tersedia
+1 dokumen masa berlaku hampir habis
+perbedaan nama badan usaha pada 2 dokumen pendukung
+data personel belum lengkap untuk pemeriksaan lanjutan
+Rekomendasi
+unggah dokumen A
+perbarui dokumen B
+sinkronkan nama entitas
+lakukan pemeriksaan ulang sebelum diajukan
+Disclaimer
+Hasil ini merupakan pra-asesmen internal dan bukan keputusan resmi dari instansi atau lembaga berwenang.
+14. Menu aplikasi yang saya sarankan
+Menu publik
+Beranda
+Layanan
+Cek Kebutuhan
+Panduan
+FAQ
+Konsultasi
+Menu user login
+Dashboard
+Profil Usaha
+Kebutuhan Saya
+Dokumen Saya
+Checklist
+Hasil Pra-Asesmen
+Rekomendasi Perbaikan
+Konsultasi
+Riwayat
+Menu internal
+Intake Queue
+Case Board
+Review Dokumen
+Temuan & Risiko
+QA
+Report
+Knowledge Base
+Analytics
+15. Struktur database inti
+Tabel inti MVP
+users
+organizations
+service_categories
+services
+cases
+case_requirements
+documents
+document_versions
+extracted_fields
+findings
+readiness_scores
+risk_flags
+recommendations
+reports
+agent_runs
+audit_logs
+16. Entity penting untuk logika sistem
+cases
+menyimpan permohonan/asesmen
+case_requirements
+menyimpan daftar syarat per case
+documents
+menyimpan dokumen user
+findings
+menyimpan temuan hasil screening
+readiness_scores
+menyimpan hasil penilaian numerik
+recommendations
+menyimpan tindakan lanjutan
+reports
+menyimpan hasil report final
+agent_runs
+menyimpan jejak kerja OpenClaw
+17. Logika guardrail yang wajib
+Karena aplikasi ini sensitif, sistem harus punya aturan keras:
+Jangan pernah mengatakan:
+“sudah disetujui”
+“resmi valid”
+“pasti lolos”
+“izin akan terbit”
+“sertifikasi Anda diterima”
+“tender Anda aman menang”
+Gunakan bahasa:
+“berdasarkan pemeriksaan awal”
+“berdasarkan dokumen yang tersedia”
+“secara internal dinilai”
+“terdapat indikasi”
+“siap diajukan”
+“perlu ditinjau lebih lanjut”
+“tidak menggantikan keputusan resmi”
+18. Knowledge base yang harus dibangun
+Agar OpenClaw cerdas, bangun 4 lapisan knowledge:
+A. Knowledge Persyaratan
+syarat per layanan
+syarat wajib vs kondisional
+B. Knowledge Dokumen
+jenis dokumen
+field penting
+masa berlaku
+standar minimum
+C. Knowledge Risiko
+penyebab umum dokumen tidak siap
+pola inkonsistensi
+risiko administratif umum
+D. Knowledge Proses
+urutan persiapan
+best practice perbaikan
+urutan prioritas
+Ini sejalan dengan pola pengetahuan domain yang sudah muncul di OpenClaw Navigator, SBU guidance, review dokumen, dan e-procurement readiness.⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠​
+19. Blueprint halaman hasil pra-asesmen
+Section 1 — Summary
+jenis kebutuhan
+status kesiapan
+skor kesiapan
+Section 2 — Checklist
+syarat wajib
+syarat pendukung
+progress terpenuhi
+Section 3 — Temuan
+missing documents
+inconsistency findings
+validity issues
+Section 4 — Risk flags
+risiko administratif
+risiko data
+risiko dokumen kedaluwarsa
+Section 5 — Rekomendasi
+apa yang harus dilakukan
+urutan prioritas
+dokumen yang harus diganti
+Section 6 — Disclaimer
+hasil non-resmi
+perlu verifikasi otoritas berwenang
+20. Roadmap implementasi yang paling realistis
+Fase 1 — MVP dasar
+katalog layanan
+intake form
+profile readiness
+upload dokumen
+checklist generator
+report sederhana
+Fase 2 — OpenClaw screening
+intake agent
+classifier
+requirement agent
+validator
+readiness scoring
+Fase 3 — Multi-agent intelligence
+consistency agent
+compliance screening agent
+risk agent
+explainer agent
+QA agent
+Fase 4 — Advanced operating system
+case blackboard
+event bus
+analytics
+feedback learning
+postmortem improvement loop
+21. Positioning final yang paling matang
+Satu kalimat utama
+Dokumen Tender adalah platform layanan informasi, pra-asesmen, dan kesiapan dokumen permohonan yang membantu pengguna memeriksa kelengkapan, validitas, dan konsistensi data sebelum pengajuan resmi dilakukan ke lembaga atau instansi berwenang.
+Versi lebih komersial
+Bantu cek kesiapan dokumen Anda sebelum diajukan — lebih rapi, lebih jelas, dan lebih siap.
+22. Kesimpulan operasional
+Sekarang arah sistemnya sudah sangat jelas:
+bukan sistem otoritatif
+bukan lembaga penerbit
+bukan pelaksana tender resmi
+melainkan mesin pra-asesmen & readiness
+Dan justru ini membuat OpenClaw sangat relevan, karena kekuatan Anda memang ada pada:
+review
+audit dokumen
+compliance screening
+readiness check
+risk analysis
+checklist dan knowledge orchestration.⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠​
+Tahap logis berikutnya adalah menyusun:
+ERD/database schema detail
+daftar agent OpenClaw satu per satu
+PRD lengkap per modul
+flowchart sistem dan state machine
+Saya lanjutkan langsung pada bagian ERD + database schema detail + daftar tabel lengkap di respons berikutnya.
+lanjut
+Apr 8
+Baik, saya lanjut ke bagian ERD / database schema detail untuk aplikasi pra-asesmen, layanan informasi, dan kesiapan dokumen permohonan.
+Saya akan susun dengan pendekatan yang cocok untuk:
+screening awal
+readiness scoring
+consistency checking
+document intelligence
+OpenClaw multi-agent orchestration
+Struktur ini sengaja tidak didesain sebagai sistem penerbit keputusan resmi, melainkan sebagai sistem pre-submission readiness yang kuat di area checklist, review, compliance screening, dan risk flagging — sejalan dengan fondasi knowledge Anda tentang review dokumen, compliance matrix, final submission checklist, SBU/SKK readiness, dan e-procurement readiness.⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠⁠
+⁠​
+1. Prinsip desain data
+Schema ini dibangun dengan 7 prinsip:
+1. Case-centric
+Semua aktivitas berpusat pada case, bukan sekadar user atau dokumen.
+2. Requirement-driven
+Setiap case punya daftar syarat yang bisa dinilai satu per satu.
+3. Document-aware
+Dokumen tidak hanya disimpan, tetapi:
+diparse
+diekstrak field-nya
+dicek validitasnya
+dibandingkan konsistensinya
+4. Explainable
+Semua temuan, skor, dan rekomendasi bisa ditelusuri.
+5. Multi-agent ready
+Setiap hasil agent disimpan terstruktur.
+6. Non-authoritative
+Tidak ada tabel yang menyimpan “keputusan resmi lembaga”.
+Yang ada adalah:
+hasil screening
+readiness report
+internal assessment
+7. Audit-friendly
+Semua perubahan penting punya jejak.
+2. Entitas utama sistem
+Berikut 14 domain data inti:
+Identity & Organization
+Service Catalog
+Cases
+Requirements
+Documents
+Extracted Facts
+Findings
+Consistency Checks
+Scores
+Risk Flags
+Recommendations
+Reports
+Agent Runs
+Audit & Workflow
+3. ERD tingkat tinggi
+Hubungan utama
+users
+	└── organizations
+			└── cases
+					├── case_requirements
+					├── case_documents
+					│		└── document_versions
+					│				└── extracted_fields
+					├── findings
+					├── consistency_checks
+					├── readiness_scores
+					├── risk_flags
+					├── recommendations
+					├── reports
+					├── case_tasks
+					├── case_events
+					└── agent_runs
+​
+4. Tabel inti level 1: identity & organization
+users
+Menyimpan akun pengguna.
+Field
+id UUID PK
+full_name
+email UNIQUE
+phone
+password_hash / auth_provider_ref
+status ENUM
+last_login_at
+created_at
+updated_at
+Enum user_status
+active
+invited
+suspended
+archived
+organizations
+Menyimpan entitas usaha/organisasi milik user.
+Field
+id UUID PK
+owner_user_id FK → users.id
+organization_name
+organization_type
+npwp
+nib
+business_sector
+address
+city
+province
+postal_code
+phone
+email
+website
+created_at
+updated_at
+Catatan
+Satu user bisa punya beberapa organisasi.
+organization_members
+Relasi banyak user ke satu organisasi.
+Field
+id
+organization_id
+user_id
+role
+joined_at
+Enum organization_role
+owner
+admin
+staff
+viewer
+consultant
+5. Tabel inti level 2: service catalog
+service_categories
+Kategori besar layanan.
+Contoh:
+legalitas
+perizinan
+sertifikasi
+tender
+layanan_informasi
+pre_assessment
+Field
+id
+code UNIQUE
+name
+description
+display_order
+is_active
+services
+Daftar layanan spesifik.
+Field
+id
+service_category_id
+code UNIQUE
+name
+slug
+summary
+description
+service_mode
+is_active
+created_at
+updated_at
+Enum service_mode
+information
+pre_assessment
+readiness_review
+consultation
+document_screening
+service_requirement_templates
+Template requirement per layanan.
+Field
+id
+service_id
+requirement_code
+title
+description
+requirement_type
+is_mandatory
+is_conditional
+condition_expression
+priority_order
+document_type_expected
+created_at
+Enum requirement_type
+data_field
+document
+declaration
+profile_info
+supporting_info
+Ini akan menjadi inti logika checklist dinamis.
+6. Tabel inti level 3: cases
+cases
+Objek utama sistem.
+Field
+id UUID PK
+organization_id FK
+created_by_user_id FK
+primary_service_id FK
+title
+case_type
+intake_channel
+status
+priority
+urgency_level
+summary
+user_goal_text
+current_readiness_level
+assigned_case_manager_id FK nullable
+opened_at
+closed_at
+created_at
+updated_at
+Enum case_type
+legalitas
+perizinan
+sertifikasi
+tender
+bundled
+consultation_only
+Enum intake_channel
+web_form
+chat
+admin_entry
+import
+whatsapp_referral
+Enum case_status
+draft
+intake_completed
+awaiting_profile
+awaiting_documents
+in_screening
+needs_revision
+inconsistent_data
+partially_ready
+ready_for_submission
+manual_consultation_needed
+archived
+case_services
+Jika satu case punya lebih dari satu layanan.
+Field
+id
+case_id
+service_id
+is_primary
+notes
+Ini penting untuk use case bundle:
+SBU readiness
+tender readiness
+document review
+case_profiles
+Snapshot profil organisasi pada saat case diproses.
+Field
+id
+case_id
+organization_name
+npwp
+nib
+business_sector
+entity_type
+address
+contact_person
+contact_phone
+profile_completeness_score
+created_at
+Kenapa perlu snapshot?  
+Karena data organisasi bisa berubah, sedangkan assessment perlu jejak data saat itu.
+7. Tabel inti level 4: requirements
+case_requirements
+Requirement aktual per case, hasil generate dari template + kondisi kasus.
+Field
+id
+case_id
+service_id
+template_id nullable
+requirement_code
+title
+description
+requirement_type
+is_mandatory
+is_conditional
+condition_result
+status
+priority_order
+expected_document_type
+fulfilled_by_document_id nullable
+fulfilled_by_data_key nullable
+notes
+created_at
+updated_at
+Enum requirement_status
+not_generated
+pending
+uploaded
+under_review
+fulfilled
+partially_fulfilled
+failed
+needs_clarification
+not_applicable
+requirement_evidence_links
+Menghubungkan requirement ke bukti/dokumen.
+Field
+id
+case_requirement_id
+document_id
+document_version_id
+evidence_type
+matched_field_key
+matched_field_value
+confidence_score
+created_at
+8. Tabel inti level 5: documents
+documents
+Representasi logical document.
+Field
+id
+case_id
+organization_id
+document_type
+document_category
+title
+source
+verification_scope
+current_version_id nullable
+document_status
+uploaded_by_user_id
+created_at
+updated_at
+Enum document_type
+Contoh:
+akta
+nib
+npwp
+oss
+sbu
+skk
+iso_certificate
+financial_statement
+tax_document
+tender_requirement_doc
+tender_admin_doc
+tender_technical_doc
+supporting_letter
+identity_doc
+other
+Enum document_status
+uploaded
+parsable
+unreadable
+incomplete
+expired
+valid_for_screening
+rejected_for_screening
+replaced
+document_versions
+Versi file dari dokumen.
+Field
+id
+document_id
+version_number
+file_name
+mime_type
+file_size
+storage_url
+checksum
+ocr_status
+parse_status
+uploaded_at
+uploaded_by_user_id
+Enum ocr_status
+pending
+processing
+completed
+failed
+Enum parse_status
+pending
+processing
+completed
+failed
+partial
+document_metadata
+Metadata hasil pembacaan teknis file.
+Field
+id
+document_version_id
+page_count
+language_detected
+is_scanned
+image_quality_score
+readability_score
+has_signature_detected
+has_stamp_detected
+metadata_json
+9. Tabel inti level 6: extracted fields & facts
+extracted_fields
+Field hasil ekstraksi dari dokumen.
+Field
+id
+document_version_id
+field_key
+field_label
+field_type
+field_value_text
+field_value_number
+field_value_date
+field_value_json
+source_page
+confidence_score
+normalized_value
+created_at
+Contoh field_key
+organization_name
+npwp_number
+nib_number
+certificate_number
+issue_date
+expiry_date
+classification_code
+subclassification_code
+person_name
+case_facts
+Fakta ter-normalisasi pada level case.
+Field
+id
+case_id
+fact_key
+fact_value_text
+fact_value_number
+fact_value_date
+fact_value_json
+source_document_id
+source_field_id
+confidence_score
+created_at
+Kenapa ini penting?  
+Karena agent lain tidak harus membaca semua dokumen mentah terus-menerus.
+10. Tabel inti level 7: findings
+findings
+Temuan hasil screening.
+Field
+id
+case_id
+document_id nullable
+requirement_id nullable
+finding_type
+severity
+title
+description
+status
+source_agent
+evidence_json
+created_at
+resolved_at
+Enum finding_type
+missing_document
+invalid_document
+expired_document
+unreadable_document
+inconsistent_data
+incomplete_profile
+unsupported_document
+requirement_gap
+data_conflict
+classification_mismatch
+Enum finding_severity
+low
+medium
+high
+critical
+Enum finding_status
+open
+acknowledged
+under_review
+resolved
+ignored_with_reason
+11. Tabel inti level 8: consistency checking
+consistency_checks
+Menyimpan hasil perbandingan antar dokumen/data.
+Field
+id
+case_id
+check_key
+entity_scope
+left_source_type
+left_source_id
+left_value
+right_source_type
+right_source_id
+right_value
+comparison_result
+confidence_score
+notes
+created_at
+Enum comparison_result
+matched
+partially_matched
+conflicted
+insufficient_data
+Contoh check_key
+organization_name_match
+npwp_match
+nib_match
+address_match
+person_identity_match
+certificate_validity_alignment
+Ini sangat penting karena salah satu nilai utama aplikasi adalah cek konsistensi antar dokumen.
+12. Tabel inti level 9: scoring
+readiness_scores
+Skor per case.
+Field
+id
+case_id
+completeness_score
+validity_score
+consistency_score
+risk_score
+readiness_score
+readiness_level
+scoring_version
+computed_by_agent
+computed_at
+Enum readiness_level
+not_ready
+major_revision_needed
+minor_revision_needed
+partially_ready
+ready_for_submission
+score_breakdowns
+Penjelasan komponen skor.
+Field
+id
+readiness_score_id
+score_component
+weight_percentage
+raw_score
+weighted_score
+notes
+Contoh komponen:
+completeness
+validity
+consistency
+risk_inverse
+13. Tabel inti level 10: risk
+risk_flags
+Penanda risiko per case.
+Field
+id
+case_id
+finding_id nullable
+risk_type
+severity
+title
+description
+impact_description
+mitigation_recommendation
+status
+source_agent
+created_at
+Enum risk_type
+administrative_risk
+validity_risk
+consistency_risk
+deadline_risk
+eligibility_risk
+classification_risk
+submission_readiness_risk
+14. Tabel inti level 11: recommendation
+recommendations
+Tindakan perbaikan yang disarankan.
+Field
+id
+case_id
+finding_id nullable
+risk_flag_id nullable
+recommendation_type
+priority
+title
+description
+action_steps_json
+status
+generated_by_agent
+created_at
+Enum recommendation_type
+upload_missing_document
+replace_expired_document
+fix_data_inconsistency
+clarify_information
+update_profile
+consult_specialist
+recheck_before_submission
+Enum priority
+p1
+p2
+p3
+p4
+15. Tabel inti level 12: reports
+reports
+Report hasil sistem.
+Field
+id
+case_id
+report_type
+version_number
+title
+summary
+status_snapshot
+readiness_level_snapshot
+report_json
+generated_by
+generated_at
+Enum report_type
+pre_submission_readiness_report
+checklist_report
+document_gap_report
+consistency_report
+risk_summary_report
+report_sections
+Opsional, jika report ingin dirender modular.
+Field
+id
+report_id
+section_key
+section_title
+section_order
+content_json
+16. Tabel inti level 13: workflow
+case_tasks
+Task operasional per case.
+Field
+id
+case_id
+task_type
+task_title
+assigned_to_user_id nullable
+assigned_to_agent nullable
+status
+priority
+due_at
+started_at
+completed_at
+parent_task_id nullable
+dependency_json
+Enum task_status
+pending
+in_progress
+blocked
+completed
+cancelled
+failed
+case_events
+Riwayat event.
+Field
+id
+case_id
+event_type
+actor_type
+actor_id
+payload_json
+created_at
+Contoh event_type
+case_created
+requirement_generated
+document_uploaded
+parse_completed
+finding_created
+score_computed
+report_generated
+status_changed
+17. Tabel inti level 14: OpenClaw agent layer
+agent_runs
+Jejak eksekusi tiap agent.
+Field
+id
+case_id
+task_id nullable
+agent_name
+agent_version
+objective
+input_context_json
+output_json
+status
+confidence_score
+started_at
+completed_at
+duration_ms
+Enum agent_run_status
+queued
+running
+completed
+failed
+partial
+escalated
+agent_findings_links
+Menghubungkan output agent ke finding.
+Field
+id
+agent_run_id
+finding_id
+agent_memories
+Kalau ingin blackboard memory formal.
+Field
+id
+case_id
+memory_scope
+memory_key
+memory_value_json
+written_by_agent
+created_at
+updated_at
+Enum memory_scope
+session
+case
+domain
+recommendation
+scoring_context
+18. Tabel audit & governance
+audit_logs
+Audit trail umum.
+Field
+id
+entity_type
+entity_id
+action
+actor_type
+actor_id
+old_value_json
+new_value_json
+created_at
+manual_reviews
+Untuk review manusia.
+Field
+id
+case_id
+review_type
+reviewer_user_id
+decision
+summary
+notes
+created_at
+Enum review_type
+document_review
+readiness_review
+risk_review
+qa_review
+Enum decision
+approved_internal
+needs_revision
+insufficient_information
+escalate
+19. Index yang wajib
+Agar performa stabil, index minimal:
+Pada cases
+(organization_id, status)
+(primary_service_id, status)
+(created_at)
+(current_readiness_level)
+Pada documents
+(case_id, document_type)
+(organization_id, document_type)
+(document_status)
+Pada case_requirements
+(case_id, status)
+(case_id, is_mandatory)
+(service_id, requirement_code)
+Pada findings
+(case_id, severity, status)
+(finding_type, status)
+Pada agent_runs
+(case_id, agent_name, started_at)
+(status, started_at)
+Pada risk_flags
+(case_id, severity, status)
+20. Constraint bisnis yang penting
+Rule 1
+Satu case harus punya minimal satu service.
+Rule 2
+Satu document boleh punya banyak document_versions, tapi hanya satu current_version_id.
+Rule 3
+readiness_score terbaru harus bisa ditandai sebagai current snapshot.
+Rule 4
+ready_for_submission tidak boleh muncul jika ada finding:
+severity critical yang open
+mandatory requirement yang pending/failed
+Rule 5
+Report selalu mengacu pada snapshot data saat report dibuat.
+21. Enum penting sistem
+Readiness level
+not_ready
+major_revision_needed
+minor_revision_needed
+partially_ready
+ready_for_submission
+Severity
+low
+medium
+high
+critical
+Actor type
+user
+admin
+consultant
+agent
+system
+Document quality result
+readable
+low_quality
+incomplete_scan
+corrupted
+unsupported
+22. Contoh query bisnis yang nanti sering dipakai
+Query 1
+Case mana yang sudah hampir siap?
+readiness_score > 75
+no critical findings
+mandatory requirements mostly fulfilled
+Query 2
+Dokumen apa yang paling sering kurang?
+group by finding_type + document_type
+Query 3
+Layanan mana yang paling banyak revisi?
+count findings and revisions by service
+Query 4
+Agent mana paling sering gagal / confidence rendah?
+from agent_runs
+Query 5
+Apa mismatch data yang paling sering terjadi?
+dari consistency_checks
+23. Minimum viable schema vs full schema
+MVP schema
+Kalau ingin cepat bangun, cukup mulai dari:
+users
+organizations
+services
+cases
+case_requirements
+documents
+document_versions
+extracted_fields
+findings
+readiness_scores
+recommendations
+reports
+agent_runs
+Enterprise schema
+Tambahkan:
+consistency_checks
+risk_flags
+manual_reviews
+score_breakdowns
+case_events
+audit_logs
+agent_memories
+report_sections
+24. Saran implementasi bertahap
+Tahap 1
+Bangun:
+cases
+requirements
+documents
+findings
+readiness scores
+reports
+Tahap 2
+Tambahkan:
+extracted fields
+consistency checks
+recommendations
+risk flags
+Tahap 3
+Tambahkan:
+agent runs
+memories
+events
+audit logs
+manual reviews
+25. Kesimpulan desain data
+Kalau saya ringkas, jantung databasenya adalah:
+5 core object
+Case
+Requirement
+Document
+Finding
+Readiness Score
+Dan OpenClaw menjadi lapisan di atasnya untuk:
+membaca
+membandingkan
+memberi skor
+menandai risiko
+menjelaskan gap
+menyusun rekomendasi
+26. Rekomendasi langkah lanjutan
+Setelah ERD ini, urutan paling masuk akal adalah:
+berikutnya saya detailkan:
+daftar 10–15 agent OpenClaw lengkap
+input/output contract tiap agent
+workflow orchestration antar agent
+prompt architecture tiap agent
+state machine case dan event bus
+Menurut alur yang paling rapi, bagian berikutnya sebaiknya adalah:
+Desain agent OpenClaw satu per satu: peran, input, output, tool, guardrail, dan logika kerja
+Jika Anda ingin, saya lanjutkan langsung ke sana.
+lanjut
+Apr 8
+lanjut
+Apr 8
+
+
+

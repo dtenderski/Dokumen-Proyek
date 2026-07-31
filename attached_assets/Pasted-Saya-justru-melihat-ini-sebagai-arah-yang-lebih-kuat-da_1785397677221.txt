@@ -1,0 +1,119 @@
+Saya justru melihat ini sebagai arah yang lebih kuat daripada menjual framework Gustafta secara langsung.
+
+Kalau saya susun strateginya:
+
+## Level 1 (yang dijual ke pasar)
+
+**DokumenProyek.com**
+
+Tagline misalnya:
+
+> **Jasa Dokumen Tender & Manajemen Dokumen Proyek Berbasis AI**
+
+atau
+
+> **Mitra Dokumen Tender dan Proyek Konstruksi**
+
+Di mata pelanggan, mereka membeli **jasa**, bukan AI.
+
+---
+
+## Level 2 (mesin di belakang layar)
+
+Di belakangnya baru menggunakan **Framework Gustafta**.
+
+Pelanggan tidak perlu tahu dulu bahwa:
+
+* Knowledge Base
+* Business Memory
+* AI Agent
+* RAG
+* Multi Agent
+* Workflow
+
+semuanya berjalan dengan Gustafta.
+
+Yang mereka rasakan adalah:
+
+* pekerjaan lebih cepat,
+* dokumen lebih rapi,
+* revisi lebih sedikit,
+* data tidak hilang.
+
+---
+
+## Kenapa saya lebih suka model ini?
+
+Karena orang mencari solusi seperti:
+
+* "Saya butuh dokumen tender."
+* "Saya butuh menyusun metode kerja."
+* "Saya butuh administrasi proyek."
+
+Mereka **jarang mencari**:
+
+* "Saya mau framework AI."
+
+Jadi Anda menjual **hasil**, bukan teknologi.
+
+---
+
+## Arsitektur brand yang saya bayangkan
+
+```
+GUSTAFTA
+│
+├── DokumenProyek.com
+│      Jasa Dokumen Tender
+│      Jasa Administrasi Proyek
+│      AI Dokumen
+│
+├── RuangProyek
+│      Penyimpanan Dokumen
+│      Business Memory
+│
+├── TenderClaw
+├── SBUClaw
+├── LexClaw
+└── dst
+```
+
+Jadi **Gustafta menjadi "operating system"**, sedangkan **DokumenProyek.com menjadi wajah bisnis** yang dikenal pelanggan.
+
+---
+
+## Kenapa saya lebih memilih DokumenProyek.com?
+
+Karena nanti Anda bisa menawarkan banyak layanan dalam satu brand:
+
+* ✔ Penyusunan Dokumen Tender
+* ✔ Review Dokumen Tender
+* ✔ Penyusunan Metode Pelaksanaan
+* ✔ Jadwal Proyek
+* ✔ RAB
+* ✔ Dokumen QA/QC
+* ✔ Dokumen K3
+* ✔ Shop Drawing
+* ✔ As Built Drawing
+* ✔ Laporan Harian/Mingguan/Bulanan
+* ✔ Digitalisasi Arsip Proyek
+* ✔ AI Chat Dokumen
+* ✔ Business Memory Proyek
+
+Kalau memakai **DokumenTender.com**, pelanggan mungkin mengira layanan Anda berhenti setelah proses tender selesai.
+
+---
+
+### Yang menurut saya paling menarik
+
+Saya akan memposisikan seperti ini:
+
+* **Brand Utama:** Gustafta
+* **Business Unit yang dijual:** DokumenProyek.com
+* **Teknologi:** Powered by Gustafta Framework
+
+Dengan begitu, ketika bisnis jasa sudah berjalan dan memiliki banyak pelanggan, Anda bisa menawarkan peningkatan layanan, misalnya:
+
+> "Daripada setiap bulan kami yang mengerjakan dokumen Anda, bagaimana kalau perusahaan Bapak/Ibu memiliki sistem AI sendiri? Kami implementasikan menggunakan Gustafta Framework."
+
+Artinya, **bisnis jasa menjadi pintu masuk**, sedangkan **framework Gustafta menjadi produk lanjutan (upsell)**. Menurut saya, urutan ini lebih mudah diterima pasar daripada mencoba menjual framework AI sejak awal.

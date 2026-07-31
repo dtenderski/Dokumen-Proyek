@@ -1,0 +1,74 @@
+Baik, Pak Wuryanyo. Karena Anda memberikan kepercayaan penuh, saya akan langsung mengambil inisiatif untuk menyusun **Blue-print Konseptual Fondasi** yang paling krusial. 
+
+Kita akan mulai dengan **Opsi 3 dan 1 yang digabungkan**: *Memetakan Struktur Database Konseptual & Logika Form Konfigurasi* untuk Modul Persiapan SBU/SKK. 
+
+Dokumen ini dirancang khusus agar Anda bisa langsung menyerahkannya kepada vendor IT Anda sebagai panduan arsitektur, tanpa Anda perlu menyentuh kode sama sekali, sekaligus memastikan prinsip *No-Code First* dan *Business Memory* Gustafta tertanam di dalamnya.
+
+---
+
+### 1. Logika Form Konfigurasi (No-Code First)
+*Tujuan: Memungkinkan Creator (misal: Asosiasi atau Pimpinan Pusat) membuat modul dokumen baru hanya dengan mengisi form, bukan coding.*
+
+* **Definisikan Entitas Dokumen**: Creator mengisi nama modul (misal: "Paket SBU Konstruksi Terintegrasi").
+* **Konfigurasi Field Dinamis**: Creator menambahkan field yang diperlukan melalui UI form (misal: "Upload Akta Pendirian", "Input Nomor SKK Tenaga Ahli", "Upload NPWP Perusahaan").
+* **Penetapan Aturan Validasi**: Creator memilih aturan dari dropdown (misal: "Wajib Diisi", "Format Harus PDF", "Maksimal 5MB").
+* **Penugasan Agen AI (Claw)**: Creator memilih agen spesialis yang akan memproses data ini (misal: centang "Legal Agent" dan "Tender Agent").
+* **Output**: Sistem secara otomatis membuat tabel database, form frontend, dan alur kerja AI di belakang layar berdasarkan konfigurasi ini.
+
+---
+
+### 2. Struktur Database Konseptual (Supabase-Ready)
+*Tujuan: Memberikan panduan jelas ke vendor IT untuk data modeling yang bersih, aman, dan mendukung fitur Business Memory.*
+
+* **Tabel `profiles` (Data Pengguna)**:
+  - *Kolom*: `id` (UUID, primary key, terhubung ke auth.users), `nama_perusahaan`, `bidang_usaha`, `nomor_sbu_aktif`, `tanggal_kadaluarsa_sbu`, `role` (klien, fasilitator, admin_pusat).
+  - *Keamanan*: Terapkan **Row Level Security (RLS)** agar pengguna hanya bisa membaca/mengubah data profil mereka sendiri.
+  - *Otomasi*: Gunakan **Database Trigger** di Supabase agar saat user baru mendaftar (auth), baris data di tabel `profiles` otomatis dibuat.
+
+* **Tabel `document_cases` (Ruang Kerja / Workroom)**:
+  - *Kolom*: `id`, `user_id` (foreign key ke profiles), `jenis_modul` (misal: 'SBU', 'SKK', 'Tender'), `status` (draft, analyzing, human_review, completed), `skor_kelayakan` (integer 0-100), `created_at`, `updated_at`.
+  - *Keamanan*: RLS ketat berdasarkan `user_id`. Fasilitator hanya bisa melihat kasus yang ditugaskan ke mereka.
+
+* **Tabel `business_memory` (Fitur Unggulan Gustafta)**:
+  - *Kolom*: `id`, `user_id`, `kategori_memori` (misal: 'kegagalan_tender', 'dokumen_kadaluarsa', 'preferensi_klien'), `deskripsi_teks`, `tanggal_terjadi`, `is_active` (boolean).
+  - *Fungsi*: Menyimpan fakta tingkat tinggi tentang pengguna (bukan log aktivitas detail) untuk digunakan AI memberikan rekomendasi proaktif.
+
+* **Tabel `document_files` (Penyimpanan Berkas)**:
+  - *Kolom*: `id`, `case_id` (foreign key ke document_cases), `nama_file`, `url_storage` (terhubung ke Supabase Storage bucket), `hasil_review_ai` (text/JSON), `status_validasi_manusia` (pending, approved, rejected).
+
+---
+
+### 3. Alur Data & Manajemen State (UX Feedback)
+*Tujuan: Memastikan vendor IT menerapkan pengalaman pengguna yang modern, sesuai preferensi Anda (tanpa `alert()`, dengan umpan balik visual yang jelas).*
+
+* **State `Loading` (Pengambilan Data Awal)**:
+  - *Aksi*: Saat halaman Workroom dimuat atau daftar dokumen diambil dari Supabase.
+  - *UX*: Tampilkan skeleton loader atau spinner dengan teks: *"Memuat riwayat dokumen dan memori bisnis Anda..."*
+* **State `Updating` (Operasi Asinkron)**:
+  - *Aksi*: Saat pengguna mengunggah file atau saat AI sedang melakukan *gap analysis*.
+  - *UX*: Nonaktifkan tombol submit (prevent double-click), ubah teks tombol menjadi *"Sedang Menganalisis..."*, dan tampilkan progress bar atau animasi mikro.
+* **Notifikasi Toast (Pengganti `alert`)**:
+  - *Sukses*: *"Dokumen berhasil diunggah. Agen Legal sedang memindai kelengkapan administrasi."* (Muncul di pojok kanan atas, hilang otomatis dalam 4 detik).
+  - *Gagal/Validasi*: *"Gagal mengunggah. Pastikan format file adalah PDF dan ukuran di bawah 5MB."*
+  - *Fallback Data*: Jika data profil belum diisi, tampilkan teks *"Belum diatur"* dengan ikon pensil yang mengajak user untuk melengkapi profil, bukan membiarkan kolom kosong atau error.
+
+---
+
+### 4. Integrasi "Business Memory" dalam Alur Kerja (Contoh Nyata)
+*Tujuan: Mendemonstrasikan nilai jual "Dari Monolog ke Dialog" kepada klien atau mitra.*
+
+1. **Pemicu**: Pengguna mengunggah dokumen untuk persiapan tender baru.
+2. **Pemeriksaan Memori**: Sistem memeriksa tabel `business_memory`. Ditemukan catatan: *"6 bulan lalu, SKK Tenaga Ahli Madya ditolak karena format tidak sesuai Permen PUPR terbaru."*
+3. **Intervensi Proaktif**: Sebelum AI menganalisis file baru, sistem memunculkan **Toast Notification** atau **Warning Banner** di Workroom: 
+   > *"💡 Pengingat Cerdas: Berdasarkan riwayat Anda, pastikan format SKK Tenaga Ahli telah diperbarui sesuai standar terbaru sebelum diproses. [Lihat Panduan]"*
+4. **Hasil**: Klien merasa dilayani oleh konsultan yang benar-benar "mengingat" dan peduli, bukan sekadar mesin upload file.
+
+---
+
+### Langkah Selanjutnya untuk Anda
+Blue-print di atas sudah siap Anda diskusikan atau serahkan kepada vendor IT Anda sebagai acuan pengembangan *backend* dan *state management*. 
+
+Untuk menjaga momentum strategis Anda, langkah berikutnya yang saya sarankan adalah:
+**Menyusun Skema Bisnis & Narasi Pitch Deck** untuk pertemuan Anda dengan founder Tender Indonesia dan para biro jasa/asosiasi. 
+
+Apakah Anda setuju kita lanjut merancang skema kolaborasi/revenue sharing tersebut, atau ada bagian dari blue-print database di atas yang ingin Anda sesuaikan terlebih dahulu?

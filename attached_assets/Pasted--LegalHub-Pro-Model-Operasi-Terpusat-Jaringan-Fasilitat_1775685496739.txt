@@ -1,0 +1,463 @@
+# LegalHub Pro — Model Operasi Terpusat & Jaringan Fasilitator Lapangan
+
+Dokumen ini merumuskan model operasi bisnis LegalHub Pro sebagai **layanan terpusat (centralized service center)** yang dieksekusi di lapangan melalui **jaringan fasilitator** sebagai perpanjangan perusahaan.
+
+Model ini sangat cocok untuk bisnis jasa konsultansi legalitas, perizinan, sertifikasi, tender, dan proyek yang melayani banyak sektor dan banyak wilayah, tetapi tetap ingin menjaga:
+
+- standar mutu layanan
+- kontrol dokumen
+- konsistensi proses
+- akurasi compliance
+- akuntabilitas kepada klien
+- efisiensi operasional
+
+## 1. Konsep inti model bisnis
+
+Struktur bisnis dibagi menjadi **2 lapis utama**:
+
+### A. Pusat / Central Service Center
+
+Perusahaan di pusat berfungsi sebagai:
+
+- pusat kendali operasional
+- pusat manajemen klien dan case
+- pusat knowledge dan compliance
+- pusat review dan validasi dokumen
+- pusat pengurusan ke instansi / lembaga berwenang
+- pusat koordinasi OpenClaw dan Agentic AI
+- pusat standar mutu, SOP, dan audit
+
+### B. Fasilitator Lapangan
+
+Fasilitator bertindak sebagai:
+
+- perpanjangan tangan perusahaan di wilayah / area tertentu
+- ujung tombak akuisisi dan pendampingan user di lapangan
+- pendamping pengumpulan data dan dokumen awal
+- penghubung antara user lokal dengan pusat
+- pendamping verifikasi kondisi nyata di lapangan
+- pengawal proses komunikasi, follow-up, dan edukasi user
+
+## 2. Prinsip dasar pengelolaan
+
+Model ini harus memegang prinsip berikut:
+
+### 1) Sentralisasi kendali, desentralisasi pelayanan
+
+Artinya:
+
+- pelayanan ke user bisa dekat secara geografis
+- tetapi keputusan, standar, validasi, dan pengurusan resmi tetap dikendalikan pusat
+
+### 2) Semua proses tercatat dalam sistem
+
+Fasilitator tidak boleh bekerja di luar sistem sebagai jalur informal. Semua aktivitas harus masuk ke platform:
+
+- lead
+- dokumen
+- checklist
+- status
+- catatan
+- approval
+- hasil akhir
+
+### 3) Pusat adalah pemegang tanggung jawab akhir
+
+Karena pusat yang bertanggung jawab kepada:
+
+- instansi pemerintah
+- lembaga sertifikasi / asosiasi / badan berwenang
+- kualitas dokumen yang diajukan
+- ketepatan proses
+- mutu hasil layanan
+
+### 4) Fasilitator berfungsi sebagai front operation, bukan sovereign operator
+
+Fasilitator tidak berdiri sebagai entitas layanan yang sepenuhnya independen, melainkan sebagai:
+
+- mitra pelaksana lapangan
+- perwakilan operasional
+- kanal layanan lokal
+
+## 3. Pembagian peran pusat dan fasilitator
+
+## A. Tanggung jawab Pusat
+
+### 1) Client & Case Governance
+
+- menerima lead dari berbagai channel
+- menetapkan status klien dan case
+- menetapkan scope layanan
+- menetapkan SLA dan prioritas
+- melakukan assignment fasilitator
+
+### 2) Document & Compliance Control
+
+- menetapkan checklist resmi
+- melakukan review dokumen
+- melakukan gap analysis
+- memastikan kesesuaian format dan substansi
+- melakukan approval sebelum pengajuan resmi
+
+### 3) Official Processing
+
+Pusat bertanggung jawab melakukan pengurusan dokumen kepada pihak yang berwenang, seperti:
+
+- instansi pemerintahan
+- regulator sektoral
+- asosiasi
+- lembaga sertifikasi
+- lembaga uji / asesmen
+- badan / institusi yang berwenang menerbitkan dokumen
+
+### 4) Quality Assurance
+
+- menjaga standar pelayanan nasional
+- membuat SOP dan template baku
+- melakukan audit kualitas fasilitator
+- memastikan seluruh komunikasi dan dokumen sesuai standar perusahaan
+
+### 5) Billing & Commercial Control
+
+- quotation
+- invoice
+- pencatatan pembayaran
+- komisi atau pembagian fee fasilitator
+- pengendalian profitabilitas case
+
+### 6) Technology & AI Control
+
+- mengelola orchestrator agent
+- mengelola specialist agents
+- mengelola OpenClaw execution flows
+- mengelola knowledge base, prompt, policy, dan workflow otomatis
+
+## B. Tanggung jawab Fasilitator Lapangan
+
+### 1) Local User Acquisition
+
+- menjangkau calon user di wilayah
+- melakukan edukasi awal
+- membantu konsultasi awal secara langsung
+- membantu user memahami layanan yang dibutuhkan
+
+### 2) Local Intake & Assistance
+
+- membantu pengisian form awal
+- membantu pengumpulan dokumen
+- membantu verifikasi identitas, profil usaha, dan data lapangan
+- membantu menjelaskan gap dokumen ke user
+
+### 3) Case Follow-up
+
+- mengingatkan user terkait kekurangan dokumen
+- membantu komunikasi cepat dengan user
+- membantu penjadwalan visit, meeting, asesmen, atau audit bila diperlukan
+- memfasilitasi koordinasi antara pusat dan user
+
+### 4) Evidence Collection
+
+- mengumpulkan bukti lapangan
+- foto, video, data lokasi, bukti implementasi, bukti organisasi, atau bukti fasilitas bila dibutuhkan
+- memvalidasi bahwa data yang diberikan user sesuai realitas operasional di lapangan
+
+### 5) Relationship Management
+
+- menjaga hubungan dengan user di wilayah
+- meningkatkan kepercayaan dan retensi klien
+- membantu cross-sell dan renewal
+
+## 4. Hal yang tidak boleh dilakukan fasilitator tanpa otorisasi pusat
+
+Untuk menjaga compliance dan reputasi, fasilitator tidak boleh secara mandiri:
+
+- menjanjikan hasil yang belum disetujui pusat
+- mengubah scope layanan tanpa approval
+- mengajukan dokumen resmi atas nama perusahaan di luar prosedur
+- mengubah checklist standar
+- memberikan interpretasi regulasi final tanpa validasi pusat
+- menerima pembayaran di luar mekanisme resmi perusahaan
+- menyimpan dokumen penting di luar sistem resmi
+
+## 5. Alur kerja operasional end-to-end
+
+### Tahap 1 — Lead Masuk
+
+- lead masuk dari website, WhatsApp, referal, atau fasilitator
+- sistem membuat lead record
+- pusat atau AI intake engine melakukan klasifikasi awal
+
+### Tahap 2 — Penugasan Fasilitator
+
+- lead dipetakan berdasarkan wilayah, sektor, atau jenis layanan
+- pusat menunjuk fasilitator yang relevan
+- fasilitator menerima task di dashboard
+
+### Tahap 3 — Pengumpulan Data Awal
+
+- fasilitator mendampingi user
+- data dan dokumen awal masuk ke sistem
+- pusat memonitor kelengkapan secara real-time
+
+### Tahap 4 — Review Pusat
+
+- pusat meninjau dokumen
+- AI menjalankan gap analysis
+- pusat memberi status: lengkap / perlu revisi / belum layak diajukan
+
+### Tahap 5 — Perbaikan & Validasi
+
+- fasilitator membantu user melengkapi kekurangan
+- pusat memvalidasi ulang
+- jika sudah memenuhi syarat, case masuk ke tahap pengurusan resmi
+
+### Tahap 6 — Pengurusan ke Pihak Berwenang
+
+- pusat melakukan komunikasi, pengajuan, follow-up, dan koordinasi resmi ke instansi atau lembaga terkait
+- seluruh progres dicatat di sistem
+
+### Tahap 7 — Terbit / Hasil
+
+- hasil diterima pusat
+- pusat melakukan final QA
+- hasil diserahkan ke user melalui portal dan fasilitator
+
+### Tahap 8 — Renewal / Retention
+
+- sistem menyimpan masa berlaku
+- pusat dan fasilitator bersama-sama menindaklanjuti perpanjangan, upgrade, dan layanan lanjutan
+
+## 6. Implikasi ke desain web aplikasi
+
+Aplikasi harus mendukung **multi-tier operating model** ini.
+
+## Modul khusus yang wajib ada
+
+### 1) Regional Facilitator Management
+
+Fungsi:
+
+- database fasilitator
+- wilayah cakupan
+- sektor keahlian
+- status aktif / nonaktif
+- rating performa
+- kapasitas workload
+
+### 2) Assignment Engine
+
+Fungsi:
+
+- auto-assign fasilitator berdasarkan wilayah, sektor, layanan, dan beban kerja
+- manual override oleh pusat
+
+### 3) Field Activity Tracking
+
+Fungsi:
+
+- task lapangan
+- jadwal kunjungan
+- visit notes
+- evidence upload
+- geo-tag opsional
+- meeting log
+
+### 4) Central Review Queue
+
+Fungsi:
+
+- antrean dokumen dan case yang menunggu review pusat
+- SLA review
+- escalation flags
+- compliance warnings
+
+### 5) Official Processing Desk
+
+Fungsi:
+
+- status pengajuan resmi
+- daftar instansi / lembaga tujuan
+- PIC pusat
+- dokumen yang diajukan
+- histori korespondensi
+- hasil dan tindak lanjut
+
+### 6) Facilitator Commission / Incentive Engine
+
+Fungsi:
+
+- komisi akuisisi
+- komisi pendampingan
+- komisi case selesai
+- aturan bonus performa
+- laporan insentif
+
+## 7. Implikasi ke arsitektur Agentic AI
+
+Model operasional ini sangat cocok dengan arsitektur orchestrator + specialist agents + OpenClaw.
+
+### A. Orchestrator Pusat
+
+Berfungsi untuk:
+
+- membaca tipe case
+- menentukan fasilitator yang sesuai
+- memilih agen spesialis yang aktif
+- mengarahkan task ke pusat atau lapangan
+- menjaga agar semua proses tetap sesuai policy
+
+### B. Agent Fasilitator Assistant
+
+Agent ini khusus membantu fasilitator di lapangan, misalnya:
+
+- panduan dokumen yang harus diminta
+- pertanyaan verifikasi lapangan
+- checklist wawancara user
+- ringkasan case
+- reminder follow-up
+- panduan menjelaskan status ke user
+
+### C. Agent Central Processing Assistant
+
+Agent ini khusus membantu tim pusat, misalnya:
+
+- review kelengkapan dokumen
+- gap analysis
+- compliance checking
+- drafting surat / email / form
+- ringkasan progress pengurusan
+- rekomendasi next action
+
+### D. Agent Authority Routing / Institution Desk
+
+Agent ini membantu memetakan:
+
+- dokumen ini harus diajukan ke mana
+- lembaga mana yang relevan
+- tahapan mana yang harus dilalui
+- persyaratan apa yang wajib dipenuhi sebelum submit
+
+### E. Agent Retention & Renewal
+
+Agent ini membantu:
+
+- mengingatkan masa berlaku
+- membuat kampanye follow-up
+- mengusulkan bundling layanan baru
+- memberi rekomendasi cross-sell ke fasilitator dan tim pusat
+
+## 8. Struktur role dalam sistem
+
+### Role pusat
+
+- super admin
+- operations director
+- central case manager
+- compliance reviewer
+- certification officer
+- tender officer
+- project officer
+- billing officer
+- QA manager
+
+### Role lapangan
+
+- regional coordinator
+- facilitator
+- senior facilitator
+- field verifier
+
+### Role user eksternal
+
+- calon klien
+- klien perusahaan
+- klien perorangan
+- PIC perusahaan
+
+## 9. Dashboard yang dibutuhkan
+
+### Dashboard pusat
+
+Harus menampilkan:
+
+- lead nasional
+- sebaran wilayah
+- performa fasilitator
+- case per sektor
+- case per status
+- antrean review
+- case yang sedang diproses ke lembaga / instansi
+- SLA risk
+- omzet dan insentif
+
+### Dashboard fasilitator
+
+Harus menampilkan:
+
+- lead / case saya
+- tugas follow-up
+- dokumen kurang
+- jadwal visit
+- status case user saya
+- catatan pusat
+- komisi / insentif saya
+
+### Dashboard user
+
+Harus menampilkan:
+
+- status layanan
+- checklist dokumen
+- permintaan revisi
+- jadwal / meeting
+- hasil / sertifikat / dokumen akhir
+- invoice
+
+## 10. KPI model operasi ini
+
+### KPI Pusat
+
+- TAT review dokumen
+- TAT pengurusan resmi
+- error rate dokumen
+- SLA compliance
+- repeat revenue
+- conversion lead-to-case
+
+### KPI Fasilitator
+
+- kecepatan follow-up
+- tingkat kelengkapan intake awal
+- conversion lead lokal
+- case completion support rate
+- retention wilayah
+- kepuasan user
+
+## 11. Keunggulan model ini
+
+Model ini memberi kombinasi terbaik antara:
+
+- **kendali pusat yang kuat**
+- **jangkauan layanan yang luas**
+- **pendampingan lokal yang dekat dengan user**
+- **standar mutu yang seragam**
+- **skalabilitas nasional**
+
+Dengan model ini, perusahaan tidak harus membangun kantor penuh di semua wilayah, tetapi tetap bisa memiliki jangkauan operasional yang luas melalui fasilitator.
+
+## 12. Kesimpulan
+
+Model bisnis yang paling tepat adalah:
+
+- **perusahaan di pusat sebagai command center dan processing center**
+- **fasilitator di lapangan sebagai service extension layer**
+- **OpenClaw dan Agentic AI sebagai orchestration dan execution intelligence layer**
+
+Dengan demikian:
+
+- user tetap merasakan layanan dekat dan responsif
+- perusahaan tetap mengendalikan mutu dan compliance
+- pengurusan resmi tetap dilakukan secara terpusat dan akuntabel
+- bisnis dapat bertumbuh secara nasional tanpa kehilangan standar layanan
+
+Model ini sangat cocok untuk LegalHub Pro yang menggabungkan jasa konsultansi, sertifikasi, tender, proyek, dan compliance dalam satu platform digital.

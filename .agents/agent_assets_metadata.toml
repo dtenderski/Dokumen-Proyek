@@ -1,0 +1,20 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "pYmEn05GV4ia_RAfML_EX"
+uri = "file://attached_assets/generated_videos/dokumenproyek-ai-processing.mp4"
+type = "video"
+title = "Video A — AI Document Processing"
+
+[[outputs]]
+id = "OQjfPfKbBbog8P7fb8mC_"
+uri = "file://attached_assets/generated_videos/dokumenproyek-construction.mp4"
+type = "video"
+title = "Video B — Construction Site Cinematic"
+
+[[outputs]]
+id = "CPegeS3sFClYKgnjl1ViQ"
+uri = "file://attached_assets/generated_videos/dokumenproyek-loop.mp4"
+type = "video"
+title = "Video Loop — DokumenProyek.com (tanpa teks)"

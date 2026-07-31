@@ -1,0 +1,335 @@
+Saya semakin yakin arah yang paling tepat adalah **memisahkan Gustafta sebagai teknologi** dan **DokumenProyek.com sebagai bisnis**.
+
+Kalau saya menjadi founder, saya tidak akan membangun "website jasa dokumen". Saya akan membangun **perusahaan digital administrasi proyek**.
+
+## Konsep Besarnya
+
+```
+                        GUSTAFTA FRAMEWORK
+              (Knowledge + AI + Business Memory)
+
+                            │
+        ┌───────────────────┼───────────────────┐
+        │                   │                   │
+ DokumenProyek.com     TenderClaw        RuangProyek
+ (Jasa)                (AI)              (SaaS)
+```
+
+Jadi orang datang karena butuh jasa, lalu secara bertahap dikenalkan dengan AI.
+
+---
+
+# Saya akan mengubah positioning
+
+Bukan:
+
+> Jasa Pembuatan Dokumen Tender
+
+Tetapi:
+
+> **Partner Administrasi Proyek Konstruksi**
+
+Kalimat ini jauh lebih besar.
+
+Karena administrasi proyek mencakup:
+
+* Tender
+* Pelaksanaan
+* Serah Terima
+* Pemeliharaan
+
+Jadi bisnis tidak berhenti ketika tender selesai.
+
+---
+
+# Hero Section
+
+Saya membayangkan halaman pertama sangat sederhana.
+
+## Judul
+
+> **Semua Dokumen Proyek Anda, Kami Siapkan.**
+
+Subjudul
+
+> Dari dokumen tender hingga administrasi proyek, kami membantu kontraktor menyusun dokumen yang rapi, cepat, dan siap digunakan.
+
+Tombol
+
+🟢 Konsultasi Gratis
+
+⚪ Lihat Layanan
+
+---
+
+# Setelah Hero
+
+Banyak website langsung menjelaskan layanan.
+
+Saya justru akan membuat pengunjung merasa:
+
+> "Ini memang masalah saya."
+
+Misalnya:
+
+## Apakah Anda Pernah Mengalami Ini?
+
+☑ Dokumen tender belum lengkap saat deadline.
+
+☑ Metode pelaksanaan belum dibuat.
+
+☑ QA/QC masih kosong.
+
+☑ Kurva S belum selesai.
+
+☑ Laporan harian tercecer.
+
+☑ Admin proyek resign.
+
+☑ File hilang saat dibutuhkan.
+
+Kalau pengunjung mengangguk, dia akan lanjut membaca.
+
+---
+
+# Baru tampilkan solusi
+
+## Kami Membantu Menyusun
+
+Saya akan buat seperti kartu.
+
+📁 Dokumen Tender
+
+📁 Dokumen Kontrak
+
+📁 Dokumen QA/QC
+
+📁 Dokumen K3
+
+📁 RAB
+
+📁 Time Schedule
+
+📁 Kurva S
+
+📁 Shop Drawing
+
+📁 As Built Drawing
+
+📁 Laporan Harian
+
+📁 Laporan Mingguan
+
+📁 Laporan Bulanan
+
+---
+
+# Lalu saya tambahkan bagian yang belum dimiliki kompetitor
+
+## Lebih dari Sekadar Dokumen
+
+Banyak jasa selesai setelah file dikirim.
+
+Kami membantu agar pengetahuan proyek tidak hilang.
+
+Misalnya:
+
+✔ Semua dokumen tersimpan.
+
+✔ Mudah dicari.
+
+✔ Bisa ditanyakan kembali menggunakan AI.
+
+✔ Siap digunakan proyek berikutnya.
+
+Nah...
+
+Di sinilah baru muncul:
+
+> Powered by Gustafta Framework
+
+---
+
+# Halaman AI
+
+Saya tidak akan menyebut AI di homepage terlalu banyak.
+
+Saya buat halaman khusus.
+
+Misalnya
+
+```
+/ai-dokumen
+
+```
+
+Di situ ada demo.
+
+Misalnya:
+
+Upload metode pelaksanaan.
+
+Lalu chat:
+
+> Ada pekerjaan pengecoran?
+
+AI menjawab.
+
+---
+
+Upload kontrak.
+
+Chat:
+
+> Berapa nilai retensi?
+
+AI menjawab.
+
+---
+
+Upload gambar.
+
+Chat:
+
+> Ada berapa kolom tipe K1?
+
+AI menjawab.
+
+Ini akan menjadi pembeda yang sangat kuat.
+
+---
+
+# Halaman Layanan
+
+Saya justru akan membuat halaman layanan sangat detail.
+
+Misalnya:
+
+## Penyusunan Dokumen Tender
+
+Berisi:
+
+Apa yang kami kerjakan
+
+Siapa yang membutuhkan
+
+Estimasi waktu
+
+Output
+
+Yang harus disiapkan
+
+Harga mulai
+
+FAQ
+
+CTA
+
+---
+
+# Halaman Portfolio
+
+Jangan hanya foto.
+
+Buat studi kasus.
+
+Misalnya
+
+> Kontraktor Gedung
+
+Masalah
+
+↓
+
+Dokumen tercecer
+
+↓
+
+Kami rapikan
+
+↓
+
+Tender selesai tepat waktu
+
+↓
+
+Semua dokumen menjadi Knowledge Base
+
+---
+
+# Artikel
+
+Ini penting sekali untuk SEO.
+
+Contoh artikel:
+
+Cara Membuat Metode Pelaksanaan
+
+Checklist Tender LPSE
+
+Perbedaan RAB dan Engineer Estimate
+
+Cara Menyusun Kurva S
+
+Cara Membuat Time Schedule
+
+Administrasi Proyek untuk Site Engineer
+
+Template Laporan Harian
+
+Cara Menyusun Dokumen QA/QC
+
+Kalau setiap minggu ada 2 artikel, dalam setahun Anda punya lebih dari 100 artikel yang dapat menarik calon pelanggan dari Google.
+
+---
+
+# Roadmap 3 Tahun
+
+Saya melihat bisnis ini bisa berkembang bertahap:
+
+### Tahap 1 (Sekarang)
+
+**Jasa Dokumen Proyek**
+
+* Pendapatan dari jasa.
+* Bangun kepercayaan dan portofolio.
+
+### Tahap 2
+
+**DokumenProyek+**
+
+* Penyimpanan dokumen berbasis cloud.
+* Checklist proyek.
+* Dashboard progres.
+
+### Tahap 3
+
+**AI Project Office**
+
+* Chat dengan seluruh dokumen proyek.
+* Ringkasan otomatis.
+* Analisis risiko.
+* Pembuatan dokumen otomatis.
+* Business Memory perusahaan.
+
+Semua itu tetap menggunakan **Gustafta Framework** sebagai mesin di belakang layar.
+
+---
+
+## Ada satu ide yang menurut saya bisa menjadi pembeda terbesar
+
+Daripada slogan:
+
+> "Jasa Dokumen Tender"
+
+Saya akan menggunakan slogan:
+
+> **"Kami Menjaga Memori Proyek Anda."**
+
+Karena maknanya jauh lebih dalam.
+
+* Saat tender → kami membantu menyusun dokumen.
+* Saat proyek berjalan → kami membantu mengelola administrasi.
+* Setelah proyek selesai → kami menyimpan pengetahuan proyek agar tidak hilang.
+
+Ini sangat selaras dengan visi yang selama ini Anda bangun untuk Gustafta, yaitu menjadikan pengetahuan perusahaan tetap hidup dan dapat dimanfaatkan kembali pada proyek-proyek berikutnya. Dengan begitu, **DokumenProyek.com** bukan sekadar bisnis jasa, tetapi menjadi pintu masuk menuju ekosistem Gustafta.
