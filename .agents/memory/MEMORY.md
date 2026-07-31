@@ -1,4 +1,5 @@
 - [AI Dokumen Query feature](ai-dokumen-query.md) — pdf-parse is CJS-only; must use createRequire in ESM routes.ts to import it.
+- [Custom Auth System](custom-auth.md) — replaced Replit OIDC with Email OTP (Brevo) + WhatsApp OTP (Fonnte) + Google OAuth (disabled until creds set).
 - [Post-merge script](post-merge-setup.md) — scripts/post-merge.sh runs npm install + npm run db:push; configured at 120s timeout.
 - [Platform rename](platform-rename.md) — DokumenTender.com renamed to DokumenProyek.com; Gustafta is "Intel Inside" engine brand shown as badge in Navbar.
 - [Gustafta feature mapping](gustafta-features.md) — all Gustafta AI OS features mapped; 12 routes live including TenderaClaw, LexCom, Workroom, SBUClaw, KompetensiHub, ASKOMCoach.
