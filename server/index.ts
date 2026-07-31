@@ -106,7 +106,7 @@ app.use((req, res, next) => {
   app.get("/api/auth/config", (_req, res) => {
     res.json({
       google:    !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET),
-      email:     !!(process.env.SMTP_USER && process.env.SMTP_PASS),
+      email:     !!(process.env.BREVO_API_KEY),
       whatsapp:  !!(process.env.FONNTE_TOKEN),
     });
   });

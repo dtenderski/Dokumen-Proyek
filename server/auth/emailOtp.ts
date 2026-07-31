@@ -1,5 +1,4 @@
 import type { Express } from "express";
-import nodemailer from "nodemailer";
 import { authStorage } from "../replit_integrations/auth/storage";
 import { db } from "../db";
 import { users } from "../../shared/models/auth";
@@ -21,30 +20,17 @@ function generateOTP(): string {
   return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
-function getTransporter() {
-  // Default ke Brevo SMTP relay — SMTP_HOST hanya perlu di-override kalau bukan Brevo
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST || "smtp-relay.brevo.com",
-    port: Number(process.env.SMTP_PORT ?? 587),
-    secure: process.env.SMTP_SECURE === "true", // false untuk port 587 (STARTTLS)
-    auth: {
-      user: process.env.SMTP_USER!,
-      pass: process.env.SMTP_PASS!,
-    },
-    tls: { rejectUnauthorized: false },
-  });
-}
-
+/** Send via Brevo Transactional Email API — no IP restrictions, no SMTP needed */
 async function sendOtpEmail(toEmail: string, otp: string) {
-  const from = process.env.SMTP_FROM || process.env.SMTP_USER || "noreply@dokumenproyek.com";
-  const transporter = getTransporter();
+  const apiKey = process.env.BREVO_API_KEY!;
+  const senderEmail = process.env.BREVO_SENDER_EMAIL || "noreply@dokumenproyek.com";
 
-  await transporter.sendMail({
-    from: `"DokumenProyek.com" <${from}>`,
-    to: toEmail,
+  const body = {
+    sender: { name: "DokumenProyek.com", email: senderEmail },
+    to: [{ email: toEmail }],
     subject: `${otp} — Kode Verifikasi DokumenProyek.com`,
-    text: `Kode verifikasi Anda: ${otp}\n\nBerlaku selama 10 menit.\nJangan bagikan kode ini ke siapapun.`,
-    html: `
+    textContent: `Kode verifikasi Anda: ${otp}\n\nBerlaku selama 10 menit.\nJangan bagikan kode ini ke siapapun.`,
+    htmlContent: `
 <!DOCTYPE html>
 <html>
 <body style="margin:0;padding:0;background:#0f172a;font-family:ui-sans-serif,system-ui,sans-serif;">
@@ -86,13 +72,28 @@ async function sendOtpEmail(toEmail: string, otp: string) {
   </table>
 </body>
 </html>`,
+  };
+
+  const res = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: {
+      "api-key": apiKey,
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+    },
+    body: JSON.stringify(body),
   });
+
+  if (!res.ok) {
+    const detail = await res.text().catch(() => res.statusText);
+    throw new Error(`Brevo API error ${res.status}: ${detail}`);
+  }
 }
 
 // ─── Routes ────────────────────────────────────────────────────────────────
 export function setupEmailOtp(app: Express) {
-  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-    console.warn("[Auth] SMTP_USER / SMTP_PASS not set — Email OTP login disabled.");
+  if (!process.env.BREVO_API_KEY) {
+    console.warn("[Auth] BREVO_API_KEY not set — Email OTP login disabled.");
   }
 
   // POST /api/auth/email-otp/send
@@ -103,7 +104,7 @@ export function setupEmailOtp(app: Express) {
       return res.status(400).json({ error: "Format email tidak valid." });
     }
 
-    if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+    if (!process.env.BREVO_API_KEY) {
       return res.status(503).json({ error: "Email OTP belum dikonfigurasi di server." });
     }
 
