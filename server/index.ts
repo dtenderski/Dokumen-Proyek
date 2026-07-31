@@ -5,6 +5,7 @@ import { createServer } from "http";
 import { setupAuth, registerAuthRoutes } from "./replit_integrations/auth";
 import { setupGoogleAuth } from "./auth/googleAuth";
 import { setupEmailOtp } from "./auth/emailOtp";
+import { setupFonnte } from "./auth/fonnte";
 
 const app = express();
 const httpServer = createServer(app);
@@ -99,6 +100,17 @@ app.use((req, res, next) => {
   await setupAuth(app);
   setupGoogleAuth(app);
   setupEmailOtp(app);
+  setupFonnte(app);
+
+  // Public endpoint — tells the frontend which login methods are configured
+  app.get("/api/auth/config", (_req, res) => {
+    res.json({
+      google:    !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET),
+      email:     !!(process.env.SMTP_USER && process.env.SMTP_PASS),
+      whatsapp:  !!(process.env.FONNTE_TOKEN),
+    });
+  });
+
   registerAuthRoutes(app);
   await registerRoutes(httpServer, app);
 
