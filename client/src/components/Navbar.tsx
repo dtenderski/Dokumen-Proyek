@@ -399,7 +399,7 @@ export function Navbar() {
               </div>
             ) : (
               <button
-                onClick={() => (window.location.href = "/api/login")}
+                onClick={() => (window.location.href = "/login")}
                 className={cn(
                   "inline-flex items-center gap-1.5 px-4 h-7 rounded text-[11px] font-bold shadow-sm transition-colors",
                   isScrolled ? "bg-primary text-white hover:bg-primary/90" : "bg-white text-slate-900 hover:bg-white/90"
@@ -476,7 +476,7 @@ function MobileDrawer({
           </>
         ) : (
           <Button className="w-full gap-2 text-xs font-bold h-8"
-            onClick={() => (window.location.href = "/api/login")} data-testid="button-login-mobile">
+            onClick={() => (window.location.href = "/login")} data-testid="button-login-mobile">
             Masuk / Daftar
           </Button>
         ))}

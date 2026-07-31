@@ -3,6 +3,8 @@ import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
 import { createServer } from "http";
 import { setupAuth, registerAuthRoutes } from "./replit_integrations/auth";
+import { setupGoogleAuth } from "./auth/googleAuth";
+import { setupEmailOtp } from "./auth/emailOtp";
 
 const app = express();
 const httpServer = createServer(app);
@@ -95,6 +97,8 @@ app.use((req, res, next) => {
 
 (async () => {
   await setupAuth(app);
+  setupGoogleAuth(app);
+  setupEmailOtp(app);
   registerAuthRoutes(app);
   await registerRoutes(httpServer, app);
 

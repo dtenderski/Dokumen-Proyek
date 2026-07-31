@@ -1,5 +1,4 @@
 import { Switch, Route } from "wouter";
-import { useEffect } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider, useQuery } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -45,6 +44,7 @@ import { Chatbot } from "@/components/Chatbot";
 import { ServiceNav } from "@/components/ServiceNav";
 import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
 import type { UserProfile } from "@shared/schema";
+import LoginPage from "@/pages/LoginPage";
 import JasaDokumenSKI from "@/pages/JasaDokumenSKI";
 import LayananSKI from "@/pages/LayananSKI";
 import Toko from "@/pages/Toko";
@@ -56,11 +56,6 @@ import EksekutifSummaryPage from "@/pages/EksekutifSummaryPage";
 import KonstruksiAIPage from "@/pages/KonstruksiAIPage";
 import KeuanganPajakPage from "@/pages/KeuanganPajakPage";
 
-/** Redirect /login → Replit OIDC so the URL is memorable for users */
-function LoginRedirect() {
-  useEffect(() => { window.location.replace("/api/login"); }, []);
-  return null;
-}
 
 function AuthenticatedRouter() {
   const { user, isLoading: authLoading } = useAuth();
@@ -201,8 +196,8 @@ function AuthenticatedRouter() {
       <Route path="/financial" component={FinancialModule} />
       <Route path="/equipment" component={EquipmentRental} />
       <Route path="/analytics" component={Analytics} />
-      {/* /login → redirect to Replit OIDC */}
-      <Route path="/login" component={LoginRedirect} />
+      {/* /login → custom login page */}
+      <Route path="/login" component={LoginPage} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -102,11 +102,8 @@ export async function setupAuth(app: Express) {
   passport.serializeUser((user: Express.User, cb) => cb(null, user));
   passport.deserializeUser((user: Express.User, cb) => cb(null, user));
 
-  app.get("/api/login", (req, res, next) => {
-    ensureStrategy(req.hostname);
-    // Preserve the returnTo destination so passport redirects there after login.
-    // Only accept safe same-origin relative paths (must start with / but not //)
-    // to prevent open-redirect attacks.
+  // Redirect legacy /api/login to the custom login page
+  app.get("/api/login", (req, res) => {
     const returnTo = req.query.returnTo;
     if (
       typeof returnTo === "string" &&
@@ -115,29 +112,37 @@ export async function setupAuth(app: Express) {
       !returnTo.includes(":")
     ) {
       (req.session as any).returnTo = returnTo;
+      return res.redirect(`/login?returnTo=${encodeURIComponent(returnTo)}`);
     }
-    passport.authenticate(`replitauth:${req.hostname}`, {
-      prompt: "login consent",
-      scope: ["openid", "email", "profile", "offline_access"],
-    })(req, res, next);
+    return res.redirect("/login");
   });
 
+  // Keep OIDC callback in case of any existing OIDC sessions
   app.get("/api/callback", (req, res, next) => {
     ensureStrategy(req.hostname);
     passport.authenticate(`replitauth:${req.hostname}`, {
       successReturnToOrRedirect: "/",
-      failureRedirect: "/api/login",
+      failureRedirect: "/login?error=oidc_failed",
     })(req, res, next);
   });
 
   app.get("/api/logout", (req, res) => {
+    const user = req.user as any;
+    const isOidcSession = !!(user?.claims);
     req.logout(() => {
-      res.redirect(
-        client.buildEndSessionUrl(config, {
-          client_id: process.env.REPL_ID!,
-          post_logout_redirect_uri: `${req.protocol}://${req.hostname}`,
-        }).href
-      );
+      if (isOidcSession) {
+        try {
+          return res.redirect(
+            client.buildEndSessionUrl(config, {
+              client_id: process.env.REPL_ID!,
+              post_logout_redirect_uri: `${req.protocol}://${req.hostname}`,
+            }).href
+          );
+        } catch {
+          // Fallback if OIDC config fails
+        }
+      }
+      res.redirect("/");
     });
   });
 }
@@ -145,7 +150,17 @@ export async function setupAuth(app: Express) {
 export const isAuthenticated: RequestHandler = async (req, res, next) => {
   const user = req.user as any;
 
-  if (!req.isAuthenticated() || !user.expires_at) {
+  if (!req.isAuthenticated()) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  // New-style auth (Google OAuth or Email OTP) — id is stored directly in session
+  if (user.id) {
+    return next();
+  }
+
+  // Legacy OIDC auth — check token expiry and refresh
+  if (!user.expires_at) {
     return res.status(401).json({ message: "Unauthorized" });
   }
 
