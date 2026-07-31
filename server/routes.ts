@@ -5,6 +5,20 @@ import { api } from "@shared/routes";
 import { z } from "zod";
 import { isAuthenticated } from "./replit_integrations/auth";
 
+// ── Auth helpers — support both new-style (Google/Email/WA) and legacy OIDC sessions ──
+/** Returns the user's DB id regardless of auth method */
+function getUserId(req: any): string {
+  return req.user?.id ?? req.user?.claims?.sub ?? "";
+}
+/** Returns the user's email regardless of auth method */
+function getUserEmail(req: any): string {
+  return (req.user?.email ?? req.user?.claims?.email ?? "").toLowerCase();
+}
+/** Returns the user's display name regardless of auth method */
+function getUserUsername(req: any): string {
+  return req.user?.firstName ?? req.user?.claims?.username ?? req.user?.claims?.first_name ?? "";
+}
+
 // ── SuperAdmin guard ──────────────────────────────────────────────────────────
 // Set env var SUPERADMIN_EMAILS as comma-separated email addresses.
 // Example: SUPERADMIN_EMAILS=admin@perusahaan.com,owner@dokumenproyek.com
@@ -12,7 +26,7 @@ const SUPERADMIN_EMAILS = new Set(
   (process.env.SUPERADMIN_EMAILS || "").split(",").map(s => s.trim().toLowerCase()).filter(Boolean)
 );
 function isSuperAdmin(req: any, res: any, next: any) {
-  const email: string = (req.user?.claims?.email ?? "").toLowerCase();
+  const email: string = getUserEmail(req);
   if (SUPERADMIN_EMAILS.size > 0 && email && SUPERADMIN_EMAILS.has(email)) return next();
   if (SUPERADMIN_EMAILS.size === 0) {
     console.warn(`[SuperAdmin] SUPERADMIN_EMAILS not configured. Set it to your email. Requesting: ${email}`);
@@ -243,15 +257,15 @@ export async function registerRoutes(
 
   // GET /api/auth/whoami — returns the logged-in user's email & superadmin status
   app.get("/api/auth/whoami", isAuthenticated, (req: any, res) => {
-    const email: string = (req.user?.claims?.email ?? "").toLowerCase();
-    const username: string = req.user?.claims?.username ?? "";
+    const email = getUserEmail(req);
+    const username = getUserUsername(req);
     res.json({ email, username, isSuperAdmin: SUPERADMIN_EMAILS.has(email) });
   });
 
   // User Profile routes
   app.get("/api/profile", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const profile = await storage.getUserProfile(userId);
       res.json(profile);
     } catch (err) {
@@ -261,7 +275,7 @@ export async function registerRoutes(
 
   app.post("/api/profile", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const existing = await storage.getUserProfile(userId);
       
       const data = insertUserProfileSchema.parse({ ...req.body, userId });
@@ -298,7 +312,7 @@ export async function registerRoutes(
 
   app.post("/api/opportunities", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const data = insertOpportunitySchema.parse({ ...req.body, postedBy: userId });
       const opp = await storage.createOpportunity(data);
       res.status(201).json(opp);
@@ -317,14 +331,14 @@ export async function registerRoutes(
   });
 
   app.get("/api/my-products", isAuthenticated, async (req: any, res) => {
-    const userId = req.user.claims.sub;
+    const userId = getUserId(req);
     const prods = await storage.getProductsByUser(userId);
     res.json(prods);
   });
 
   app.post("/api/products", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const data = insertProductSchema.parse({ ...req.body, sellerId: userId });
       const product = await storage.createProduct(data);
       res.status(201).json(product);
@@ -350,7 +364,7 @@ export async function registerRoutes(
 
   // Orders (Marketplace with Escrow)
   app.get("/api/my-orders", isAuthenticated, async (req: any, res) => {
-    const userId = req.user.claims.sub;
+    const userId = getUserId(req);
     const buyerOrders = await storage.getOrdersByBuyer(userId);
     const sellerOrders = await storage.getOrdersBySeller(userId);
     res.json({ buyerOrders, sellerOrders });
@@ -358,7 +372,7 @@ export async function registerRoutes(
 
   app.post("/api/orders", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const { productId, quantity, shippingAddress, notes, paymentMethod } = req.body;
       
       // Validate product exists and get seller info
@@ -404,7 +418,7 @@ export async function registerRoutes(
       return res.status(400).json({ message: "Invalid order ID" });
     }
     
-    const userId = req.user.claims.sub;
+    const userId = getUserId(req);
     const { status } = req.body;
     
     // Get existing order to check authorization
@@ -451,7 +465,7 @@ export async function registerRoutes(
 
   // Tender Documents
   app.get("/api/tender-documents", isAuthenticated, async (req: any, res) => {
-    const userId = req.user.claims.sub;
+    const userId = getUserId(req);
     const docs = await storage.getTenderDocumentsByUser(userId);
     res.json(docs);
   });
@@ -461,7 +475,7 @@ export async function registerRoutes(
     if (isNaN(id)) {
       return res.status(400).json({ message: "Invalid document ID" });
     }
-    const userId = req.user.claims.sub;
+    const userId = getUserId(req);
     const doc = await storage.getTenderDocument(id);
     if (!doc) {
       return res.status(404).json({ message: "Document not found" });
@@ -474,7 +488,7 @@ export async function registerRoutes(
 
   app.post("/api/tender-documents", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const data = insertTenderDocumentSchema.parse({ ...req.body, userId });
       const doc = await storage.createTenderDocument(data);
       res.status(201).json(doc);
@@ -491,7 +505,7 @@ export async function registerRoutes(
     if (isNaN(id)) {
       return res.status(400).json({ message: "Invalid document ID" });
     }
-    const userId = req.user.claims.sub;
+    const userId = getUserId(req);
     const doc = await storage.getTenderDocument(id);
     if (!doc) {
       return res.status(404).json({ message: "Document not found" });
@@ -511,7 +525,7 @@ export async function registerRoutes(
 
   // Projects
   app.get("/api/projects", isAuthenticated, async (req: any, res) => {
-    const userId = req.user.claims.sub;
+    const userId = getUserId(req);
     const projs = await storage.getProjectsByUser(userId);
     res.json(projs);
   });
@@ -521,7 +535,7 @@ export async function registerRoutes(
     if (isNaN(id)) {
       return res.status(400).json({ message: "Invalid project ID" });
     }
-    const userId = req.user.claims.sub;
+    const userId = getUserId(req);
     const project = await storage.getProject(id);
     if (!project) {
       return res.status(404).json({ message: "Project not found" });
@@ -534,7 +548,7 @@ export async function registerRoutes(
 
   app.post("/api/projects", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const data = insertProjectSchema.parse({ ...req.body, userId });
       const project = await storage.createProject(data);
       res.status(201).json(project);
@@ -551,7 +565,7 @@ export async function registerRoutes(
     if (isNaN(id)) {
       return res.status(400).json({ message: "Invalid project ID" });
     }
-    const userId = req.user.claims.sub;
+    const userId = getUserId(req);
     const existing = await storage.getProject(id);
     if (!existing) {
       return res.status(404).json({ message: "Project not found" });
@@ -569,7 +583,7 @@ export async function registerRoutes(
     if (isNaN(id)) {
       return res.status(400).json({ message: "Invalid project ID" });
     }
-    const userId = req.user.claims.sub;
+    const userId = getUserId(req);
     const project = await storage.getProject(id);
     if (!project) {
       return res.status(404).json({ message: "Project not found" });
@@ -587,7 +601,7 @@ export async function registerRoutes(
       if (isNaN(projectId)) {
         return res.status(400).json({ message: "Invalid project ID" });
       }
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const project = await storage.getProject(projectId);
       if (!project) {
         return res.status(404).json({ message: "Project not found" });
@@ -616,14 +630,14 @@ export async function registerRoutes(
 
   // Financial Transactions
   app.get("/api/transactions", isAuthenticated, async (req: any, res) => {
-    const userId = req.user.claims.sub;
+    const userId = getUserId(req);
     const txns = await storage.getTransactionsByUser(userId);
     res.json(txns);
   });
 
   app.post("/api/transactions", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const data = insertTransactionSchema.parse({ ...req.body, userId });
       const txn = await storage.createTransaction(data);
       res.status(201).json(txn);
@@ -650,7 +664,7 @@ export async function registerRoutes(
     if (isNaN(id)) {
       return res.status(400).json({ message: "Invalid transaction ID" });
     }
-    const userId = req.user.claims.sub;
+    const userId = getUserId(req);
     const existing = await storage.getTransaction(id);
     if (!existing) {
       return res.status(404).json({ message: "Transaction not found" });
@@ -679,7 +693,7 @@ export async function registerRoutes(
     if (isNaN(id)) {
       return res.status(400).json({ message: "Invalid transaction ID" });
     }
-    const userId = req.user.claims.sub;
+    const userId = getUserId(req);
     const existing = await storage.getTransaction(id);
     if (!existing) {
       return res.status(404).json({ message: "Transaction not found" });
@@ -698,7 +712,7 @@ export async function registerRoutes(
   });
 
   app.get("/api/equipments/mine", isAuthenticated, async (req: any, res) => {
-    const userId = req.user.claims.sub;
+    const userId = getUserId(req);
     const eqs = await storage.getEquipmentsByOwner(userId);
     res.json(eqs);
   });
@@ -711,7 +725,7 @@ export async function registerRoutes(
 
   app.post("/api/equipments", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const data = insertEquipmentSchema.parse({ ...req.body, ownerId: userId });
       const eq = await storage.createEquipment(data);
       res.status(201).json(eq);
@@ -725,7 +739,7 @@ export async function registerRoutes(
 
   app.patch("/api/equipments/:id", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const eq = await storage.getEquipment(parseInt(req.params.id));
       if (!eq) return res.status(404).json({ message: "Equipment not found" });
       if (eq.ownerId !== userId) return res.status(403).json({ message: "Unauthorized" });
@@ -745,20 +759,20 @@ export async function registerRoutes(
 
   // Equipment Rentals
   app.get("/api/rentals/mine", isAuthenticated, async (req: any, res) => {
-    const userId = req.user.claims.sub;
+    const userId = getUserId(req);
     const rentals = await storage.getRentalsByRenter(userId);
     res.json(rentals);
   });
 
   app.get("/api/rentals/owner", isAuthenticated, async (req: any, res) => {
-    const userId = req.user.claims.sub;
+    const userId = getUserId(req);
     const rentals = await storage.getRentalsByOwner(userId);
     res.json(rentals);
   });
 
   app.post("/api/rentals", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const eq = await storage.getEquipment(req.body.equipmentId);
       if (!eq) return res.status(404).json({ message: "Equipment not found" });
       if (eq.availability !== "available") return res.status(400).json({ message: "Equipment not available" });
@@ -780,7 +794,7 @@ export async function registerRoutes(
 
   app.patch("/api/rentals/:id/status", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const rentalId = parseInt(req.params.id);
       
       const ownerRentals = await storage.getRentalsByOwner(userId);
@@ -914,7 +928,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
   // Load latest session messages for authenticated user
   app.get("/api/chat/history", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const session = await storage.getLatestChatSession(userId);
       if (!session) {
         return res.json({ sessionId: null, messages: [] });
@@ -929,7 +943,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
   // List all chat sessions for authenticated user
   app.get("/api/chat/sessions", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const sessions = await storage.getChatSessionsByUser(userId);
       res.json(sessions);
     } catch (err) {
@@ -940,7 +954,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
   // Load messages for a specific session
   app.get("/api/chat/sessions/:id", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const id = parseInt(req.params.id);
       if (isNaN(id)) return res.status(400).json({ message: "Invalid session ID" });
       const session = await storage.getChatSession(id);
@@ -956,7 +970,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
   // Create a new chat session
   app.post("/api/chat/history/session", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const { title } = req.body;
       const session = await storage.createChatSession({
         userId,
@@ -971,7 +985,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
   // Rename a chat session
   app.patch("/api/chat/sessions/:id", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const id = parseInt(req.params.id);
       if (isNaN(id)) return res.status(400).json({ message: "Invalid session ID" });
       const session = await storage.getChatSession(id);
@@ -991,7 +1005,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
   // Delete a chat session via the sessions/:id path
   app.delete("/api/chat/sessions/:id", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const id = parseInt(req.params.id);
       if (isNaN(id)) return res.status(400).json({ message: "Invalid session ID" });
       const session = await storage.getChatSession(id);
@@ -1007,7 +1021,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
   // Delete a chat session (and its messages via cascade)
   app.delete("/api/chat/history/session/:id", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const id = parseInt(req.params.id);
       if (isNaN(id)) return res.status(400).json({ message: "Invalid session ID" });
       const session = await storage.getChatSession(id);
@@ -1023,7 +1037,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
   // Append a message to a session
   app.post("/api/chat/history/message", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const { sessionId, role, content } = req.body;
       if (!sessionId || !role || !content) {
         return res.status(400).json({ message: "sessionId, role, and content are required" });
@@ -1056,7 +1070,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
       if (!validServices.includes(serviceType)) {
         return res.status(400).json({ message: "serviceType tidak valid" });
       }
-      const userId = req.user?.claims?.sub || null;
+      const userId = getUserId(req) || null;
       const c = await storage.createConsultation({ serviceType, name, email, phone: phone || null, companyName: companyName || null, message, userId, status: "pending", adminNotes: null });
       res.status(201).json(c);
     } catch (err) {
@@ -1067,7 +1081,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
   // Get current user's consultations
   app.get("/api/consultations/mine", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const list = await storage.getConsultationsByUser(userId);
       res.json(list);
     } catch (err) {
@@ -1105,7 +1119,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
 
   app.get("/api/generated-docs", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const docs = await storage.getGeneratedDocumentsByUser(userId);
       res.json(docs);
     } catch (err) {
@@ -1125,7 +1139,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
 
   app.post("/api/generated-docs", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const { templateId, templateName, kategori, formData, generatedContent } = req.body;
       if (!templateId || !templateName || !kategori || !generatedContent) {
         return res.status(400).json({ message: "templateId, templateName, kategori, dan generatedContent wajib diisi" });
@@ -1143,7 +1157,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
 
   app.delete("/api/generated-docs/:id", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const doc = await storage.getGeneratedDocument(parseInt(req.params.id));
       if (!doc) return res.status(404).json({ message: "Dokumen tidak ditemukan" });
       if (doc.userId !== userId) return res.status(403).json({ message: "Tidak diizinkan" });
@@ -1158,7 +1172,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
 
   app.get("/api/notifications", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const list = await storage.getNotificationsByUser(userId);
       res.json(list);
     } catch (err) {
@@ -1168,7 +1182,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
 
   app.get("/api/notifications/unread-count", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const count = await storage.getUnreadCount(userId);
       res.json({ count });
     } catch (err) {
@@ -1178,7 +1192,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
 
   app.post("/api/notifications", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const { title, message, type, link } = req.body;
       if (!title || !message) return res.status(400).json({ message: "title dan message wajib diisi" });
       const n = await storage.createNotification({ userId, title, message, type: type || "info", isRead: false, link: link || null });
@@ -1200,7 +1214,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
 
   app.patch("/api/notifications/read-all", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       await storage.markAllNotificationsRead(userId);
       res.json({ success: true });
     } catch (err) {
@@ -1221,7 +1235,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
 
   app.get("/api/agent-sessions", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const sessions = await storage.getAgentSessionsByUser(userId);
       res.json(sessions);
     } catch (err) {
@@ -1231,7 +1245,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
 
   app.post("/api/agent-sessions", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const { title, activeAgents } = req.body;
       const session = await storage.createAgentSession({
         userId, title: title || "Sesi Konsultasi Baru",
@@ -1246,7 +1260,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
 
   app.patch("/api/agent-sessions/:id", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const id = parseInt(req.params.id);
       const session = await storage.getAgentSession(id);
       if (!session) return res.status(404).json({ message: "Sesi tidak ditemukan" });
@@ -1260,7 +1274,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
 
   app.delete("/api/agent-sessions/:id", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const id = parseInt(req.params.id);
       const session = await storage.getAgentSession(id);
       if (!session) return res.status(404).json({ message: "Sesi tidak ditemukan" });
@@ -1274,7 +1288,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
 
   app.get("/api/agent-sessions/:id/messages", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const id = parseInt(req.params.id);
       const session = await storage.getAgentSession(id);
       if (!session) return res.status(404).json({ message: "Sesi tidak ditemukan" });
@@ -1288,7 +1302,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
 
   app.post("/api/agent-sessions/:id/messages", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const sessionId = parseInt(req.params.id);
       const session = await storage.getAgentSession(sessionId);
       if (!session) return res.status(404).json({ message: "Sesi tidak ditemukan" });
@@ -1312,7 +1326,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
 
   app.get("/api/verifications", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const list = await storage.getVerificationsByUser(userId);
       res.json(list);
     } catch (err) {
@@ -1330,7 +1344,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
       if (!validTypes.includes(documentType)) {
         return res.status(400).json({ message: "documentType tidak valid" });
       }
-      const userId = req.user?.claims?.sub || null;
+      const userId = getUserId(req) || null;
       const v = await storage.createVerification({
         documentType, documentNumber, holderName,
         issuerName: issuerName || null,
@@ -1371,7 +1385,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
 
   app.get("/api/saved-calculations", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const list = await storage.getSavedCalculationsByUser(userId);
       res.json(list);
     } catch (err) {
@@ -1381,7 +1395,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
 
   app.post("/api/saved-calculations", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const { calcType, title, inputData, resultSummary } = req.body;
       if (!calcType || !title || !resultSummary) {
         return res.status(400).json({ message: "calcType, title, dan resultSummary wajib diisi" });
@@ -1398,7 +1412,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
 
   app.delete("/api/saved-calculations/:id", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const calcs = await storage.getSavedCalculationsByUser(userId);
       const calc = calcs.find(c => c.id === parseInt(req.params.id));
       if (!calc) return res.status(404).json({ message: "Kalkulasi tidak ditemukan atau bukan milik Anda" });
@@ -1414,7 +1428,7 @@ Ketika diminta membuat draft, buatkan dokumen yang lengkap, profesional, dan sia
   app.post("/api/brain-project/:id/analyze", isAuthenticated, async (req: any, res) => {
     try {
       const projectId = parseInt(req.params.id);
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
 
       const project = await storage.getProject(projectId);
       if (!project || project.userId !== userId) {
@@ -1531,7 +1545,7 @@ summary: <1 kalimat ringkasan untuk eksekutif>
   // List all memories for authenticated user
   app.get("/api/memory", isAuthenticated, async (req: any, res) => {
     try {
-      const memories = await storage.getBusinessMemoryByUser(req.user.claims.sub);
+      const memories = await storage.getBusinessMemoryByUser(getUserId(req));
       res.json(memories);
     } catch { res.status(500).json({ message: "Gagal memuat memory" }); }
   });
@@ -1544,7 +1558,7 @@ summary: <1 kalimat ringkasan untuk eksekutif>
         return res.status(400).json({ message: "category, title, dan description wajib diisi" });
       }
       const entry = await storage.createBusinessMemory({
-        userId: req.user.claims.sub,
+        userId: getUserId(req),
         category,
         title: title.trim(),
         description: description.trim(),
@@ -1562,7 +1576,7 @@ summary: <1 kalimat ringkasan untuk eksekutif>
       const id = parseInt(req.params.id);
       if (isNaN(id)) return res.status(400).json({ message: "Invalid ID" });
       const existing = await storage.getBusinessMemory(id);
-      if (!existing || existing.userId !== req.user.claims.sub) {
+      if (!existing || existing.userId !== getUserId(req)) {
         return res.status(404).json({ message: "Memory tidak ditemukan" });
       }
       const { category, title, description, tags, eventDate, isActive } = req.body;
@@ -1584,7 +1598,7 @@ summary: <1 kalimat ringkasan untuk eksekutif>
       const id = parseInt(req.params.id);
       if (isNaN(id)) return res.status(400).json({ message: "Invalid ID" });
       const existing = await storage.getBusinessMemory(id);
-      if (!existing || existing.userId !== req.user.claims.sub) {
+      if (!existing || existing.userId !== getUserId(req)) {
         return res.status(404).json({ message: "Memory tidak ditemukan" });
       }
       await storage.deleteBusinessMemory(id);
@@ -1667,7 +1681,7 @@ Buat analisis yang spesifik dan langsung berguna, bukan generik.`;
   // List cases
   app.get("/api/klinik/cases", isAuthenticated, async (req: any, res) => {
     try {
-      const cases = await storage.getConsultationCasesByUser(req.user.claims.sub);
+      const cases = await storage.getConsultationCasesByUser(getUserId(req));
       res.json(cases);
     } catch { res.status(500).json({ message: "Gagal memuat kasus" }); }
   });
@@ -1678,7 +1692,7 @@ Buat analisis yang spesifik dan langsung berguna, bukan generik.`;
       const { title, serviceType, description, priority } = req.body;
       if (!title || !serviceType) return res.status(400).json({ message: "title dan serviceType wajib diisi" });
       const kasus = await storage.createConsultationCase({
-        userId: req.user.claims.sub, title, serviceType,
+        userId: getUserId(req), title, serviceType,
         description: description || null, priority: priority || "normal", status: "open",
       });
       res.status(201).json(kasus);
@@ -1689,7 +1703,7 @@ Buat analisis yang spesifik dan langsung berguna, bukan generik.`;
   app.get("/api/klinik/cases/:id", isAuthenticated, async (req: any, res) => {
     try {
       const kasus = await storage.getConsultationCase(parseInt(req.params.id));
-      if (!kasus || kasus.userId !== req.user.claims.sub) return res.status(404).json({ message: "Kasus tidak ditemukan" });
+      if (!kasus || kasus.userId !== getUserId(req)) return res.status(404).json({ message: "Kasus tidak ditemukan" });
       res.json(kasus);
     } catch { res.status(500).json({ message: "Gagal memuat kasus" }); }
   });
@@ -1698,7 +1712,7 @@ Buat analisis yang spesifik dan langsung berguna, bukan generik.`;
   app.delete("/api/klinik/cases/:id", isAuthenticated, async (req: any, res) => {
     try {
       const kasus = await storage.getConsultationCase(parseInt(req.params.id));
-      if (!kasus || kasus.userId !== req.user.claims.sub) return res.status(404).json({ message: "Kasus tidak ditemukan" });
+      if (!kasus || kasus.userId !== getUserId(req)) return res.status(404).json({ message: "Kasus tidak ditemukan" });
       await storage.deleteConsultationCase(kasus.id);
       res.json({ success: true });
     } catch { res.status(500).json({ message: "Gagal menghapus kasus" }); }
@@ -1714,12 +1728,12 @@ Buat analisis yang spesifik dan langsung berguna, bukan generik.`;
     }
     try {
       const kasus = await storage.getConsultationCase(parseInt(req.params.id));
-      if (!kasus || kasus.userId !== req.user.claims.sub) return res.status(404).json({ message: "Kasus tidak ditemukan" });
+      if (!kasus || kasus.userId !== getUserId(req)) return res.status(404).json({ message: "Kasus tidak ditemukan" });
 
       await storage.updateConsultationCase(kasus.id, { status: "analyzing" });
 
       // Fetch active business memory for this user
-      const memories = await storage.getBusinessMemoryByUser(req.user.claims.sub, true);
+      const memories = await storage.getBusinessMemoryByUser(getUserId(req), true);
       let memoryContext: string | undefined;
       if (memories.length > 0) {
         memoryContext = memories.slice(0, 8).map(m =>
@@ -1749,7 +1763,7 @@ Buat analisis yang spesifik dan langsung berguna, bukan generik.`;
   app.get("/api/klinik/cases/:id/messages", isAuthenticated, async (req: any, res) => {
     try {
       const kasus = await storage.getConsultationCase(parseInt(req.params.id));
-      if (!kasus || kasus.userId !== req.user.claims.sub) return res.status(404).json({ message: "Kasus tidak ditemukan" });
+      if (!kasus || kasus.userId !== getUserId(req)) return res.status(404).json({ message: "Kasus tidak ditemukan" });
       const messages = await storage.getCaseMessages(kasus.id);
       res.json(messages);
     } catch { res.status(500).json({ message: "Gagal memuat pesan" }); }
@@ -1768,7 +1782,7 @@ Buat analisis yang spesifik dan langsung berguna, bukan generik.`;
       if (!message?.trim()) return res.status(400).json({ message: "Pesan tidak boleh kosong" });
 
       const kasus = await storage.getConsultationCase(parseInt(req.params.id));
-      if (!kasus || kasus.userId !== req.user.claims.sub) return res.status(404).json({ message: "Kasus tidak ditemukan" });
+      if (!kasus || kasus.userId !== getUserId(req)) return res.status(404).json({ message: "Kasus tidak ditemukan" });
 
       // Save user message
       const userMessage = await storage.createCaseMessage({ caseId: kasus.id, role: "user", content: message.trim() });
@@ -1778,7 +1792,7 @@ Buat analisis yang spesifik dan langsung berguna, bukan generik.`;
       const recentHistory = history.slice(-11, -1); // exclude the one we just added
 
       // Fetch active business memory for contextual warnings
-      const memories = await storage.getBusinessMemoryByUser(req.user.claims.sub, true);
+      const memories = await storage.getBusinessMemoryByUser(getUserId(req), true);
       let memoryContext: string | undefined;
       if (memories.length > 0) {
         memoryContext = memories.slice(0, 8).map(m =>
@@ -1899,7 +1913,7 @@ Buat analisis yang spesifik dan langsung berguna, bukan generik.`;
         console.warn("AI naming failed, using fallback:", aiErr);
       }
 
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const doc = await storage.createProjectDocument({
         userId,
         name,
@@ -2019,7 +2033,7 @@ Buat analisis yang spesifik dan langsung berguna, bukan generik.`;
           }
         }
 
-        const userId = req.user.claims.sub;
+        const userId = getUserId(req);
         const doc = await storage.createProjectDocument({
           userId,
           name,
@@ -2045,7 +2059,7 @@ Buat analisis yang spesifik dan langsung berguna, bukan generik.`;
     try {
       const id = parseInt(req.params.id);
       if (isNaN(id)) return res.status(400).json({ message: "Invalid document ID" });
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const doc = await storage.getProjectDocument(id, userId);
       if (!doc) return res.status(404).json({ message: "Dokumen tidak ditemukan" });
       const newName = (req.body.name || "").toString().trim().slice(0, 200);
@@ -2061,7 +2075,7 @@ Buat analisis yang spesifik dan langsung berguna, bukan generik.`;
   // List documents for user (without contentText)
   app.get("/api/ai-dokumen/documents", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const docs = await storage.getProjectDocumentsByUser(userId);
       res.json(docs);
     } catch (err) {
@@ -2072,7 +2086,7 @@ Buat analisis yang spesifik dan langsung berguna, bukan generik.`;
   // Delete document
   app.delete("/api/ai-dokumen/documents/:id", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const id = parseInt(req.params.id);
       const doc = await storage.getProjectDocument(id, userId);
       if (!doc) return res.status(404).json({ message: "Dokumen tidak ditemukan" });
@@ -2086,7 +2100,7 @@ Buat analisis yang spesifik dan langsung berguna, bukan generik.`;
   // Get chat history for a document
   app.get("/api/ai-dokumen/documents/:id/messages", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const id = parseInt(req.params.id);
       const doc = await storage.getProjectDocument(id, userId);
       if (!doc) return res.status(404).json({ message: "Dokumen tidak ditemukan" });
@@ -2100,7 +2114,7 @@ Buat analisis yang spesifik dan langsung berguna, bukan generik.`;
   // Clear chat history for a document
   app.delete("/api/ai-dokumen/documents/:id/messages", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const id = parseInt(req.params.id);
       const doc = await storage.getProjectDocument(id, userId);
       if (!doc) return res.status(404).json({ message: "Dokumen tidak ditemukan" });
@@ -2124,7 +2138,7 @@ Buat analisis yang spesifik dan langsung berguna, bukan generik.`;
       const id = parseInt(req.params.id);
       if (isNaN(id)) return res.status(400).json({ message: "Invalid document ID" });
 
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const doc = await storage.getProjectDocument(id, userId);
       if (!doc) return res.status(404).json({ message: "Dokumen tidak ditemukan" });
 
@@ -2202,7 +2216,7 @@ ${content}
       const { documentId, message } = req.body;
       if (!documentId || !message) return res.status(400).json({ message: "documentId dan message diperlukan" });
 
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const doc = await storage.getProjectDocument(parseInt(documentId), userId);
       if (!doc) return res.status(404).json({ message: "Dokumen tidak ditemukan" });
 
@@ -2327,7 +2341,7 @@ Panduan menjawab:
 
   app.get("/api/kompetensi", isAuthenticated, async (req: any, res) => {
     try {
-      const items = await storage.getCompetenciesByUser(req.user.claims.sub);
+      const items = await storage.getCompetenciesByUser(getUserId(req));
       res.json(items);
     } catch { res.status(500).json({ message: "Gagal memuat kompetensi" }); }
   });
@@ -2336,7 +2350,7 @@ Panduan menjawab:
     try {
       const { type, name, ...rest } = req.body;
       if (!type || !name) return res.status(400).json({ message: "type dan name wajib diisi" });
-      const item = await storage.createCompetency({ userId: req.user.claims.sub, type, name, ...rest });
+      const item = await storage.createCompetency({ userId: getUserId(req), type, name, ...rest });
       res.status(201).json(item);
     } catch { res.status(500).json({ message: "Gagal menyimpan kompetensi" }); }
   });
@@ -2344,7 +2358,7 @@ Panduan menjawab:
   app.patch("/api/kompetensi/:id", isAuthenticated, async (req: any, res) => {
     try {
       const item = await storage.getCompetency(parseInt(req.params.id));
-      if (!item || item.userId !== req.user.claims.sub) return res.status(404).json({ message: "Tidak ditemukan" });
+      if (!item || item.userId !== getUserId(req)) return res.status(404).json({ message: "Tidak ditemukan" });
       const updated = await storage.updateCompetency(item.id, req.body);
       res.json(updated);
     } catch { res.status(500).json({ message: "Gagal memperbarui kompetensi" }); }
@@ -2353,7 +2367,7 @@ Panduan menjawab:
   app.delete("/api/kompetensi/:id", isAuthenticated, async (req: any, res) => {
     try {
       const item = await storage.getCompetency(parseInt(req.params.id));
-      if (!item || item.userId !== req.user.claims.sub) return res.status(404).json({ message: "Tidak ditemukan" });
+      if (!item || item.userId !== getUserId(req)) return res.status(404).json({ message: "Tidak ditemukan" });
       await storage.deleteCompetency(item.id);
       res.json({ success: true });
     } catch { res.status(500).json({ message: "Gagal menghapus kompetensi" }); }
@@ -2361,7 +2375,7 @@ Panduan menjawab:
 
   app.post("/api/kompetensi/gap-analysis", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const items = await storage.getCompetenciesByUser(userId);
       if (items.length === 0) return res.status(400).json({ message: "Belum ada kompetensi untuk dianalisis" });
 
@@ -2418,7 +2432,7 @@ Berikan analisis yang spesifik berdasarkan data yang ada, bukan generik.`;
       const { sourceType, sourceId } = req.body;
       if (!sourceType || !sourceId) return res.status(400).json({ message: "sourceType dan sourceId wajib diisi" });
 
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       let context = "";
       let title = "";
 
@@ -2772,7 +2786,7 @@ Buat surat permohonan SBU yang resmi, lengkap sesuai format LPJK, siap diadaptas
   // List sessions for current user
   app.get("/api/pipeline-sessions", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const { type } = req.query;
       const sessions = await storage.getPipelineSessionsByUser(userId, type as string | undefined);
       res.json(sessions);
@@ -2784,7 +2798,7 @@ Buat surat permohonan SBU yang resmi, lengkap sesuai format LPJK, siap diadaptas
   // Get a single session
   app.get("/api/pipeline-sessions/:id", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const id = parseInt(req.params.id);
       if (isNaN(id)) return res.status(400).json({ message: "Invalid session ID" });
       const session = await storage.getPipelineSession(id);
@@ -2799,7 +2813,7 @@ Buat surat permohonan SBU yang resmi, lengkap sesuai format LPJK, siap diadaptas
   // Create a new session
   app.post("/api/pipeline-sessions", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const { pipelineType, title, stage, inputData, results, draftType } = req.body;
       if (!pipelineType || !title) return res.status(400).json({ message: "pipelineType dan title wajib diisi" });
       const session = await storage.createPipelineSession({
@@ -2822,7 +2836,7 @@ Buat surat permohonan SBU yang resmi, lengkap sesuai format LPJK, siap diadaptas
   // Update an existing session
   app.patch("/api/pipeline-sessions/:id", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const id = parseInt(req.params.id);
       if (isNaN(id)) return res.status(400).json({ message: "Invalid session ID" });
       const session = await storage.getPipelineSession(id);
@@ -2845,7 +2859,7 @@ Buat surat permohonan SBU yang resmi, lengkap sesuai format LPJK, siap diadaptas
   // Delete a session
   app.delete("/api/pipeline-sessions/:id", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       const id = parseInt(req.params.id);
       if (isNaN(id)) return res.status(400).json({ message: "Invalid session ID" });
       const session = await storage.getPipelineSession(id);
@@ -3350,7 +3364,7 @@ Tanggal hari ini: ${new Date().toLocaleDateString("id-ID", { day: "2-digit", mon
     const cfg = MULTICLAW_TEAMS[team];
     if (!cfg) return res.status(400).json({ message: "Tim tidak dikenal" });
 
-    const userId = req.user?.id?.toString() || req.user?.claims?.sub || "";
+    const userId = getUserId(req);
     const session = await storage.createMonitoringSession({ team, triggeredBy: "manual", userId, status: "running" });
     res.json({ sessionId: session.id, status: "running" });
 
@@ -3413,7 +3427,7 @@ Tanggal hari ini: ${new Date().toLocaleDateString("id-ID", { day: "2-digit", mon
         return res.status(404).json({ message: "Sesi tidak ditemukan" });
       }
       // Ownership check: only the user who triggered the session may poll it
-      const userId = req.user.claims.sub;
+      const userId = getUserId(req);
       if (session.userId && session.userId !== userId) {
         return res.status(403).json({ message: "Tidak diizinkan" });
       }
@@ -3454,7 +3468,7 @@ Tanggal hari ini: ${new Date().toLocaleDateString("id-ID", { day: "2-digit", mon
   // POST /api/multiclaw/freelance — create listing
   app.post("/api/multiclaw/freelance", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user?.id?.toString() || req.user?.claims?.sub || "";
+      const userId = getUserId(req);
       const listing = await storage.createFreelanceListing({ ...req.body, userId, status: "active" });
       res.json(listing);
     } catch {
@@ -3467,7 +3481,7 @@ Tanggal hari ini: ${new Date().toLocaleDateString("id-ID", { day: "2-digit", mon
     try {
       const id = parseInt(req.params.id);
       if (isNaN(id)) return res.status(400).json({ message: "ID tidak valid" });
-      const userId = req.user?.id?.toString() || req.user?.claims?.sub || "";
+      const userId = getUserId(req);
       const listing = await storage.getFreelanceListing(id);
       if (!listing) return res.status(404).json({ message: "Listing tidak ditemukan" });
       if (listing.userId !== userId) return res.status(403).json({ message: "Anda tidak memiliki izin untuk menutup listing ini" });
@@ -3483,7 +3497,7 @@ Tanggal hari ini: ${new Date().toLocaleDateString("id-ID", { day: "2-digit", mon
     try {
       const id = parseInt(req.params.id);
       if (isNaN(id)) return res.status(400).json({ message: "ID tidak valid" });
-      const userId = req.user?.id?.toString() || req.user?.claims?.sub || "";
+      const userId = getUserId(req);
       const listing = await storage.getFreelanceListing(id);
       if (!listing) return res.status(404).json({ message: "Listing tidak ditemukan" });
       if (listing.userId !== userId) return res.status(403).json({ message: "Anda tidak memiliki izin untuk menghapus listing ini" });
