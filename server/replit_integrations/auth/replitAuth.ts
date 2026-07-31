@@ -36,6 +36,8 @@ export function getSession() {
       httpOnly: true,
       secure: true,
       maxAge: sessionTtl,
+      // Share session across all *.dokumenproyek.com subdomains in production
+      domain: process.env.NODE_ENV === "production" ? ".dokumenproyek.com" : undefined,
     },
   });
 }
