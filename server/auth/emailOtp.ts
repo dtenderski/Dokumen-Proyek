@@ -20,17 +20,17 @@ function generateOTP(): string {
   return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
-/** Send via Brevo Transactional Email API — no IP restrictions, no SMTP needed */
+/** Send via Resend API — no IP restrictions, no SMTP needed */
 async function sendOtpEmail(toEmail: string, otp: string) {
-  const apiKey = process.env.BREVO_API_KEY!;
-  const senderEmail = process.env.BREVO_SENDER_EMAIL || "noreply@dokumenproyek.com";
+  const apiKey = process.env.RESEND_API_KEY!;
+  const senderEmail = process.env.RESEND_SENDER_EMAIL || "noreply@dokumenproyek.com";
 
   const body = {
-    sender: { name: "DokumenProyek.com", email: senderEmail },
-    to: [{ email: toEmail }],
+    from: `DokumenProyek.com <${senderEmail}>`,
+    to: [toEmail],
     subject: `${otp} — Kode Verifikasi DokumenProyek.com`,
-    textContent: `Kode verifikasi Anda: ${otp}\n\nBerlaku selama 10 menit.\nJangan bagikan kode ini ke siapapun.`,
-    htmlContent: `
+    text: `Kode verifikasi Anda: ${otp}\n\nBerlaku selama 10 menit.\nJangan bagikan kode ini ke siapapun.`,
+    html: `
 <!DOCTYPE html>
 <html>
 <body style="margin:0;padding:0;background:#0f172a;font-family:ui-sans-serif,system-ui,sans-serif;">
