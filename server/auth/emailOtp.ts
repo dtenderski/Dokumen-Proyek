@@ -22,10 +22,11 @@ function generateOTP(): string {
 }
 
 function getTransporter() {
+  // Default ke Brevo SMTP relay — SMTP_HOST hanya perlu di-override kalau bukan Brevo
   return nodemailer.createTransport({
-    host: process.env.SMTP_HOST || "smtp.gmail.com",
+    host: process.env.SMTP_HOST || "smtp-relay.brevo.com",
     port: Number(process.env.SMTP_PORT ?? 587),
-    secure: (process.env.SMTP_SECURE === "true"),
+    secure: process.env.SMTP_SECURE === "true", // false untuk port 587 (STARTTLS)
     auth: {
       user: process.env.SMTP_USER!,
       pass: process.env.SMTP_PASS!,
