@@ -74,26 +74,25 @@ async function sendOtpEmail(toEmail: string, otp: string) {
 </html>`,
   };
 
-  const res = await fetch("https://api.brevo.com/v3/smtp/email", {
+  const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
-      "api-key": apiKey,
+      "Authorization": `Bearer ${apiKey}`,
       "Content-Type": "application/json",
-      "Accept": "application/json",
     },
     body: JSON.stringify(body),
   });
 
   if (!res.ok) {
     const detail = await res.text().catch(() => res.statusText);
-    throw new Error(`Brevo API error ${res.status}: ${detail}`);
+    throw new Error(`Resend API error ${res.status}: ${detail}`);
   }
 }
 
 // ─── Routes ────────────────────────────────────────────────────────────────
 export function setupEmailOtp(app: Express) {
-  if (!process.env.BREVO_API_KEY) {
-    console.warn("[Auth] BREVO_API_KEY not set — Email OTP login disabled.");
+  if (!process.env.RESEND_API_KEY) {
+    console.warn("[Auth] RESEND_API_KEY not set — Email OTP login disabled.");
   }
 
   // POST /api/auth/email-otp/send
@@ -104,7 +103,7 @@ export function setupEmailOtp(app: Express) {
       return res.status(400).json({ error: "Format email tidak valid." });
     }
 
-    if (!process.env.BREVO_API_KEY) {
+    if (!process.env.RESEND_API_KEY) {
       return res.status(503).json({ error: "Email OTP belum dikonfigurasi di server." });
     }
 
