@@ -55,6 +55,10 @@ import SMAPPancekPage from "@/pages/SMAPPancekPage";
 import EksekutifSummaryPage from "@/pages/EksekutifSummaryPage";
 import KonstruksiAIPage from "@/pages/KonstruksiAIPage";
 import KeuanganPajakPage from "@/pages/KeuanganPajakPage";
+import GaiaStorePage from "@/pages/GaiaStorePage";
+import GaiaSIAPPage from "@/pages/GaiaSIAPPage";
+import PUBLKUTPage from "@/pages/PUBLKUTPage";
+import LKUTSimulatorPage from "@/pages/LKUTSimulatorPage";
 
 
 function AuthenticatedRouter() {
@@ -96,6 +100,10 @@ function AuthenticatedRouter() {
           <Route path="/jasa-dokumen" component={JasaDokumenSKI} />
           <Route path="/layanan-ski" component={LayananSKI} />
           <Route path="/toko" component={Toko} />
+          <Route path="/gaia-store" component={GaiaStorePage} />
+          <Route path="/gaia-siap" component={GaiaSIAPPage} />
+          <Route path="/pub-lkut" component={PUBLKUTPage} />
+          <Route path="/lkut-simulator" component={LKUTSimulatorPage} />
           <Route component={ProfileSetup} />
         </Switch>
       );
@@ -146,6 +154,10 @@ function AuthenticatedRouter() {
         <Route path="/eksekutif-summary" component={EksekutifSummaryPage} />
         <Route path="/konstruksi-ai" component={KonstruksiAIPage} />
         <Route path="/keuangan-pajak" component={KeuanganPajakPage} />
+        <Route path="/gaia-store" component={GaiaStorePage} />
+        <Route path="/gaia-siap" component={GaiaSIAPPage} />
+        <Route path="/pub-lkut" component={PUBLKUTPage} />
+        <Route path="/lkut-simulator" component={LKUTSimulatorPage} />
         <Route component={NotFound} />
       </Switch>
     );
@@ -188,6 +200,10 @@ function AuthenticatedRouter() {
       <Route path="/eksekutif-summary" component={EksekutifSummaryPage} />
       <Route path="/konstruksi-ai" component={KonstruksiAIPage} />
       <Route path="/keuangan-pajak" component={KeuanganPajakPage} />
+      <Route path="/gaia-store" component={GaiaStorePage} />
+      <Route path="/gaia-siap" component={GaiaSIAPPage} />
+      <Route path="/pub-lkut" component={PUBLKUTPage} />
+      <Route path="/lkut-simulator" component={LKUTSimulatorPage} />
       {/* Routes only accessible after login — show page so it can display auth gate */}
       <Route path="/tender-generator" component={TenderGenerator} />
       <Route path="/opportunities" component={Opportunities} />
