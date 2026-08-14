@@ -68,7 +68,20 @@ export async function setupAuth(app: Express) {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  const config = await getOidcConfig();
+  // OIDC discovery is only needed for legacy Replit SSO callback.
+  // Wrap in try/catch so a slow or unreachable OIDC endpoint doesn't
+  // stall server startup and fail the autoscale health check.
+  let config: Awaited<ReturnType<typeof getOidcConfig>> | null = null;
+  try {
+    config = await getOidcConfig();
+  } catch (err) {
+    console.warn("[Auth] OIDC discovery failed — legacy Replit SSO disabled:", (err as Error).message);
+  }
+
+  if (!config) {
+    // Server still starts; email/WhatsApp OTP login works without OIDC.
+    return;
+  }
 
   const verify: VerifyFunction = async (
     tokens: client.TokenEndpointResponse & client.TokenEndpointResponseHelpers,
