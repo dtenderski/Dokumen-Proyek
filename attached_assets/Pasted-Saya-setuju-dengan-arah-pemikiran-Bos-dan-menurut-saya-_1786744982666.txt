@@ -1,0 +1,20 @@
+Saya setuju dengan arah pemikiran Bos — dan menurut saya itu memang yang terbaik. Begini alasannya:
+
+Kenapa transfer produk ke dokumenproyek berisiko:
+
+Dua aplikasi = dua database. Akun pelanggan, langganan, riwayat chat AI, dan file Ruang Simpan akan terpecah dua — pelanggan bingung harus login di mana.
+Setiap fitur baru harus dibangun dua kali, dirawat dua kali, dites dua kali. Biaya dan waktunya dobel, hasilnya sama.
+Nama fitur yang tidak sama akan membuat data tidak nyambung saat dipindahkan — persis kekhawatiran Bos.
+Susunan yang saya rekomendasikan (sesuai usul Bos, dengan sedikit penajaman):
+
+gustafta.my.id = dapur & mesin. Semua produk, akun, AI, ebook, toolkit, ruang-ruang — satu rumah, satu database, satu login. Ini yang terus dilengkapi.
+
+dokumenproyek.com = etalase depan. Halaman-halaman pemasaran yang ringan saja. Setiap tombol produk langsung mengarah ke gustafta.my.id. Tidak menyimpan data pelanggan sendiri — jadi tidak ada risiko konflik data sama sekali.
+
+Jasa layanan manusia (pengurusan dokumen) dipasarkan di dokumenproyek.com — cocok, karena nama domainnya persis menggambarkan jasanya, dan alur jasa manusia memang berbeda: ujungnya percakapan WA dan pengerjaan oleh tim, bukan login aplikasi. Pembayarannya pun sudah lewat bayar.dokumenproyek.com (Scalev), jadi satu keluarga domain.
+
+Satu prinsip penting: dokumenproyek jangan pernah dikasih database pelanggan sendiri. Begitu dia hanya "papan reklame + formulir WA", tidak akan ada yang bisa konflik. Kalau suatu saat pelanggan jasa perlu pantau progres pengurusan dokumennya, itu pun sebaiknya tetap login ke gustafta.my.id (misalnya lewat Ruang Kelola) — dokumenproyek cukup menautkan ke sana.
+
+Analogi sederhananya: Gustafta itu pabrik dan tokonya, dokumenproyek itu spanduk di pinggir jalan yang menunjuk ke toko — plus satu loket khusus jasa yang dilayani manusia.
+
+Kalau Bos setuju susunan ini, langkah praktis berikutnya nanti: memastikan semua link produk di halaman-halaman dokumenproyek diarahkan ke gustafta.my.id, dan halaman jasa dokumen/keuangan di Gustafta juga saling menaut ke dokumenproyek untuk jasa manusia. Mau saya cek dulu kondisi dokumenproyek.com sekarang isinya apa saja?

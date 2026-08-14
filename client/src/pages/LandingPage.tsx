@@ -181,12 +181,12 @@ export default function LandingPage() {
                       Cek Kelayakan Gratis <ArrowRight className="ml-2 w-5 h-5" />
                     </Button>
                   </ScrollLink>
-                  <Link href="/agent-hub">
+                  <a href="https://gustafta.my.id/klinik-konsultasi" target="_blank" rel="noopener noreferrer">
                     <Button variant="outline" size="lg" className="border-amber-400/50 hover:bg-amber-500/10 text-amber-300 hover:text-amber-200 h-12 gap-2">
                       <Cpu className="w-4 h-4" />
                       Konsultasi dengan AI
                     </Button>
-                  </Link>
+                  </a>
                 </div>
 
                 <div className="flex flex-col gap-2 pt-2 border-t border-white/10">
@@ -2601,26 +2601,35 @@ export default function LandingPage() {
               ))}
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                className="bg-accent text-slate-900 hover:bg-accent/90 text-lg px-8 py-6 h-auto shadow-xl shadow-accent/20 font-bold"
-                onClick={() => window.location.href = "/api/login"}
+              <a
+                href="https://wa.me/6282299417818?text=Halo%2C+saya+ingin+konsultasi+layanan+dokumen+di+DokumenProyek.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 data-testid="button-cta-register"
               >
-                {cta?.primaryButtonText || "Mulai Konsultasi Gratis"}
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-              <Link href="/agent-hub">
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="border-white/40 text-white hover:bg-white hover:text-primary text-lg px-8 py-6 h-auto bg-transparent gap-2 font-bold"
-                  data-testid="button-cta-ai"
+                <Button
+                  size="lg"
+                  className="bg-accent text-slate-900 hover:bg-accent/90 text-lg px-8 py-6 h-auto shadow-xl shadow-accent/20 font-bold w-full sm:w-auto"
+                >
+                  {cta?.primaryButtonText || "Mulai Konsultasi Gratis"}
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </a>
+              <a
+                href="https://gustafta.my.id/agent-hub"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="button-cta-ai"
+              >
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-white/40 text-white hover:bg-white hover:text-primary text-lg px-8 py-6 h-auto bg-transparent gap-2 font-bold w-full sm:w-auto"
                 >
                   <Cpu className="w-5 h-5" />
                   Coba OpenClaw AI Sekarang
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -2675,37 +2684,42 @@ export default function LandingPage() {
             </div>
 
             <div>
-              <h4 className="text-white font-bold mb-5">Platform & Gustafta AI</h4>
+              <h4 className="text-white font-bold mb-5">Platform AI Kami</h4>
+              {/* Gustafta prominent link */}
+              <a href="https://gustafta.my.id" target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-violet-500/10 border border-violet-500/30 rounded-xl px-3 py-2.5 mb-4 hover:bg-violet-500/20 transition-colors group">
+                <Zap className="w-4 h-4 text-violet-400 shrink-0" />
+                <div className="flex-1 min-w-0">
+                  <p className="text-violet-300 text-xs font-bold leading-tight">gustafta.my.id</p>
+                  <p className="text-slate-500 text-[10px] leading-tight">Platform AI lengkap untuk konstruksi</p>
+                </div>
+                <ChevronRight className="w-3.5 h-3.5 text-violet-400 group-hover:translate-x-0.5 transition-transform" />
+              </a>
               <ul className="space-y-2.5 text-sm">
                 {[
-                  ["MultiClaw Intelligence Hub", "/multiclaw"],
-                  ["TenderaClaw AI Pipeline", "/tendera-claw"],
-                  ["SBUClaw AI Pipeline", "/sbu-claw"],
-                  ["LexCom Hukum", "/lexcom-hukum"],
-                  ["Workroom", "/workroom"],
-                  ["Kompetensi Hub", "/kompetensi-hub"],
-                  ["ASKOM Coach", "/askom-coach"],
-                  ["Bimtek SKK", "/bimtek-skk"],
-                  ["OpenClaw AI Hub", "/agent-hub"],
-                  ["Verifikasi Dokumen", "/verify"],
-                ].map(([label, href], i) => (
+                  ["TenderaClaw AI", "https://gustafta.my.id/tendera-claw", true],
+                  ["SBUClaw AI", "https://gustafta.my.id/sbu-claw", true],
+                  ["LexCom Hukum", "https://gustafta.my.id/lexcom", true],
+                  ["Workroom", "https://gustafta.my.id/ruang-proyek", true],
+                  ["OpenClaw AI Hub", "/agent-hub", false],
+                  ["Verifikasi Dokumen", "/verify", false],
+                  ["Gaia Store", "/gaia-store", false],
+                  ["LKUT Simulator", "/lkut-simulator", false],
+                ].map(([label, href, ext], i) => (
                   <li key={i}>
-                    <Link href={href} className="hover:text-accent transition-colors text-slate-400 flex items-center gap-1.5">
-                      <ChevronRight className="w-3.5 h-3.5" />{label}
-                    </Link>
+                    {ext ? (
+                      <a href={href as string} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors text-slate-400 flex items-center gap-1.5">
+                        <ChevronRight className="w-3.5 h-3.5" />{label}
+                      </a>
+                    ) : (
+                      <Link href={href as string} className="hover:text-accent transition-colors text-slate-400 flex items-center gap-1.5">
+                        <ChevronRight className="w-3.5 h-3.5" />{label}
+                      </Link>
+                    )}
                   </li>
                 ))}
-                <li>
-                  <ScrollLink to="keagenan" smooth={true} offset={-100} className="hover:text-amber-400 transition-colors text-amber-500/80 flex items-center gap-1.5 cursor-pointer font-semibold">
-                    <Users className="w-3.5 h-3.5" />Daftar Fasilitator Lapangan
-                  </ScrollLink>
-                </li>
               </ul>
-              <div className="mt-5 p-3 bg-primary/10 border border-primary/20 rounded-xl">
-                <p className="text-primary text-xs font-semibold mb-1">Gustafta AI Framework</p>
-                <p className="text-slate-500 text-[10px] leading-tight">TenderaClaw · SBUClaw · MultiClaw · LexCom · Workroom · KompetensiHub · ASKOM</p>
-              </div>
-              <div className="mt-3 p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl">
+              <div className="mt-4 p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl">
                 <p className="text-amber-400 text-xs font-semibold mb-0.5">OpenClaw AI Engine</p>
                 <p className="text-slate-500 text-[10px] leading-tight">GPT-4o • 12 Agen Spesialis • RAG Regulasi Konstruksi Indonesia</p>
               </div>

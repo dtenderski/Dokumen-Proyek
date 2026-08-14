@@ -1,22 +1,9 @@
 import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
-import { QueryClientProvider, useQuery } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { useAuth } from "@/hooks/use-auth";
 import LandingPage from "@/pages/LandingPage";
-import Dashboard from "@/pages/Dashboard";
-import ProfileSetup from "@/pages/ProfileSetup";
-import Opportunities from "@/pages/Opportunities";
-import Marketplace from "@/pages/Marketplace";
-import TenderGenerator from "@/pages/TenderGenerator";
-import ProjectDashboard from "@/pages/ProjectDashboard";
-import FinancialModule from "@/pages/FinancialModule";
-import EquipmentRental from "@/pages/EquipmentRental";
-import AIChat from "@/pages/AIChat";
-import Analytics from "@/pages/Analytics";
-import DocumentVerification from "@/pages/DocumentVerification";
-import AgentHub from "@/pages/AgentHub";
 import OSSRBAPage from "@/pages/OSSRBAPage";
 import SBUPage from "@/pages/SBUPage";
 import SKKPage from "@/pages/SKKPage";
@@ -41,10 +28,7 @@ import BusinessMemory from "@/pages/BusinessMemory";
 import NotFound from "@/pages/not-found";
 import { FloatingChatButton } from "@/components/FloatingChatButton";
 import { Chatbot } from "@/components/Chatbot";
-import { ServiceNav } from "@/components/ServiceNav";
 import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
-import type { UserProfile } from "@shared/schema";
-import LoginPage from "@/pages/LoginPage";
 import JasaDokumenSKI from "@/pages/JasaDokumenSKI";
 import LayananSKI from "@/pages/LayananSKI";
 import Toko from "@/pages/Toko";
@@ -59,173 +43,78 @@ import GaiaStorePage from "@/pages/GaiaStorePage";
 import GaiaSIAPPage from "@/pages/GaiaSIAPPage";
 import PUBLKUTPage from "@/pages/PUBLKUTPage";
 import LKUTSimulatorPage from "@/pages/LKUTSimulatorPage";
+import DocumentVerification from "@/pages/DocumentVerification";
+import EquipmentRental from "@/pages/EquipmentRental";
+import AgentHub from "@/pages/AgentHub";
 
-
-function AuthenticatedRouter() {
-  const { user, isLoading: authLoading } = useAuth();
-  
-  const { data: profile, isLoading: profileLoading } = useQuery<UserProfile | null>({
-    queryKey: ["/api/profile"],
-    enabled: !!user,
-  });
-
-  if (authLoading || (user && profileLoading)) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-      </div>
-    );
-  }
-
-  if (user) {
-    if (!profile) {
-      return (
-        <Switch>
-          <Route path="/" component={ProfileSetup} />
-          <Route path="/setup" component={ProfileSetup} />
-          <Route path="/ai-chat" component={AIChat} />
-          <Route path="/ai-dokumen" component={AIDokumen} />
-          <Route path="/konsultasi" component={KlinikKonsultasi} />
-          <Route path="/brain-project" component={BrainProject} />
-          <Route path="/ekosistem-kompetensi" component={EkosistemKompetensi} />
-          <Route path="/bimtek-skk" component={BimtekSKK} />
-          <Route path="/tendera-claw" component={TenderaClaw} />
-          <Route path="/lexcom-hukum" component={LexComHukum} />
-          <Route path="/workroom" component={Workroom} />
-          <Route path="/sbu-claw" component={SBUClaw} />
-          <Route path="/kompetensi-hub" component={KompetensiHub} />
-          <Route path="/askom-coach" component={ASKOMCoach} />
-          <Route path="/multiclaw" component={MultiClaw} />
-          <Route path="/business-memory" component={BusinessMemory} />
-          <Route path="/jasa-dokumen" component={JasaDokumenSKI} />
-          <Route path="/layanan-ski" component={LayananSKI} />
-          <Route path="/toko" component={Toko} />
-          <Route path="/gaia-store" component={GaiaStorePage} />
-          <Route path="/gaia-siap" component={GaiaSIAPPage} />
-          <Route path="/pub-lkut" component={PUBLKUTPage} />
-          <Route path="/lkut-simulator" component={LKUTSimulatorPage} />
-          <Route component={ProfileSetup} />
-        </Switch>
-      );
-    }
-    
-    return (
-      <Switch>
-        <Route path="/" component={Dashboard} />
-        <Route path="/setup" component={ProfileSetup} />
-        <Route path="/opportunities" component={Opportunities} />
-        <Route path="/marketplace" component={Marketplace} />
-        <Route path="/tender-generator" component={TenderGenerator} />
-        <Route path="/projects" component={ProjectDashboard} />
-        <Route path="/financial" component={FinancialModule} />
-        <Route path="/equipment" component={EquipmentRental} />
-        <Route path="/ai-chat" component={AIChat} />
-        <Route path="/agent-hub" component={AgentHub} />
-        <Route path="/oss-rba" component={OSSRBAPage} />
-        <Route path="/sbu" component={SBUPage} />
-        <Route path="/skk" component={SKKPage} />
-        <Route path="/iso-smk3" component={ISOSMKPage} />
-        <Route path="/legalitas" component={LegalitasPage} />
-        <Route path="/proyek" component={ProyekPage} />
-        <Route path="/mini-apps" component={MiniAppsPage} />
-        <Route path="/doc-generator" component={DocGeneratorPage} />
-        <Route path="/analytics" component={Analytics} />
-        <Route path="/verify" component={DocumentVerification} />
-        <Route path="/ai-dokumen" component={AIDokumen} />
-        <Route path="/konsultasi" component={KlinikKonsultasi} />
-        <Route path="/brain-project" component={BrainProject} />
-        <Route path="/ekosistem-kompetensi" component={EkosistemKompetensi} />
-        <Route path="/bimtek-skk" component={BimtekSKK} />
-        <Route path="/tendera-claw" component={TenderaClaw} />
-        <Route path="/lexcom-hukum" component={LexComHukum} />
-        <Route path="/workroom" component={Workroom} />
-        <Route path="/sbu-claw" component={SBUClaw} />
-        <Route path="/kompetensi-hub" component={KompetensiHub} />
-        <Route path="/askom-coach" component={ASKOMCoach} />
-        <Route path="/multiclaw" component={MultiClaw} />
-        <Route path="/business-memory" component={BusinessMemory} />
-        <Route path="/jasa-dokumen" component={JasaDokumenSKI} />
-        <Route path="/layanan-ski" component={LayananSKI} />
-        <Route path="/toko" component={Toko} />
-        <Route path="/lkpm" component={LKPMPage} />
-        <Route path="/lkut" component={LKUTPage} />
-        <Route path="/iso-manajemen" component={ISOManajemenPage} />
-        <Route path="/smap-pancek" component={SMAPPancekPage} />
-        <Route path="/eksekutif-summary" component={EksekutifSummaryPage} />
-        <Route path="/konstruksi-ai" component={KonstruksiAIPage} />
-        <Route path="/keuangan-pajak" component={KeuanganPajakPage} />
-        <Route path="/gaia-store" component={GaiaStorePage} />
-        <Route path="/gaia-siap" component={GaiaSIAPPage} />
-        <Route path="/pub-lkut" component={PUBLKUTPage} />
-        <Route path="/lkut-simulator" component={LKUTSimulatorPage} />
-        <Route component={NotFound} />
-      </Switch>
-    );
-  }
-
+/**
+ * dokumenproyek.com — pure marketing showcase.
+ * No login, no customer database, no auth gating.
+ * All AI/digital products link out to gustafta.my.id.
+ * Only human-delivered document services are sold here (WhatsApp CTA).
+ */
+function AppRouter() {
   return (
     <Switch>
+      {/* ── Landing ── */}
       <Route path="/" component={LandingPage} />
-      <Route path="/ai-chat" component={AIChat} />
-      <Route path="/agent-hub" component={AgentHub} />
-      <Route path="/oss-rba" component={OSSRBAPage} />
+
+      {/* ── Human-delivered services (core product) ── */}
       <Route path="/sbu" component={SBUPage} />
       <Route path="/skk" component={SKKPage} />
       <Route path="/iso-smk3" component={ISOSMKPage} />
+      <Route path="/iso-manajemen" component={ISOManajemenPage} />
       <Route path="/legalitas" component={LegalitasPage} />
-      <Route path="/proyek" component={ProyekPage} />
-      <Route path="/mini-apps" component={MiniAppsPage} />
-      <Route path="/doc-generator" component={DocGeneratorPage} />
-      <Route path="/verify" component={DocumentVerification} />
-      <Route path="/ai-dokumen" component={AIDokumen} />
-      <Route path="/konsultasi" component={KlinikKonsultasi} />
-      <Route path="/brain-project" component={BrainProject} />
-      <Route path="/ekosistem-kompetensi" component={EkosistemKompetensi} />
-      <Route path="/bimtek-skk" component={BimtekSKK} />
-      <Route path="/tendera-claw" component={TenderaClaw} />
-      <Route path="/lexcom-hukum" component={LexComHukum} />
-      <Route path="/workroom" component={Workroom} />
-      <Route path="/sbu-claw" component={SBUClaw} />
-      <Route path="/kompetensi-hub" component={KompetensiHub} />
-      <Route path="/askom-coach" component={ASKOMCoach} />
-      <Route path="/multiclaw" component={MultiClaw} />
-      <Route path="/business-memory" component={BusinessMemory} />
-      <Route path="/jasa-dokumen" component={JasaDokumenSKI} />
-      <Route path="/layanan-ski" component={LayananSKI} />
-      <Route path="/toko" component={Toko} />
+      <Route path="/oss-rba" component={OSSRBAPage} />
       <Route path="/lkpm" component={LKPMPage} />
       <Route path="/lkut" component={LKUTPage} />
-      <Route path="/iso-manajemen" component={ISOManajemenPage} />
       <Route path="/smap-pancek" component={SMAPPancekPage} />
-      <Route path="/eksekutif-summary" component={EksekutifSummaryPage} />
-      <Route path="/konstruksi-ai" component={KonstruksiAIPage} />
-      <Route path="/keuangan-pajak" component={KeuanganPajakPage} />
+      <Route path="/jasa-dokumen" component={JasaDokumenSKI} />
+      <Route path="/layanan-ski" component={LayananSKI} />
+
+      {/* ── Toko digital (links out to gustafta.my.id) ── */}
+      <Route path="/toko" component={Toko} />
       <Route path="/gaia-store" component={GaiaStorePage} />
       <Route path="/gaia-siap" component={GaiaSIAPPage} />
       <Route path="/pub-lkut" component={PUBLKUTPage} />
       <Route path="/lkut-simulator" component={LKUTSimulatorPage} />
-      {/* Routes only accessible after login — show page so it can display auth gate */}
-      <Route path="/tender-generator" component={TenderGenerator} />
-      <Route path="/opportunities" component={Opportunities} />
-      <Route path="/marketplace" component={Marketplace} />
-      <Route path="/projects" component={ProjectDashboard} />
-      <Route path="/financial" component={FinancialModule} />
+
+      {/* ── Gustafta AI product showcase (marketing pages) ── */}
+      <Route path="/agent-hub" component={AgentHub} />
+      <Route path="/tendera-claw" component={TenderaClaw} />
+      <Route path="/sbu-claw" component={SBUClaw} />
+      <Route path="/lexcom-hukum" component={LexComHukum} />
+      <Route path="/ai-dokumen" component={AIDokumen} />
+      <Route path="/konsultasi" component={KlinikKonsultasi} />
+      <Route path="/workroom" component={Workroom} />
+      <Route path="/kompetensi-hub" component={KompetensiHub} />
+      <Route path="/askom-coach" component={ASKOMCoach} />
+      <Route path="/bimtek-skk" component={BimtekSKK} />
+      <Route path="/multiclaw" component={MultiClaw} />
+      <Route path="/business-memory" component={BusinessMemory} />
+      <Route path="/brain-project" component={BrainProject} />
+      <Route path="/ekosistem-kompetensi" component={EkosistemKompetensi} />
+
+      {/* ── Toolkit & utilities ── */}
+      <Route path="/doc-generator" component={DocGeneratorPage} />
+      <Route path="/mini-apps" component={MiniAppsPage} />
+      <Route path="/verify" component={DocumentVerification} />
+      <Route path="/eksekutif-summary" component={EksekutifSummaryPage} />
+      <Route path="/konstruksi-ai" component={KonstruksiAIPage} />
+      <Route path="/keuangan-pajak" component={KeuanganPajakPage} />
+      <Route path="/proyek" component={ProyekPage} />
       <Route path="/equipment" component={EquipmentRental} />
-      <Route path="/analytics" component={Analytics} />
-      {/* /login → custom login page */}
-      <Route path="/login" component={LoginPage} />
+
       <Route component={NotFound} />
     </Switch>
   );
 }
 
 function AppInner() {
-  const { user } = useAuth();
   return (
     <>
       <Toaster />
-      <AuthenticatedRouter />
-      {user && <ServiceNav />}
+      <AppRouter />
       <FloatingChatButton />
       <Chatbot />
       <PWAInstallPrompt />
