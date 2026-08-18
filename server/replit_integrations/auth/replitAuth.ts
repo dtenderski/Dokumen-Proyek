@@ -68,7 +68,28 @@ export async function setupAuth(app: Express) {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  // OIDC discovery is only needed for legacy Replit SSO callback.
+  // Passport serialization and generic login/logout routes are required by
+  // ALL auth methods (Google OAuth, Email OTP, WhatsApp OTP) — register them
+  // unconditionally, before any OIDC-dependent code.
+  passport.serializeUser((user: Express.User, cb) => cb(null, user));
+  passport.deserializeUser((user: Express.User, cb) => cb(null, user));
+
+  // Redirect legacy /api/login to the custom login page
+  app.get("/api/login", (req, res) => {
+    const returnTo = req.query.returnTo;
+    if (
+      typeof returnTo === "string" &&
+      returnTo.startsWith("/") &&
+      !returnTo.startsWith("//") &&
+      !returnTo.includes(":")
+    ) {
+      (req.session as any).returnTo = returnTo;
+      return res.redirect(`/login?returnTo=${encodeURIComponent(returnTo)}`);
+    }
+    return res.redirect("/login");
+  });
+
+  // OIDC discovery is only needed for the legacy Replit SSO callback.
   // Wrap in try/catch so a slow or unreachable OIDC endpoint doesn't
   // stall server startup and fail the autoscale health check.
   let config: Awaited<ReturnType<typeof getOidcConfig>> | null = null;
@@ -78,10 +99,32 @@ export async function setupAuth(app: Express) {
     console.warn("[Auth] OIDC discovery failed — legacy Replit SSO disabled:", (err as Error).message);
   }
 
+  // Logout works for all auth methods; OIDC end-session redirect only when config exists.
+  app.get("/api/logout", (req, res) => {
+    const user = req.user as any;
+    const isOidcSession = !!(user?.claims);
+    req.logout(() => {
+      if (isOidcSession && config) {
+        try {
+          return res.redirect(
+            client.buildEndSessionUrl(config, {
+              client_id: process.env.REPL_ID!,
+              post_logout_redirect_uri: `${req.protocol}://${req.hostname}`,
+            }).href
+          );
+        } catch {
+          // Fallback if OIDC config fails
+        }
+      }
+      res.redirect("/");
+    });
+  });
+
   if (!config) {
-    // Server still starts; email/WhatsApp OTP login works without OIDC.
+    // Legacy Replit SSO callback unavailable; email/WhatsApp/Google login unaffected.
     return;
   }
+  const oidcConfig = config;
 
   const verify: VerifyFunction = async (
     tokens: client.TokenEndpointResponse & client.TokenEndpointResponseHelpers,
@@ -114,24 +157,6 @@ export async function setupAuth(app: Express) {
     }
   };
 
-  passport.serializeUser((user: Express.User, cb) => cb(null, user));
-  passport.deserializeUser((user: Express.User, cb) => cb(null, user));
-
-  // Redirect legacy /api/login to the custom login page
-  app.get("/api/login", (req, res) => {
-    const returnTo = req.query.returnTo;
-    if (
-      typeof returnTo === "string" &&
-      returnTo.startsWith("/") &&
-      !returnTo.startsWith("//") &&
-      !returnTo.includes(":")
-    ) {
-      (req.session as any).returnTo = returnTo;
-      return res.redirect(`/login?returnTo=${encodeURIComponent(returnTo)}`);
-    }
-    return res.redirect("/login");
-  });
-
   // Keep OIDC callback in case of any existing OIDC sessions
   app.get("/api/callback", (req, res, next) => {
     ensureStrategy(req.hostname);
@@ -139,26 +164,6 @@ export async function setupAuth(app: Express) {
       successReturnToOrRedirect: "/",
       failureRedirect: "/login?error=oidc_failed",
     })(req, res, next);
-  });
-
-  app.get("/api/logout", (req, res) => {
-    const user = req.user as any;
-    const isOidcSession = !!(user?.claims);
-    req.logout(() => {
-      if (isOidcSession) {
-        try {
-          return res.redirect(
-            client.buildEndSessionUrl(config, {
-              client_id: process.env.REPL_ID!,
-              post_logout_redirect_uri: `${req.protocol}://${req.hostname}`,
-            }).href
-          );
-        } catch {
-          // Fallback if OIDC config fails
-        }
-      }
-      res.redirect("/");
-    });
   });
 }
 
