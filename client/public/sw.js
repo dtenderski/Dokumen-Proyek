@@ -1,4 +1,4 @@
-const CACHE_NAME = 'dokumentender-v1';
+const CACHE_NAME = 'dokumenproyek-v2';
 const STATIC_ASSETS = [
   '/',
   '/manifest.json',
@@ -54,7 +54,27 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Static assets: cache-first with network fallback
+  // Navigations (index.html): NETWORK-FIRST so a new deploy is picked up
+  // immediately. Serving a stale cached index.html after a deploy points to
+  // hashed JS bundles that no longer exist → blank white page.
+  if (request.mode === 'navigate' || url.pathname === '/') {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response.ok) {
+            const responseClone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, responseClone));
+          }
+          return response;
+        })
+        .catch(() =>
+          caches.match(request).then((cached) => cached || caches.match('/')).then((c) => c || new Response('Offline'))
+        )
+    );
+    return;
+  }
+
+  // Hashed static assets: cache-first with network fallback
   event.respondWith(
     caches.match(request).then((cached) => {
       if (cached) return cached;
@@ -67,7 +87,6 @@ self.addEventListener('fetch', (event) => {
           url.pathname.endsWith('.svg') ||
           url.pathname.endsWith('.ico') ||
           url.pathname.endsWith('.woff2') ||
-          url.pathname === '/' ||
           url.pathname === '/manifest.json'
         )) {
           const responseClone = response.clone();
@@ -76,13 +95,7 @@ self.addEventListener('fetch', (event) => {
           });
         }
         return response;
-      }).catch(() => {
-        // Return offline fallback for navigation requests
-        if (request.mode === 'navigate') {
-          return caches.match('/').then((cached) => cached || new Response('Offline'));
-        }
-        return new Response('', { status: 404 });
-      });
+      }).catch(() => new Response('', { status: 404 }));
     })
   );
 });
