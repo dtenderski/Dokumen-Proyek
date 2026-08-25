@@ -9,6 +9,16 @@
       <stop offset="0" stop-color="#22d3ee"/>
       <stop offset="1" stop-color="#0ea5e9"/>
     </linearGradient>
+    <radialGradient id="logoGlow" cx="50%" cy="45%" r="58%">
+      <stop offset="0" stop-color="#7dd3fc" stop-opacity=".48"/>
+      <stop offset=".42" stop-color="#0ea5e9" stop-opacity=".32"/>
+      <stop offset=".75" stop-color="#0891b2" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#0891b2" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="warmGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#f59e0b" stop-opacity=".34"/>
+      <stop offset="1" stop-color="#f59e0b" stop-opacity="0"/>
+    </radialGradient>
     <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
       <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#000814" flood-opacity=".45"/>
     </filter>
@@ -20,8 +30,9 @@
   <path d="M0 490 C260 420 420 550 650 490 S1000 410 1200 475 V630 H0Z" fill="#04182d" opacity=".72"/>
 
   <g filter="url(#shadow)">
-    <circle cx="208" cy="274" r="150" fill="#0891b2" opacity=".12"/>
-    <circle cx="208" cy="274" r="112" fill="#38bdf8" opacity=".08"/>
+    <circle cx="208" cy="274" r="174" fill="url(#logoGlow)"/>
+    <ellipse cx="208" cy="357" rx="122" ry="68" fill="url(#warmGlow)"/>
+    <circle cx="208" cy="274" r="123" fill="none" stroke="#67e8f9" stroke-width="2" opacity=".2"/>
     <image href="logo-icon.png" x="94" y="148" width="228" height="252" preserveAspectRatio="xMidYMid meet"/>
   </g>
 
