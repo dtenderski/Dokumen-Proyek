@@ -20,9 +20,9 @@
   <path d="M0 490 C260 420 420 550 650 490 S1000 410 1200 475 V630 H0Z" fill="#04182d" opacity=".72"/>
 
   <g filter="url(#shadow)">
-    <rect x="68" y="122" width="280" height="316" rx="30" fill="#f8fafc"/>
-    <image href="logo-icon.png" x="102" y="143" width="212" height="234" preserveAspectRatio="xMidYMid meet"/>
-    <rect x="104" y="392" width="208" height="4" rx="2" fill="url(#cyan)"/>
+    <circle cx="208" cy="274" r="150" fill="#0891b2" opacity=".12"/>
+    <circle cx="208" cy="274" r="112" fill="#38bdf8" opacity=".08"/>
+    <image href="logo-icon.png" x="94" y="148" width="228" height="252" preserveAspectRatio="xMidYMid meet"/>
   </g>
 
   <g font-family="Arial, Helvetica, sans-serif">
