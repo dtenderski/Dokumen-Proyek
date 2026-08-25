@@ -163,7 +163,7 @@ export default function LandingPage() {
                 </h1>
                 
                 <p className="text-lg text-slate-300 leading-relaxed max-w-xl">
-                  Ribuan BUJK, kontraktor, dan tenaga ahli se-Indonesia mempercayakan pengurusan SBU, SKK, ISO, SIUJK, NIB OSS, dan dokumen proyek kepada kami. Didukung Gustafta AI dengan 12 agen spesialis — TenderaClaw, SBUClaw, MultiClaw, LexCom, dan lainnya.
+                  BUJK, kontraktor, dan tenaga ahli se-Indonesia setiap tahun membutuhkan layanan pengurusan SBU, SKK, ISO, NIB, OSS, dan dokumen proyek lainnya. Didukung Gustafta AI dengan 12 Agen Spesialis — TenderClaw, SBUClaw, MultiClaw, LexCom, dan lainnya — siap memberikan pengalaman pelayanan terbaik.
                 </p>
 
                 {/* Key facts bar */}
