@@ -196,7 +196,7 @@ export default function Toko() {
           </h1>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-8">
             eBook, template dokumen, kursus, dan paket jasa pengurusan SBU, SKK, ISO, dan tender —
-            dibuat oleh tim PT. Sarana Kompetensi Indonesia.
+            dibuat oleh tim Gustafta.
           </p>
           {/* Search */}
           <div className="relative max-w-md mx-auto">
@@ -296,7 +296,7 @@ export default function Toko() {
         <section className="mt-16 bg-gradient-to-r from-slate-800 to-slate-900 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <h3 className="text-xl font-bold text-white mb-1">Tidak menemukan yang Anda cari?</h3>
-            <p className="text-slate-400 text-sm">Konsultasikan kebutuhan dokumen & sertifikasi Anda langsung ke tim ahli PT. SKI.</p>
+            <p className="text-slate-400 text-sm">Konsultasikan kebutuhan dokumen & sertifikasi Anda langsung ke tim ahli Gustafta.</p>
           </div>
           <div className="flex gap-3 shrink-0">
             <a

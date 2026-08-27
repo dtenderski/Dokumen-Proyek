@@ -169,7 +169,7 @@ function InquiryForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const txt = encodeURIComponent(
-      `Halo PT. SKI, saya ingin menanyakan layanan Anda.\n\n` +
+      `Halo Gustafta, saya ingin menanyakan layanan Anda.\n\n` +
       `Nama: ${form.nama}\n` +
       `Perusahaan: ${form.perusahaan}\n` +
       `Layanan: ${form.layanan}\n` +
@@ -240,14 +240,14 @@ function InquiryForm() {
         <MessageCircle className="w-4 h-4" />
         Kirim via WhatsApp
       </Button>
-      <p className="text-slate-500 text-xs text-center">Pesan akan dikirim ke WhatsApp tim SKI. Respons dalam 1×24 jam kerja.</p>
+      <p className="text-slate-500 text-xs text-center">Pesan akan dikirim ke WhatsApp tim Gustafta. Respons dalam 1×24 jam kerja.</p>
     </form>
   );
 }
 
 // ─── Main Page ─────────────────────────────────────────────────────────────────
 export default function LayananSKI() {
-  const waHref = `https://wa.me/${WA}?text=${encodeURIComponent("Halo PT. SKI, saya ingin menanyakan layanan Anda.")}`;
+  const waHref = `https://wa.me/${WA}?text=${encodeURIComponent("Halo Gustafta, saya ingin menanyakan layanan Anda.")}`;
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
@@ -260,7 +260,7 @@ export default function LayananSKI() {
           <div className="inline-flex items-center gap-2.5 bg-slate-800 border border-slate-700 rounded-full px-4 py-2 mb-6">
             <img src="/ski-logo.png" alt="" className="w-5 h-5 rounded object-cover hidden" onError={e => (e.currentTarget.style.display = "none")} />
             <Building2 className="w-4 h-4 text-amber-400" />
-            <span className="text-slate-300 text-xs font-semibold">PT. Sarana Kompetensi Indonesia</span>
+            <span className="text-slate-300 text-xs font-semibold">by Gustafta</span>
             <span className="text-slate-600">·</span>
             <span className="text-amber-400 text-xs font-semibold flex items-center gap-1">
               <Zap className="w-3 h-3" />AI by Gustafta
@@ -274,7 +274,7 @@ export default function LayananSKI() {
           </h1>
 
           <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-10">
-            Dari SBU LPJK, SKK ESDM, hingga ISO dan analisis tender — PT. SKI
+            Dari SBU LPJK, SKK ESDM, hingga ISO dan analisis tender — Gustafta
             menyelesaikan urusan sertifikasi dan administrasi konstruksi Anda
             dengan tim ahli yang diperkuat AI Gustafta.
           </p>
@@ -315,19 +315,19 @@ export default function LayananSKI() {
       <div className="max-w-5xl mx-auto px-6 py-16">
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <div className="text-amber-400 text-xs font-bold uppercase tracking-widest mb-3">Tentang PT. SKI</div>
+            <div className="text-amber-400 text-xs font-bold uppercase tracking-widest mb-3">Tentang Gustafta</div>
             <h2 className="text-2xl sm:text-3xl font-extrabold mb-4 leading-snug">
               Mitra Terpercaya BUJK<br />di Seluruh Indonesia
             </h2>
             <p className="text-slate-400 leading-relaxed mb-4">
-              PT. Sarana Kompetensi Indonesia (SKI) adalah perusahaan jasa konsultasi
+              Gustafta menghadirkan layanan konsultasi
               dan pengurusan administrasi di bidang konstruksi, energi, dan sistem manajemen.
               Kami membantu kontraktor, konsultan, dan BUJK menyelesaikan kebutuhan
               sertifikasi, dokumen tender, dan kepatuhan regulasi secara efisien.
             </p>
             <p className="text-slate-400 leading-relaxed">
               Bermitra dengan platform AI <strong className="text-white">Gustafta</strong>,
-              setiap layanan SKI kini dipercepat dengan teknologi analisis dokumen,
+              setiap layanan kini dipercepat dengan teknologi analisis dokumen,
               pipeline sertifikasi, dan chatbot spesialis industri konstruksi.
             </p>
           </div>
@@ -358,7 +358,7 @@ export default function LayananSKI() {
       <div id="layanan" className="max-w-5xl mx-auto px-6 pb-16">
         <div className="text-center mb-12">
           <div className="text-amber-400 text-xs font-bold uppercase tracking-widest mb-3">Layanan</div>
-          <h2 className="text-3xl font-extrabold mb-3">Semua Layanan PT. SKI</h2>
+          <h2 className="text-3xl font-extrabold mb-3">Semua Layanan Gustafta</h2>
           <p className="text-slate-400 max-w-xl mx-auto">
             Setiap layanan didukung tim ahli berpengalaman dan, di mana relevan,
             dipercepat dengan teknologi AI Gustafta.
@@ -412,12 +412,12 @@ export default function LayananSKI() {
         <div className="max-w-5xl mx-auto px-6 py-16">
           <div className="text-center mb-10">
             <div className="text-amber-400 text-xs font-bold uppercase tracking-widest mb-3">Cara Kerja</div>
-            <h2 className="text-2xl font-extrabold">Proses Layanan SKI</h2>
+            <h2 className="text-2xl font-extrabold">Proses Layanan Gustafta</h2>
           </div>
           <div className="grid sm:grid-cols-4 gap-6">
             {[
-              { step: "01", icon: MessageCircle, title: "Konsultasi",          desc: "Hubungi tim SKI via WhatsApp atau form — sampaikan kebutuhan Anda." },
-              { step: "02", icon: FileText,      title: "Analisis Kebutuhan",  desc: "Tim SKI menganalisis situasi dan menyusun rencana layanan yang tepat." },
+              { step: "01", icon: MessageCircle, title: "Konsultasi",          desc: "Hubungi tim Gustafta via WhatsApp atau form — sampaikan kebutuhan Anda." },
+              { step: "02", icon: FileText,      title: "Analisis Kebutuhan",  desc: "Tim Gustafta menganalisis situasi dan menyusun rencana layanan yang tepat." },
               { step: "03", icon: Zap,           title: "Eksekusi + AI",       desc: "Tim mengerjakan didukung tools AI Gustafta untuk hasil lebih cepat & akurat." },
               { step: "04", icon: CheckCircle2,  title: "Selesai & Serahkan",  desc: "Dokumen / sertifikat / laporan diterima klien beserta panduan tindak lanjut." },
             ].map(s => (
@@ -442,11 +442,11 @@ export default function LayananSKI() {
           <div>
             <div className="text-amber-400 text-xs font-bold uppercase tracking-widest mb-3">Mulai Sekarang</div>
             <h2 className="text-2xl sm:text-3xl font-extrabold mb-4 leading-snug">
-              Konsultasikan Kebutuhan<br />Anda dengan Tim SKI
+              Konsultasikan Kebutuhan<br />Anda dengan Tim Gustafta
             </h2>
             <p className="text-slate-400 mb-8 leading-relaxed">
               Isi form di sebelah kanan atau langsung hubungi kami via WhatsApp.
-              Tim SKI akan merespons dalam 1×24 jam kerja.
+              Tim Gustafta akan merespons dalam 1×24 jam kerja.
             </p>
 
             <div className="space-y-4 mb-8">
@@ -478,7 +478,7 @@ export default function LayananSKI() {
           <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
             <h3 className="text-base font-bold text-white mb-1">Form Inquiry</h3>
             <p className="text-slate-500 text-xs mb-5">
-              Pesan akan dikirim ke WhatsApp tim SKI secara otomatis.
+              Pesan akan dikirim ke WhatsApp tim Gustafta secara otomatis.
             </p>
             <InquiryForm />
           </div>
@@ -491,7 +491,7 @@ export default function LayananSKI() {
         <div className="max-w-5xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <Building2 className="w-4 h-4 text-amber-400" />
-            <span className="text-slate-400 text-sm font-semibold">PT. Sarana Kompetensi Indonesia</span>
+            <span className="text-slate-400 text-sm font-semibold">by Gustafta</span>
           </div>
           <div className="flex items-center gap-1.5 text-slate-500 text-xs">
             <Zap className="w-3 h-3 text-amber-400" />
