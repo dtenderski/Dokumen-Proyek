@@ -285,18 +285,18 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ─── JASA PT. SKI ─── */}
-      <LandingSection title="Jasa PT. SKI — Pengelola Platform" subtitle="Layanan profesional di balik DokumenProyek.com" defaultOpen>
+      {/* ─── LAYANAN BY GUSTAFTA ─── */}
+      <LandingSection title="Layanan Profesional — by Gustafta" subtitle="Layanan profesional di balik DokumenProyek.com" defaultOpen>
       <section className="py-20 bg-white">
         <div className="container">
           <div className="text-center max-w-3xl mx-auto mb-14">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 border border-amber-200 text-amber-700 font-semibold text-xs mb-4">
               <Building2 className="w-3.5 h-3.5" />
-              PT. Sarana Kompetensi Indonesia (SKI)
+                by Gustafta
             </div>
             <h2 className="mt-2 mb-4">Siapa di Balik Platform Ini?</h2>
             <p className="text-muted-foreground leading-relaxed">
-              DokumenProyek.com dibangun dan dioperasikan oleh <strong>PT. Sarana Kompetensi Indonesia (SKI)</strong> — perusahaan jasa konsultasi konstruksi berpengalaman yang kini diperkuat teknologi AI Gustafta.
+                DokumenProyek.com dikembangkan untuk menghadirkan layanan dokumen konstruksi yang lebih mudah, cepat, dan terpercaya — <strong>by Gustafta</strong>, didukung teknologi AI dengan agen-agen spesialis.
             </p>
           </div>
 
@@ -383,7 +383,7 @@ export default function LandingPage() {
           <div className="text-center">
             <Link href="/layanan-ski">
               <Button size="lg" className="bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-8 h-12 gap-2">
-                Lihat Semua Layanan SKI
+                Lihat Semua Layanan
                 <ArrowRight className="w-5 h-5" />
               </Button>
             </Link>
